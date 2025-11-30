@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('avatar_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            
+            // Indexes
+            $table->index('role');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
