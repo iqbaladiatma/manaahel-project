@@ -179,4 +179,119 @@ class ArticlePropertiesTest extends TestCase
             }
         });
     }
+
+    /**
+     * **Feature: manaahel-platform, Property 31: Article multi-language save**
+     * 
+     * For any article created or updated by an admin, all three language versions 
+     * (Indonesian, English, Arabic) should be saved to the database.
+     * 
+     * **Validates: Requirements 9.1**
+     */
+    #[Test]
+    public function article_multi_language_save()
+    {
+        $this->forAll(
+            Generator\string(), // title_id
+            Generator\string(), // title_en
+            Generator\string(), // title_ar
+            Generator\string(), // content_id
+            Generator\string(), // content_en
+            Generator\string()  // content_ar
+        )
+        ->withMaxSize(100)
+        ->then(function ($titleId, $titleEn, $titleAr, $contentId, $contentEn, $contentAr) {
+            // Ensure strings are not empty and within reasonable limits
+            $titleId = $titleId ?: 'Judul Indonesia ' . uniqid();
+            $titleEn = $titleEn ?: 'English Title ' . uniqid();
+            $titleAr = $titleAr ?: 'عنوان عربي ' . uniqid();
+            $contentId = $contentId ?: 'Konten Indonesia ' . uniqid();
+            $contentEn = $contentEn ?: 'English Content ' . uniqid();
+            $contentAr = $contentAr ?: 'محتوى عربي ' . uniqid();
+            
+            // Truncate if too long (database limits)
+            $titleId = substr($titleId, 0, 255);
+            $titleEn = substr($titleEn, 0, 255);
+            $titleAr = substr($titleAr, 0, 255);
+            $contentId = substr($contentId, 0, 5000);
+            $contentEn = substr($contentEn, 0, 5000);
+            $contentAr = substr($contentAr, 0, 5000);
+            
+            // Create a category for the article
+            $category = Category::factory()->create();
+            
+            $uniqueSlug = 'article-' . uniqid();
+            
+            // Create an article with all three language versions
+            $article = Article::create([
+                'title' => [
+                    'id' => $titleId,
+                    'en' => $titleEn,
+                    'ar' => $titleAr,
+                ],
+                'content' => [
+                    'id' => $contentId,
+                    'en' => $contentEn,
+                    'ar' => $contentAr,
+                ],
+                'category_id' => $category->id,
+                'is_featured' => false,
+                'slug' => $uniqueSlug,
+            ]);
+            
+            // Refresh the article from the database
+            $article->refresh();
+            
+            // Verify that all three language versions of title are saved
+            $this->assertEquals(
+                $titleId,
+                $article->getTranslation('title', 'id'),
+                'Indonesian title should be saved correctly'
+            );
+            
+            $this->assertEquals(
+                $titleEn,
+                $article->getTranslation('title', 'en'),
+                'English title should be saved correctly'
+            );
+            
+            $this->assertEquals(
+                $titleAr,
+                $article->getTranslation('title', 'ar'),
+                'Arabic title should be saved correctly'
+            );
+            
+            // Verify that all three language versions of content are saved
+            $this->assertEquals(
+                $contentId,
+                $article->getTranslation('content', 'id'),
+                'Indonesian content should be saved correctly'
+            );
+            
+            $this->assertEquals(
+                $contentEn,
+                $article->getTranslation('content', 'en'),
+                'English content should be saved correctly'
+            );
+            
+            $this->assertEquals(
+                $contentAr,
+                $article->getTranslation('content', 'ar'),
+                'Arabic content should be saved correctly'
+            );
+            
+            // Verify that the article can be retrieved from database with all translations
+            $retrievedArticle = Article::find($article->id);
+            
+            $this->assertNotNull($retrievedArticle, 'Article should be retrievable from database');
+            
+            // Verify all translations are persisted
+            $this->assertEquals($titleId, $retrievedArticle->getTranslation('title', 'id'));
+            $this->assertEquals($titleEn, $retrievedArticle->getTranslation('title', 'en'));
+            $this->assertEquals($titleAr, $retrievedArticle->getTranslation('title', 'ar'));
+            $this->assertEquals($contentId, $retrievedArticle->getTranslation('content', 'id'));
+            $this->assertEquals($contentEn, $retrievedArticle->getTranslation('content', 'en'));
+            $this->assertEquals($contentAr, $retrievedArticle->getTranslation('content', 'ar'));
+        });
+    }
 }

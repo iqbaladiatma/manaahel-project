@@ -1,15 +1,21 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Gallery') }}
-        </h2>
-    </x-slot>
-
     @if($galleries->where('visibility', 'member_only')->isNotEmpty())
         <x-slot name="meta">
             <meta name="robots" content="noindex, nofollow">
         </x-slot>
     @endif
+
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900 py-20 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                {{ __('Gallery') }}
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                {{ __('Browse our collection of photos and videos from events and activities') }}
+            </p>
+        </div>
+    </div>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

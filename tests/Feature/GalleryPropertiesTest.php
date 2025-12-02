@@ -229,4 +229,61 @@ class GalleryPropertiesTest extends TestCase
             }
         });
     }
+
+    /**
+     * **Feature: manaahel-platform, Property 33: Gallery creation with options**
+     * 
+     * For any gallery item created by an admin, the visibility and batch filter 
+     * options should be saved with the gallery record.
+     * 
+     * **Validates: Requirements 9.3**
+     */
+    #[Test]
+    public function gallery_creation_with_options()
+    {
+        $this->forAll(
+            Generator\elements('public', 'member_only'),
+            Generator\oneOf(
+                Generator\constant(null),
+                Generator\choose(2020, 2030)
+            )
+        )
+        ->withMaxSize(100)
+        ->then(function ($visibility, $batchFilter) {
+            // Clean database before each iteration
+            Gallery::query()->delete();
+
+            // Create a gallery with specific visibility and batch filter options
+            $gallery = Gallery::factory()->create([
+                'visibility' => $visibility,
+                'batch_filter' => $batchFilter,
+            ]);
+
+            // Retrieve the gallery from database to verify persistence
+            $savedGallery = Gallery::find($gallery->id);
+
+            // Verify visibility option is saved correctly
+            $this->assertEquals(
+                $visibility,
+                $savedGallery->visibility,
+                "Gallery visibility should be saved as '{$visibility}'"
+            );
+
+            // Verify batch filter option is saved correctly
+            $this->assertEquals(
+                $batchFilter,
+                $savedGallery->batch_filter,
+                "Gallery batch_filter should be saved correctly"
+            );
+
+            // Verify the gallery has all required fields
+            $this->assertNotNull($savedGallery->title, "Gallery should have a title");
+            $this->assertNotNull($savedGallery->file_path, "Gallery should have a file_path");
+            $this->assertContains(
+                $savedGallery->visibility,
+                ['public', 'member_only'],
+                "Gallery visibility should be either 'public' or 'member_only'"
+            );
+        });
+    }
 }
