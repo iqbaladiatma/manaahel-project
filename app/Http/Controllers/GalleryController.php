@@ -10,13 +10,16 @@ class GalleryController extends Controller
 {
     /**
      * Display galleries visible to the current user.
+     * Paginate gallery items for better performance.
      */
     public function index(Request $request): View
     {
         $user = $request->user();
         
-        // Get galleries visible to the current user
-        $galleries = Gallery::visibleForUser($user)->get();
+        // Get galleries visible to the current user with pagination
+        $galleries = Gallery::visibleForUser($user)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
         
         return view('gallery.index', [
             'galleries' => $galleries,

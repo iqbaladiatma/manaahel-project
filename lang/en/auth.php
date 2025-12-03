@@ -17,4 +17,17 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'emails' => [
+        'verify' => [
+            'subject' => 'Verify Your Email Address',
+            'greeting' => 'Hello :name,',
+            'line1' => 'Thank you for registering with Manaahel Platform!',
+            'line2' => 'Please click the button below to verify your email address and activate your account.',
+            'action' => 'Verify Email Address',
+            'line3' => 'If the button doesn\'t work, you can copy and paste the following link into your browser:',
+            'line4' => 'If you did not create an account, no further action is required.',
+            'footer' => '© ' . date('Y') . ' Manaahel Platform. All rights reserved.',
+        ],
+    ],
+
 ];

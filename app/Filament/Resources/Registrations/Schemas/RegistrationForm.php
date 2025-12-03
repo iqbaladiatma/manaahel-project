@@ -46,7 +46,10 @@ class RegistrationForm
                             ->directory('payment-proofs')
                             ->image()
                             ->imagePreviewHeight('250')
-                            ->required(),
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
+                            ->maxSize(2048) // 2MB in kilobytes
+                            ->required()
+                            ->helperText('Upload payment proof (JPG, PNG, WEBP). Max size: 2MB'),
                     ])
                     ->columns(2),
             ]);

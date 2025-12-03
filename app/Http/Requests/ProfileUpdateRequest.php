@@ -35,7 +35,13 @@ class ProfileUpdateRequest extends FormRequest
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
             'batch_year' => ['nullable', 'integer', 'min:1900', 'max:' . (date('Y') + 10)],
-            'avatar' => ['nullable', 'image', 'max:2048'], // 2MB max
+            'avatar' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048', // 2MB max
+                new \App\Rules\SecureImageUpload(),
+            ],
             'latitude' => ['nullable', 'numeric', 'min:-90', 'max:90'],
             'longitude' => ['nullable', 'numeric', 'min:-180', 'max:180'],
         ];

@@ -45,7 +45,13 @@ class RegistrationController extends Controller
         // Validate the request
         $validated = $request->validate([
             'program_id' => 'required|exists:programs,id',
-            'payment_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120', // 5MB max
+            'payment_proof' => [
+                'required',
+                'file',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048', // 2MB max
+                new \App\Rules\SecureImageUpload(),
+            ],
         ]);
 
         // Get the program and check if it's active
@@ -54,10 +60,20 @@ class RegistrationController extends Controller
             return back()->withErrors(['program_id' => 'Registration for this program is closed.']);
         }
 
-        // Handle file upload
+        // Handle file upload with sanitization
         $paymentProofPath = null;
         if ($request->hasFile('payment_proof')) {
-            $paymentProofPath = $request->file('payment_proof')->store('payment-proofs', 'private');
+            $file = $request->file('payment_proof');
+            
+            // Sanitize filename: remove special characters and spaces
+            $originalName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $sanitizedName = preg_replace('/[^A-Za-z0-9\-_]/', '_', pathinfo($originalName, PATHINFO_FILENAME));
+            $sanitizedName = substr($sanitizedName, 0, 50); // Limit length
+            $filename = $sanitizedName . '_' . time() . '.' . $extension;
+            
+            // Store with sanitized filename
+            $paymentProofPath = $file->storeAs('payment-proofs', $filename, 'private');
         }
 
         // Create the registration with pending status

@@ -10,6 +10,7 @@ class CourseController extends Controller
 {
     /**
      * Display a listing of courses available to the authenticated member.
+     * Eager load program relationship to prevent N+1 queries.
      */
     public function index(Request $request)
     {
@@ -20,8 +21,8 @@ class CourseController extends Controller
 
         $user = $request->user();
 
-        // Get all courses and filter by availability
-        $courses = Course::all()->filter(function ($course) use ($user) {
+        // Eager load program relationship to prevent N+1 queries
+        $courses = Course::with('program')->get()->filter(function ($course) use ($user) {
             return $course->isAvailableForMember($user);
         });
 
@@ -30,6 +31,7 @@ class CourseController extends Controller
 
     /**
      * Display the specified course.
+     * Eager load program relationship.
      */
     public function show(Request $request, Course $course)
     {
@@ -40,6 +42,9 @@ class CourseController extends Controller
 
         // Use policy to check if user can view this course
         Gate::authorize('view', $course);
+
+        // Eager load program relationship
+        $course->load('program');
 
         return view('courses.show', compact('course'));
     }

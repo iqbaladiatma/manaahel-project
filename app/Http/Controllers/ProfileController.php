@@ -35,9 +35,19 @@ class ProfileController extends Controller
 
         $validated = $request->validated();
 
-        // Handle avatar upload
+        // Handle avatar upload with sanitization
         if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $file = $request->file('avatar');
+            
+            // Sanitize filename: remove special characters and spaces
+            $originalName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $sanitizedName = preg_replace('/[^A-Za-z0-9\-_]/', '_', pathinfo($originalName, PATHINFO_FILENAME));
+            $sanitizedName = substr($sanitizedName, 0, 50); // Limit length
+            $filename = 'avatar_' . $user->id . '_' . time() . '.' . $extension;
+            
+            // Store with sanitized filename
+            $avatarPath = $file->storeAs('avatars', $filename, 'public');
             $validated['avatar_url'] = $avatarPath;
         }
 

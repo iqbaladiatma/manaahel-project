@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {
@@ -22,20 +23,25 @@ class ArticleController extends Controller
 
         $articles = $query->orderBy('created_at', 'desc')->paginate(12);
         
-        // Get all categories for the filter dropdown
-        $categories = Category::all();
+        // Cache categories for 1 hour
+        $categories = Cache::remember('categories.all', 3600, function () {
+            return Category::all();
+        });
 
         return view('articles.index', compact('articles', 'categories'));
     }
 
     /**
      * Display the specified article in the selected language.
+     * Cache article content for 1 hour.
      */
     public function show(Article $article)
     {
-        // Load the category relationship
-        $article->load('category');
+        // Cache the article with its category for 1 hour
+        $cachedArticle = Cache::remember("article.{$article->id}", 3600, function () use ($article) {
+            return $article->load('category');
+        });
 
-        return view('articles.show', compact('article'));
+        return view('articles.show', ['article' => $cachedArticle]);
     }
 }

@@ -71,6 +71,11 @@
                                 </div>
                             @endforeach
                         </div>
+
+                        <!-- Pagination Links -->
+                        <div class="mt-6">
+                            {{ $galleries->links() }}
+                        </div>
                     @endif
                 </div>
             </div>

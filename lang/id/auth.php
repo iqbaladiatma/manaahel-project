@@ -17,4 +17,17 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'emails' => [
+        'verify' => [
+            'subject' => 'Verifikasi Alamat Email Anda',
+            'greeting' => 'Halo :name,',
+            'line1' => 'Terima kasih telah mendaftar di Platform Manaahel!',
+            'line2' => 'Silakan klik tombol di bawah ini untuk memverifikasi alamat email Anda dan mengaktifkan akun Anda.',
+            'action' => 'Verifikasi Alamat Email',
+            'line3' => 'Jika tombol tidak berfungsi, Anda dapat menyalin dan menempelkan tautan berikut ke browser Anda:',
+            'line4' => 'Jika Anda tidak membuat akun, tidak diperlukan tindakan lebih lanjut.',
+            'footer' => '© ' . date('Y') . ' Platform Manaahel. Hak cipta dilindungi.',
+        ],
+    ],
+
 ];

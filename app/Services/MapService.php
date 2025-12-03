@@ -4,19 +4,23 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class MapService
 {
     /**
      * Get all members with location coordinates.
+     * Cache member locations for 15 minutes.
      */
     public function getMemberLocations(): array
     {
-        $members = User::members()
-            ->withLocation()
-            ->get(['id', 'name', 'batch_year', 'latitude', 'longitude', 'avatar_url']);
-        
-        return $this->formatMarkerData($members);
+        return Cache::remember('map.member_locations', 900, function () {
+            $members = User::members()
+                ->withLocation()
+                ->get(['id', 'name', 'batch_year', 'latitude', 'longitude', 'avatar_url']);
+            
+            return $this->formatMarkerData($members);
+        });
     }
 
     /**

@@ -803,115 +803,167 @@
 
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 20. Implement public pages and navigation
-  - [ ] 20.1 Create landing page (home)
+- [x] 20. Implement public pages and navigation
+
+
+
+
+  - [x] 20.1 Create landing page (home)
+
+
     - Display vision and mission
     - Show featured programs
     - Display recent achievements (featured articles)
     - Support multi-language content
     - _Requirements: 1.1_
   
-  - [ ] 20.2 Create about page
+  - [x] 20.2 Create about page
     - Display organization information
     - Support multi-language content
+
+
     - _Requirements: 1.1_
   
-  - [ ] 20.3 Create main navigation layout
+  - [x] 20.3 Create main navigation layout
     - Add language switcher component
+
+
     - Add navigation links (Home, About, Programs, Blog, Map, Login)
     - Support RTL/LTR layout switching
     - _Requirements: 1.1, 1.2, 1.3_
   
-  - [ ] 20.4 Create footer with social media links
+  - [x] 20.4 Create footer with social media links
     - Add links to Instagram, WhatsApp, TikTok, YouTube, X (Twitter)
     - Support multi-language labels
     - _Requirements: 1.1_
 
-- [ ] 21. Implement member portal dashboard
-  - [ ] 21.1 Create member dashboard view
+- [-] 21. Implement member portal dashboard
+
+
+
+  - [x] 21.1 Create member dashboard view
+
+
     - Display welcome message with member name
     - Show quick links to profile, courses, gallery
     - Display enrolled programs
     - _Requirements: 8.1, 11.4_
   
-  - [ ] 21.2 Add member navigation menu
+
+  - [x] 21.2 Add member navigation menu
+
     - Add links to Dashboard, Profile, Courses, Gallery
     - Require authentication
     - _Requirements: 8.4_
 
-- [ ] 22. Setup email notifications
-  - [ ] 22.1 Configure mail service (SMTP/API)
+- [x] 22. Setup email notifications
+
+
+
+
+
+  - [x] 22.1 Configure mail service (SMTP/API)
+
     - Setup mail driver in .env
     - Configure mail templates
     - _Requirements: 10.2_
   
-  - [ ] 22.2 Create email verification notification
+  - [x] 22.2 Create email verification notification
     - Send verification link on registration
     - Support multi-language email content
     - _Requirements: 10.2_
   
-  - [ ] 22.3 Write property test for email verification link sent
+  - [x] 22.3 Write property test for email verification link sent
+
+
     - **Property 36: Email verification link sent**
     - **Validates: Requirements 10.2**
 
-- [ ] 23. Implement security measures
-  - [ ] 23.1 Add CSRF protection to all forms
+- [x] 23. Implement security measures
+
+  - [x] 23.1 Add CSRF protection to all forms
+
+
     - Ensure @csrf directive in all forms
     - _Requirements: All form submissions_
   
-  - [ ] 23.2 Add rate limiting to authentication routes
+  - [x] 23.2 Add rate limiting to authentication routes
+
+
     - Limit login attempts
     - Limit registration attempts
     - _Requirements: 10.4, 10.5_
   
-  - [ ] 23.3 Implement file upload validation
+  - [x] 23.3 Implement file upload validation
     - Validate file types (images only for payment proofs)
     - Validate file sizes (max 2MB)
     - Sanitize file names
     - _Requirements: 3.2_
   
-  - [ ] 23.4 Add secure headers middleware
+  - [x] 23.4 Add secure headers middleware
     - Add X-Frame-Options header
     - Add Content-Security-Policy header
     - _Requirements: Security best practices_
 
-- [ ] 24. Optimize performance
-  - [ ] 24.1 Add database indexes
+- [x] 24. Optimize performance
+
+
+
+
+
+  - [x] 24.1 Add database indexes
+
     - Verify indexes on frequently queried columns
     - Add composite indexes where needed
     - _Requirements: Performance optimization_
   
-  - [ ] 24.2 Implement caching strategy
+
+  - [x] 24.2 Implement caching strategy
+
     - Cache translated content (1 hour TTL)
     - Cache active programs list (30 minutes TTL)
     - Cache dashboard statistics (5 minutes TTL)
     - Cache member locations for map (15 minutes TTL)
     - _Requirements: Performance optimization_
   
-  - [ ] 24.3 Optimize queries with eager loading
+  - [x] 24.3 Optimize queries with eager loading
+
+
     - Add eager loading to prevent N+1 queries
     - Use with() for relationships
     - _Requirements: Performance optimization_
   
-  - [ ] 24.4 Add pagination to list views
+  - [x] 24.4 Add pagination to list views
+
+
     - Paginate articles list
     - Paginate programs list
     - Paginate gallery items
     - _Requirements: 5.1, 2.1_
 
-- [ ] 25. Final testing and polish
-  - [ ] 25.1 Test all three languages (Indonesian, English, Arabic)
+- [x] 25. Final testing and polish
+
+
+
+
+  - [x] 25.1 Test all three languages (Indonesian, English, Arabic)
+
+
     - Verify all content displays correctly in each language
     - Test RTL layout for Arabic
     - Test LTR layout for Indonesian and English
     - _Requirements: 1.1, 1.2, 1.3_
   
-  - [ ] 25.2 Test all user roles (Guest, User, Member, Admin)
+  - [x] 25.2 Test all user roles (Guest, User, Member, Admin)
+
+
     - Verify access controls work correctly
     - Test authorization policies
     - _Requirements: All authorization requirements_
   
-  - [ ] 25.3 Test registration workflow end-to-end
+
+  - [x] 25.3 Test registration workflow end-to-end
+
     - Register new user
     - Verify email
     - Login
@@ -919,7 +971,9 @@
     - Admin approve registration
     - _Requirements: 3.1, 3.2, 4.2, 10.1, 10.2, 10.3_
   
-  - [ ] 25.4 Run all property-based tests with 100+ iterations
+
+  - [x] 25.4 Run all property-based tests with 100+ iterations
+
     - Verify all 47 properties pass
     - Check for edge cases discovered by property tests
     - _Requirements: All requirements_
