@@ -1,84 +1,61 @@
 <x-app-layout>
-    @if($galleries->where('visibility', 'member_only')->isNotEmpty())
-        <x-slot name="meta">
-            <meta name="robots" content="noindex, nofollow">
-        </x-slot>
-    @endif
-
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900 py-20 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+    <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
                 {{ __('Gallery') }}
             </h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                {{ __('Browse our collection of photos and videos from events and activities') }}
+            <p class="text-xl text-gray-600 animate-slide-up">
+                {{ __('Photos and videos from our community events') }}
             </p>
         </div>
     </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if($galleries->isEmpty())
-                        <p class="text-gray-600 dark:text-gray-400">{{ __('No gallery items available at the moment.') }}</p>
-                    @else
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach($galleries as $gallery)
-                                <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                                    <!-- Gallery Image/Video -->
-                                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                        @if(Str::endsWith($gallery->file_path, ['.jpg', '.jpeg', '.png', '.gif', '.webp']))
-                                            <img src="{{ Storage::url($gallery->file_path) }}" 
-                                                 alt="{{ $gallery->title }}"
-                                                 class="w-full h-full object-cover">
-                                        @elseif(Str::endsWith($gallery->file_path, ['.mp4', '.webm', '.ogg']))
-                                            <video controls class="w-full h-full">
-                                                <source src="{{ Storage::url($gallery->file_path) }}" type="video/{{ pathinfo($gallery->file_path, PATHINFO_EXTENSION) }}">
-                                                {{ __('Your browser does not support the video tag.') }}
-                                            </video>
-                                        @else
-                                            <span class="text-gray-500">{{ __('Media file') }}</span>
-                                        @endif
-                                    </div>
-
-                                    <!-- Gallery Info -->
-                                    <div class="p-4">
-                                        <h3 class="text-lg font-bold mb-2">
-                                            {{ $gallery->title }}
-                                        </h3>
-
-                                        <!-- Visibility Badge -->
-                                        <div class="flex items-center gap-2">
-                                            @if($gallery->visibility === 'member_only')
-                                                <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                                                    {{ __('Members Only') }}
-                                                </span>
-                                            @else
-                                                <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                    {{ __('Public') }}
-                                                </span>
-                                            @endif
-
-                                            @if($gallery->batch_filter)
-                                                <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                                                    {{ __('Batch') }} {{ $gallery->batch_filter }}
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <!-- Pagination Links -->
-                        <div class="mt-6">
-                            {{ $galleries->links() }}
-                        </div>
-                    @endif
+    <div class="pb-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            @if($galleries->isEmpty())
+                <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
+                    <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                        {{ __('No Photos Yet') }}
+                    </h3>
+                    <p class="text-gray-600">
+                        {{ __('Check back later for event photos') }}
+                    </p>
                 </div>
-            </div>
+            @else
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    @foreach($galleries as $gallery)
+                        <div class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-gray-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+                            <img src="{{ $gallery->file_path }}" 
+                                 alt="{{ $gallery->title }}"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h3 class="text-white font-semibold text-base mb-1">{{ $gallery->title }}</h3>
+                                    <p class="text-blue-100 text-sm">{{ __('Click to view') }}</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <svg class="w-5 h-5 text-blue-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-8">
+                    {{ $galleries->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
+
+

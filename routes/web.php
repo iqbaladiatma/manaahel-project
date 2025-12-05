@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,11 +34,22 @@ Route::get('/articles/{article:slug}', [\App\Http\Controllers\ArticleController:
 Route::get('/map', [\App\Http\Controllers\MapController::class, 'index'])->name('map.index');
 Route::get('/api/map/locations', [\App\Http\Controllers\MapController::class, 'getMemberLocations'])->name('map.locations');
 
-// Gallery routes
-Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+
+
+// Gallery routes (protected)
+Route::middleware('auth')->group(function () {
+    Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+});
+
+// Members Directory routes (protected)
+Route::middleware('auth')->group(function () {
+    Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members.index');
+    Route::get('/members/{member}', [\App\Http\Controllers\MemberController::class, 'show'])->name('members.show');
+});
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
@@ -48,9 +57,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/registrations/create', [\App\Http\Controllers\RegistrationController::class, 'create'])->name('registrations.create');
     Route::post('/registrations', [\App\Http\Controllers\RegistrationController::class, 'store'])->name('registrations.store');
     
-    // Course routes (requires authentication)
-    Route::get('/courses', [\App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
-    Route::get('/courses/{course}', [\App\Http\Controllers\CourseController::class, 'show'])->name('courses.show');
+    // Enrolled Programs (for users who have registered and been approved)
+    Route::prefix('my-programs')->name('enrolled.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\EnrolledProgramController::class, 'index'])->name('index');
+        Route::get('/{program:slug}', [\App\Http\Controllers\EnrolledProgramController::class, 'show'])->name('show');
+        Route::get('/{program:slug}/courses/{course:slug}/modules/{module}', [\App\Http\Controllers\EnrolledProgramController::class, 'showModule'])->name('module.show');
+        Route::post('/{program:slug}/courses/{course:slug}/modules/{module}/complete', [\App\Http\Controllers\EnrolledProgramController::class, 'completeModule'])->name('module.complete');
+        Route::post('/{program:slug}/courses/{course:slug}/modules/{module}/uncomplete', [\App\Http\Controllers\EnrolledProgramController::class, 'uncompleteModule'])->name('module.uncomplete');
+        Route::post('/{program:slug}/attendance/{schedule}', [\App\Http\Controllers\EnrolledProgramController::class, 'markAttendance'])->name('attendance.mark');
+    });
+    
+
 });
 
 require __DIR__.'/auth.php';

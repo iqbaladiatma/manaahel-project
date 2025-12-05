@@ -27,6 +27,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'latitude',
         'longitude',
         'avatar_url',
+        'instagram_url',
+        'linkedin_url',
+        'twitter_url',
+        'facebook_url',
+        'youtube_url',
+        'tiktok_url',
+        'bio',
+        'city',
+        'phone',
+        'address',
+        'date_of_birth',
+        'gender',
     ];
 
     /**
@@ -92,6 +104,70 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isMember(): bool
     {
         return in_array($this->role, ['user', 'member']);
+    }
+
+    /**
+     * Check if the user is a member angkatan.
+     */
+    public function isMemberAngkatan(): bool
+    {
+        return $this->role === 'member_angkatan';
+    }
+
+    /**
+     * Check if the user is a member program.
+     */
+    public function isMemberProgram(): bool
+    {
+        return $this->role === 'member_program';
+    }
+
+    /**
+     * Get articles written by this user.
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
+
+    /**
+     * Get galleries uploaded by this user (for member angkatan).
+     */
+    public function galleries(): HasMany
+    {
+        return $this->hasMany(Gallery::class, 'user_id');
+    }
+
+    /**
+     * Get module progress for this user.
+     */
+    public function moduleProgress(): HasMany
+    {
+        return $this->hasMany(UserModuleProgress::class);
+    }
+
+    /**
+     * Get attendances for this user.
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    /**
+     * Scope a query to only include member angkatan.
+     */
+    public function scopeMemberAngkatan($query)
+    {
+        return $query->where('role', 'member_angkatan');
+    }
+
+    /**
+     * Scope a query to only include member program.
+     */
+    public function scopeMemberProgram($query)
+    {
+        return $query->where('role', 'member_program');
     }
 
     /**

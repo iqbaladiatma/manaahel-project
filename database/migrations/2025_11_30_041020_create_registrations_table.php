@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->string('payment_proof')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('notes')->nullable();
             $table->timestamps();
             
             // Indexes

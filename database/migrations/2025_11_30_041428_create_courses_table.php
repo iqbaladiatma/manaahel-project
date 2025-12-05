@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->json('title'); // Translatable field
-            $table->foreignId('program_id')->nullable()->constrained()->onDelete('set null');
-            $table->string('video_url')->nullable();
-            $table->json('content'); // Translatable field
+            $table->json('description')->nullable(); // Translatable field
+            $table->string('slug');
+            $table->integer('order')->default(0);
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
             
             // Indexes
             $table->index('program_id');
+            $table->index('order');
+            $table->unique(['program_id', 'slug']); // Unique constraint
         });
     }
 

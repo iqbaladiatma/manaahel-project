@@ -20,6 +20,7 @@ class Registration extends Model
         'program_id',
         'payment_proof',
         'status',
+        'notes',
     ];
 
     /**

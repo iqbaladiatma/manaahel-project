@@ -21,19 +21,31 @@ class RegistrationController extends Controller
             abort(403, 'You must be logged in to register for a program.');
         }
 
-        $programId = $request->query('program');
-        $program = Program::findOrFail($programId);
+        // Get all active programs for the dropdown
+        $programs = Program::where('status', true)
+            ->orderBy('name->en')
+            ->get();
 
-        // Check if program is active
-        if (!$program->status) {
-            abort(403, 'Registration for this program is closed.');
+        // If a specific program is requested, validate it
+        $selectedProgramId = $request->query('program');
+        if ($selectedProgramId) {
+            $selectedProgram = Program::find($selectedProgramId);
+            if (!$selectedProgram || !$selectedProgram->status) {
+                return redirect()->route('registrations.create')
+                    ->with('error', 'The selected program is not available for registration.');
+            }
         }
 
-        return view('registrations.create', compact('program'));
+        // Get IDs of programs the user is already enrolled in
+        $enrolledProgramIds = Registration::where('user_id', auth()->id())
+            ->pluck('program_id')
+            ->toArray();
+
+        return view('registrations.create', compact('programs', 'enrolledProgramIds'));
     }
 
     /**
-     * Store a new registration with payment proof.
+     * Store a new registration.
      */
     public function store(Request $request): RedirectResponse
     {
@@ -45,13 +57,7 @@ class RegistrationController extends Controller
         // Validate the request
         $validated = $request->validate([
             'program_id' => 'required|exists:programs,id',
-            'payment_proof' => [
-                'required',
-                'file',
-                'mimes:jpg,jpeg,png,webp',
-                'max:2048', // 2MB max
-                new \App\Rules\SecureImageUpload(),
-            ],
+            'notes' => 'nullable|string|max:1000',
         ]);
 
         // Get the program and check if it's active
@@ -60,31 +66,25 @@ class RegistrationController extends Controller
             return back()->withErrors(['program_id' => 'Registration for this program is closed.']);
         }
 
-        // Handle file upload with sanitization
-        $paymentProofPath = null;
-        if ($request->hasFile('payment_proof')) {
-            $file = $request->file('payment_proof');
-            
-            // Sanitize filename: remove special characters and spaces
-            $originalName = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension();
-            $sanitizedName = preg_replace('/[^A-Za-z0-9\-_]/', '_', pathinfo($originalName, PATHINFO_FILENAME));
-            $sanitizedName = substr($sanitizedName, 0, 50); // Limit length
-            $filename = $sanitizedName . '_' . time() . '.' . $extension;
-            
-            // Store with sanitized filename
-            $paymentProofPath = $file->storeAs('payment-proofs', $filename, 'private');
+        // Check if user already registered for this program
+        $existingRegistration = Registration::where('user_id', auth()->id())
+            ->where('program_id', $validated['program_id'])
+            ->first();
+
+        if ($existingRegistration) {
+            return back()->withErrors(['program_id' => 'You have already registered for this program.']);
         }
 
-        // Create the registration with pending status
+        // Create the registration with approved status (no payment proof needed)
         $registration = Registration::create([
             'user_id' => auth()->id(),
             'program_id' => $validated['program_id'],
-            'payment_proof' => $paymentProofPath,
-            'status' => 'pending',
+            'payment_proof' => null,
+            'notes' => $validated['notes'] ?? null,
+            'status' => 'approved', // Auto-approve since no payment needed
         ]);
 
         return redirect()->route('dashboard')
-            ->with('success', 'Your registration has been submitted successfully. Please wait for admin approval.');
+            ->with('success', 'Ahlan Wa Sahlan! Antum Berhasil Terdaftar di Program: ' . $program->getTranslation('name', app()->getLocale()));
     }
 }

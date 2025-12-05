@@ -1,180 +1,290 @@
 <x-app-layout>
-    <!-- Hero Section -->
-    <div class="relative pt-32 pb-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                    {{ __('About Manaahel') }}
-                </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    {{ __('Empowering learners worldwide through education, innovation, and community') }}
+    <!-- Hero Section with Animation -->
+    <div class="relative bg-gradient-to-br from-blue-50 via-white to-gold/5 pt-32 pb-16 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 right-10 w-64 h-64 bg-blue-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+        
+        <!-- Islamic Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="about-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="30" cy="30" r="2" fill="currentColor" class="text-blue-primary"/>
+                        <path d="M30 15 L35 30 L30 45 L25 30 Z" fill="currentColor" class="text-gold" opacity="0.3"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#about-pattern)"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Arabic Bismillah -->
+            <div class="mb-6 fade-in-up">
+                <p class="text-3xl text-blue-primary arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </p>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4 animate-fade-in">
+                {{ __('About Manaahel') }}
+            </h1>
+            <div class="w-24 h-1 gradient-gold mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-slide-up leading-relaxed">
+                {{ __('Empowering learners worldwide through education and community') }}
+            </p>
+            
+            <!-- Decorative Quote -->
+            <div class="mt-8 max-w-3xl mx-auto bg-white/80 backdrop-blur-sm border-l-4 border-gold p-6 rounded-lg shadow-lg zoom-in">
+                <p class="text-lg text-gray-700 italic">
+                    "{{ __('Education is the most powerful weapon which you can use to change the world') }}"
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- Our Story Section -->
-    <div class="py-24 bg-white dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">{{ __('Our Story') }}</h2>
-                    <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                        <p>
-                            {{ __('Manaahel Platform was founded with a vision to democratize education and create a global community of learners. We believe that quality education should be accessible to everyone, regardless of their location or background.') }}
-                        </p>
-                        <p>
-                            {{ __('Our platform brings together students, educators, and professionals from around the world, fostering collaboration, innovation, and lifelong learning. Through our comprehensive programs and supportive community, we help individuals achieve their personal and professional goals.') }}
-                        </p>
-                        <p>
-                            {{ __('Today, Manaahel serves thousands of members across multiple countries, offering diverse programs in technology, business, and personal development. We continue to grow and evolve, always staying true to our mission of empowering learners worldwide.') }}
-                        </p>
+    <!-- Our Story with Timeline -->
+    <div class="py-20 bg-gray-50 relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-primary/5 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ __('Our Story') }}</h2>
+                <div class="w-24 h-1 gradient-blue mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <!-- Story Content -->
+                <div class="space-y-6 slide-in-left">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift border-l-4 border-blue-primary">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 gradient-blue rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('Our Vision') }}</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    {{ __('Manaahel Platform was founded with a vision to democratize education and create a global community of learners. We believe that quality education should be accessible to everyone, regardless of their location or background.') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift border-l-4 border-gold">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('Our Community') }}</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    {{ __('Our platform brings together students, educators, and professionals from around the world, fostering collaboration, innovation, and lifelong learning. Through our comprehensive programs and supportive community, we help individuals achieve their personal and professional goals.') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift border-l-4 border-blue-primary">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 gradient-blue rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('Our Impact') }}</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    {{ __('Today, Manaahel serves thousands of members across multiple countries, offering diverse programs in technology, business, and personal development.') }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="aspect-w-16 aspect-h-12 rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="https://picsum.photos/800/600?random=10" alt="{{ __('About Manaahel') }}" class="object-cover w-full h-full">
+                
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-2 gap-6 slide-in-right">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center interactive-card border-2 border-blue-100">
+                        <div class="w-16 h-16 gradient-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold gradient-blue-text mb-2">100+</div>
+                        <div class="text-gray-600 font-medium">{{ __('Courses') }}</div>
                     </div>
-                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl opacity-20 blur-3xl"></div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center interactive-card border-2 border-gold/30">
+                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold gradient-gold-text mb-2">5K+</div>
+                        <div class="text-gray-600 font-medium">{{ __('Students') }}</div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center interactive-card border-2 border-gold/30">
+                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold gradient-gold-text mb-2">50+</div>
+                        <div class="text-gray-600 font-medium">{{ __('Countries') }}</div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center interactive-card border-2 border-blue-100">
+                        <div class="w-16 h-16 gradient-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold gradient-blue-text mb-2">4.9</div>
+                        <div class="text-gray-600 font-medium">{{ __('Rating') }}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Values Section -->
-    <div class="py-24 bg-gray-50 dark:bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ __('Our Values') }}</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300">{{ __('The principles that guide everything we do') }}</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Excellence -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200">
-                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+    <!-- Vision & Mission -->
+    <div class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-8 border-2 border-blue-100 hover:border-blue-primary hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6 shadow-lg">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ __('Excellence') }}</h3>
-                    <p class="text-gray-600 dark:text-gray-300">{{ __('We strive for the highest quality in everything we deliver') }}</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('Vision') }}</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        {{ __('To be the leading platform that empowers individuals worldwide through accessible education, fostering innovation, and building a connected community of lifelong learners.') }}
+                    </p>
                 </div>
 
-                <!-- Innovation -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200">
-                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                <div class="bg-white rounded-xl p-8 border-2 border-gold/30 hover:border-gold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 gradient-gold rounded-xl flex items-center justify-center mb-6 shadow-lg">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ __('Innovation') }}</h3>
-                    <p class="text-gray-600 dark:text-gray-300">{{ __('We embrace new ideas and technologies to enhance learning') }}</p>
-                </div>
-
-                <!-- Community -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200">
-                    <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ __('Community') }}</h3>
-                    <p class="text-gray-600 dark:text-gray-300">{{ __('We foster connections and collaboration among our members') }}</p>
-                </div>
-
-                <!-- Integrity -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200">
-                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-500 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ __('Integrity') }}</h3>
-                    <p class="text-gray-600 dark:text-gray-300">{{ __('We operate with transparency, honesty, and ethical standards') }}</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('Mission') }}</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        {{ __('We provide high-quality educational programs, facilitate meaningful connections among members, and create opportunities for personal and professional growth.') }}
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- What We Offer Section -->
-    <div class="py-24 bg-white dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ __('What We Offer') }}</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300">{{ __('Comprehensive resources for your learning journey') }}</p>
+    <!-- Organization Structure -->
+    @if(isset($leaders) && $leaders->count() > 0)
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ __('Organization Structure') }}</h2>
+                <p class="text-gray-600">{{ __('Meet the team leading our community') }}</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Academy Programs -->
-                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-8 rounded-2xl border border-indigo-200 dark:border-indigo-800">
-                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
+            <!-- Chairman -->
+            @php
+                $chairman = $leaders->first();
+            @endphp
+            @if($chairman)
+                <div class="max-w-sm mx-auto mb-12">
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <div class="aspect-square w-full bg-gray-100">
+                            @if($chairman->avatar_url)
+                                <img src="{{ $chairman->avatar_url }}" 
+                                     alt="{{ $chairman->name }}"
+                                     class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <span class="text-6xl font-bold text-gray-400">
+                                        {{ strtoupper(substr($chairman->name, 0, 1)) }}
+                                    </span>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">
+                                {{ $chairman->name }}
+                            </h3>
+                            <p class="text-blue-primary font-medium mb-3">
+                                {{ __('Chairman') }}
+                            </p>
+                            @if($chairman->email)
+                                <p class="text-sm text-gray-600">
+                                    {{ $chairman->email }}
+                                </p>
+                            @endif
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ __('Academy Programs') }}</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6">{{ __('Structured learning paths with expert instructors, hands-on projects, and industry-recognized certifications.') }}</p>
-                    <a href="{{ route('programs.index') }}" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300">
-                        {{ __('Explore Programs') }}
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
                 </div>
+            @endif
 
-                <!-- Competitions -->
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-8 rounded-2xl border border-purple-200 dark:border-purple-800">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ __('Competitions') }}</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6">{{ __('Challenge yourself in global competitions, showcase your skills, and win exciting prizes.') }}</p>
-                    <a href="{{ route('programs.index') }}" class="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300">
-                        {{ __('View Competitions') }}
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+            <!-- Board Members -->
+            @if($leaders->count() > 1)
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                    @foreach($leaders->skip(1) as $leader)
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                            <div class="aspect-square w-full bg-gray-100">
+                                @if($leader->avatar_url)
+                                    <img src="{{ $leader->avatar_url }}" 
+                                         alt="{{ $leader->name }}"
+                                         class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <span class="text-4xl font-bold text-gray-400">
+                                            {{ strtoupper(substr($leader->name, 0, 1)) }}
+                                        </span>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="p-4 text-center">
+                                <h3 class="font-bold text-gray-900 mb-1">
+                                    {{ $leader->name }}
+                                </h3>
+                                <p class="text-sm text-blue-primary">
+                                    {{ __('Board Member') }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-
-                <!-- Community Network -->
-                <div class="bg-gradient-to-br from-pink-50 to-indigo-50 dark:from-pink-900/20 dark:to-indigo-900/20 p-8 rounded-2xl border border-pink-200 dark:border-pink-800">
-                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ __('Community Network') }}</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6">{{ __('Connect with members worldwide, share experiences, and build lasting professional relationships.') }}</p>
-                    <a href="{{ route('map.index') }}" class="inline-flex items-center text-pink-600 dark:text-pink-400 font-semibold hover:text-pink-700 dark:hover:text-pink-300">
-                        {{ __('View Community Map') }}
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
+    @endif
 
-    <!-- CTA Section -->
-    <div class="py-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-white mb-6">{{ __('Ready to Start Your Journey?') }}</h2>
-            <p class="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
-                {{ __('Join thousands of learners worldwide and unlock your potential with Manaahel Platform') }}
+    <!-- CTA -->
+    <div class="py-20 gradient-blue relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl font-bold text-white mb-4">{{ __('Ready to Start?') }}</h2>
+            <p class="text-xl text-blue-50 mb-10 max-w-2xl mx-auto">
+                {{ __('Join thousands of learners worldwide and unlock your potential') }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('register') }}" class="px-8 py-4 bg-white text-indigo-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors duration-200 shadow-lg">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="{{ route('register') }}" class="px-10 py-4 bg-white text-blue-primary font-semibold rounded-full hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105 shadow-xl">
                     {{ __('Join Now') }}
                 </a>
-                <a href="{{ route('programs.index') }}" class="px-8 py-4 bg-transparent text-white font-semibold rounded-xl border-2 border-white hover:bg-white hover:text-indigo-600 transition-colors duration-200">
+                <a href="{{ route('programs.index') }}" class="px-10 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-primary transition-all duration-300 transform hover:scale-105">
                     {{ __('Browse Programs') }}
                 </a>
             </div>
         </div>
     </div>
 </x-app-layout>
+
+

@@ -3,49 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Program;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class CourseController extends Controller
 {
     /**
-     * Display a listing of courses available to the authenticated member.
-     * Eager load program relationship to prevent N+1 queries.
+     * Display a listing of courses.
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        // Require authentication
-        if (!$request->user()) {
-            return redirect()->route('login');
+        $query = Course::with('program')->where('is_published', true);
+
+        // Filter by program
+        if ($request->has('program') && $request->program) {
+            $query->where('program_id', $request->program);
         }
 
-        $user = $request->user();
+        // Search
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title->en', 'like', "%{$search}%")
+                  ->orWhere('title->id', 'like', "%{$search}%")
+                  ->orWhere('description->en', 'like', "%{$search}%")
+                  ->orWhere('description->id', 'like', "%{$search}%");
+            });
+        }
 
-        // Eager load program relationship to prevent N+1 queries
-        $courses = Course::with('program')->get()->filter(function ($course) use ($user) {
-            return $course->isAvailableForMember($user);
-        });
+        $courses = $query->orderBy('order')->paginate(12);
 
-        return view('courses.index', compact('courses'));
+        // Get programs for filter
+        $programs = Program::where('status', true)->get();
+
+        return view('courses.index', compact('courses', 'programs'));
     }
 
     /**
      * Display the specified course.
-     * Eager load program relationship.
      */
-    public function show(Request $request, Course $course)
+    public function show(Course $course): View
     {
-        // Check authentication and authorization
-        if (!$request->user()) {
-            return redirect()->route('login');
+        // Check if course is published
+        if (!$course->is_published) {
+            abort(404);
         }
 
-        // Use policy to check if user can view this course
-        Gate::authorize('view', $course);
+        $course->load(['program', 'modules' => function($query) {
+            $query->where('is_published', true)->orderBy('order');
+        }]);
 
-        // Eager load program relationship
-        $course->load('program');
+        // Get related courses from same program
+        $relatedCourses = Course::where('program_id', $course->program_id)
+            ->where('id', '!=', $course->id)
+            ->where('is_published', true)
+            ->orderBy('order')
+            ->take(3)
+            ->get();
 
-        return view('courses.show', compact('course'));
+        return view('courses.show', compact('course', 'relatedCourses'));
     }
 }

@@ -1,26 +1,26 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900 py-20 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+    <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
                 {{ __('Blog') }}
             </h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                {{ __('Read the latest articles and updates from our community') }}
+            <p class="text-xl text-gray-600 animate-slide-up">
+                {{ __('Read the latest articles from our community') }}
             </p>
         </div>
     </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="pb-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Category Filter -->
-            <div class="mb-6">
-                <form method="GET" action="{{ route('articles.index') }}" class="flex items-center gap-4">
-                    <label for="category" class="text-gray-700 dark:text-gray-300 font-medium">
-                        {{ __('Filter by Category:') }}
+            <div class="mb-10 flex justify-center">
+                <form method="GET" action="{{ route('articles.index') }}" class="inline-flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <label for="category" class="text-sm font-semibold text-gray-700">
+                        {{ __('Category:') }}
                     </label>
                     <select name="category" id="category" 
-                            class="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                            class="rounded-xl border-2 border-gray-200 focus:border-blue-primary focus:ring-2 focus:ring-blue-100 transition-all"
                             onchange="this.form.submit()">
                         <option value="">{{ __('All Categories') }}</option>
                         @foreach($categories as $category)
@@ -33,49 +33,82 @@
                 </form>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if($articles->isEmpty())
-                        <p class="text-gray-600 dark:text-gray-400">{{ __('No articles available at the moment.') }}</p>
-                    @else
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach($articles as $article)
-                                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                                    <h3 class="text-xl font-bold mb-2">
-                                        {{ $article->getTranslation('title', app()->getLocale()) }}
-                                    </h3>
-                                    
-                                    <!-- Category Badge -->
-                                    @if($article->category)
-                                        <div class="mb-3">
-                                            <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                                                {{ $article->category->getTranslation('name', app()->getLocale()) }}
-                                            </span>
-                                        </div>
-                                    @endif
-
-                                    <!-- Article Excerpt -->
-                                    <div class="mb-4">
-                                        <p class="text-gray-600 dark:text-gray-400 line-clamp-3">
-                                            {{ Str::limit(strip_tags($article->getTranslation('content', app()->getLocale())), 150) }}
-                                        </p>
-                                    </div>
-
-                                    <a href="{{ route('articles.show', $article->slug) }}" 
-                                       class="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
-                                        {{ __('Read More') }}
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <!-- Pagination -->
-                        <div class="mt-6">
-                            {{ $articles->links() }}
-                        </div>
-                    @endif
+            @if($articles->isEmpty())
+                <div class="bg-white rounded-2xl border-2 border-gray-100 p-12 text-center shadow-lg">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ __('No articles available') }}</h3>
+                    <p class="text-gray-600">{{ __('Check back later for new content') }}</p>
                 </div>
-            </div>
+            @else
+                <!-- Grid 3 Columns -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($articles as $article)
+                        <a href="{{ route('articles.show', $article->slug) }}" class="group bg-white rounded-2xl border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                            <!-- Article Image -->
+                            @if($article->image_url)
+                            <div class="h-56 overflow-hidden bg-gray-100">
+                                <img src="{{ $article->image_url }}" 
+                                     alt="{{ $article->getTranslation('title', app()->getLocale()) }}"
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            @else
+                            <div class="h-56 gradient-blue flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            @endif
+
+                            <!-- Article Content -->
+                            <div class="p-6 flex-1 flex flex-col">
+                                <!-- Meta Info -->
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <svg class="w-4 h-4 mr-1.5 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $article->created_at->format('d M Y') }}
+                                    </div>
+                                    @if($article->category)
+                                    <span class="px-3 py-1 text-xs font-semibold rounded-full gradient-blue text-white">
+                                        {{ $article->category->getTranslation('name', app()->getLocale()) }}
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <!-- Title -->
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:gradient-blue-text transition-all line-clamp-2">
+                                    {{ $article->getTranslation('title', app()->getLocale()) }}
+                                </h3>
+
+                                <!-- Excerpt -->
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
+                                    {{ Str::limit(strip_tags($article->getTranslation('content', app()->getLocale())), 150) }}
+                                </p>
+
+                                <!-- Read More Link -->
+                                <div class="flex items-center text-blue-primary font-semibold text-sm group-hover:gap-2 transition-all mt-auto">
+                                    {{ __('Read More') }}
+                                    <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-12">
+                    {{ $articles->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
+
+

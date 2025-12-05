@@ -1,66 +1,117 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900 py-20 mt-20">
+    <div class="bg-gradient-to-br from-blue-50 via-white to-gold/5 pt-32 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                {{ __('Programs') }}
+            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+                {{ __('Program Kami') }}
             </h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                {{ __('Explore our Academy and Competition programs designed to enhance your skills') }}
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-slide-up">
+                {{ __('Pilih program sesuai kebutuhan Anda') }}
             </p>
         </div>
     </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if($programs->isEmpty())
-                        <p class="text-gray-600 dark:text-gray-400">{{ __('No programs available at the moment.') }}</p>
-                    @else
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach($programs as $program)
-                                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                                    <h3 class="text-xl font-bold mb-2">
-                                        {{ $program->getTranslation('name', app()->getLocale()) }}
-                                    </h3>
-                                    
-                                    <div class="mb-3">
-                                        <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full
-                                            {{ $program->type === 'academy' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' }}">
-                                            {{ ucfirst($program->type) }}
-                                        </span>
-                                    </div>
-
-                                    @if(!$program->status)
-                                        <div class="mb-3">
-                                            <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-                                                {{ __('Registration Closed') }}
-                                            </span>
-                                        </div>
-                                    @endif
-
-                                    <div class="mb-4">
-                                        <p class="text-gray-600 dark:text-gray-400 line-clamp-3">
-                                            {{ Str::limit($program->getTranslation('description', app()->getLocale()), 150) }}
-                                        </p>
-                                    </div>
-
-                                    <a href="{{ route('programs.show', $program->slug) }}" 
-                                       class="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
-                                        {{ __('View Details') }}
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <!-- Pagination Links -->
-                        <div class="mt-6">
-                            {{ $programs->links() }}
-                        </div>
-                    @endif
+    <div class="pb-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Filter Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex rounded-full border-2 border-gray-200 p-1 bg-white shadow-md">
+                    <a href="{{ route('programs.index') }}" 
+                       class="px-6 py-2.5 rounded-full font-medium transition {{ !request('type') ? 'gradient-blue text-white' : 'text-gray-700 hover:text-blue-primary' }}">
+                        {{ __('Semua') }}
+                    </a>
+                    <a href="{{ route('programs.index', ['type' => 'academy']) }}" 
+                       class="px-6 py-2.5 rounded-full font-medium transition {{ request('type') === 'academy' ? 'gradient-blue text-white' : 'text-gray-700 hover:text-blue-primary' }}">
+                        {{ __('Academy') }}
+                    </a>
+                    <a href="{{ route('programs.index', ['type' => 'competition']) }}" 
+                       class="px-6 py-2.5 rounded-full font-medium transition {{ request('type') === 'competition' ? 'gradient-gold text-white' : 'text-gray-700 hover:text-blue-primary' }}">
+                        {{ __('Competition') }}
+                    </a>
                 </div>
             </div>
+
+            @if($programs->isEmpty())
+                <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                        {{ __('Belum Ada Program') }}
+                    </h3>
+                    <p class="text-gray-600">
+                        {{ __('Program akan segera hadir') }}
+                    </p>
+                </div>
+            @else
+                <div class="grid md:grid-cols-2 gap-8">
+                    @foreach($programs as $program)
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                            <div class="{{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-40 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-4 left-6">
+                                    <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/30">
+                                        {{ ucfirst($program->type) }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <svg class="w-5 h-5 mr-2 {{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }}" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $program->start_date->format('M d, Y') }}
+                                    </div>
+                                    
+                                    @if($program->status)
+                                        <span class="flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-green-50 text-green-600 border border-green-200">
+                                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                                            {{ __('Dibuka') }}
+                                        </span>
+                                    @else
+                                        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200">
+                                            {{ __('Ditutup') }}
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors">
+                                    {{ $program->getTranslation('name', app()->getLocale()) }}
+                                </h3>
+
+                                <p class="text-gray-600 mb-6 leading-relaxed line-clamp-3">
+                                    {{ $program->getTranslation('description', app()->getLocale()) }}
+                                </p>
+
+                                <div class="flex items-center justify-between mb-6 pb-6 border-b border-gray-100">
+                                    <span class="text-sm text-gray-500 font-medium">{{ __('Biaya Program') }}</span>
+                                    <div class="text-3xl font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
+                                        @if($program->fees > 0)
+                                            Rp {{ number_format($program->fees, 0, ',', '.') }}
+                                        @else
+                                            {{ __('Gratis') }}
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <a href="{{ route('programs.show', $program->slug) }}" 
+                                   class="block w-full text-center px-6 py-4 {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                    {{ __('Lihat Detail') }} →
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-8">
+                    {{ $programs->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
+

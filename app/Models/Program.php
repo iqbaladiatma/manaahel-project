@@ -20,10 +20,14 @@ class Program extends Model
         'name',
         'slug',
         'type',
+        'delivery_type',
         'status',
         'description',
+        'syllabus',
+        'meeting_link',
         'fees',
         'start_date',
+        'end_date',
     ];
 
     /**
@@ -31,7 +35,7 @@ class Program extends Model
      *
      * @var array<string>
      */
-    public $translatable = ['name', 'description'];
+    public $translatable = ['name', 'description', 'syllabus'];
 
     /**
      * Get the attributes that should be cast.
@@ -44,6 +48,7 @@ class Program extends Model
             'status' => 'boolean',
             'fees' => 'decimal:2',
             'start_date' => 'date',
+            'end_date' => 'date',
         ];
     }
 
@@ -60,7 +65,15 @@ class Program extends Model
      */
     public function courses(): HasMany
     {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Course::class)->orderBy('order');
+    }
+
+    /**
+     * Get the schedules for the program.
+     */
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(ProgramSchedule::class)->orderBy('scheduled_at');
     }
 
     /**

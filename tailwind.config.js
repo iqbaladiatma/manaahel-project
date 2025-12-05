@@ -9,10 +9,19 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    // Disable dark mode by default (use 'class' if you want to enable it later)
+    darkMode: false,
+
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'gold': '#D4AF37',
+                'gold-light': '#F4D03F',
+                'blue-primary': '#1E40AF',
+                'blue-light': '#3B82F6',
             },
         },
     },

@@ -1,77 +1,86 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900 py-20 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                {{ __('Member Distribution Map') }}
+    <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+                {{ __('Member Map') }}
             </h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                {{ __('Discover where our community members are located around the world') }}
+            <p class="text-xl text-gray-600 animate-slide-up">
+                {{ __('See where our members are located around the world') }}
             </p>
         </div>
     </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <!-- Map Container -->
-                    <div id="map" style="height: 600px; width: 100%;" class="rounded-lg"></div>
+    <div class="pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden shadow-xl">
+                <!-- Map Container -->
+                <div id="map" class="w-full h-[600px] bg-gray-100"></div>
+
+                <!-- Stats Sidebar -->
+                <div class="p-8 border-t-2 border-gray-100 bg-gradient-to-br from-blue-50 to-white">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center p-4 bg-white rounded-xl border border-blue-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                            <div class="text-3xl font-bold gradient-blue-text mb-2" id="total-members">-</div>
+                            <div class="text-sm font-medium text-gray-600">{{ __('Total Members') }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-xl border border-blue-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                            <div class="text-3xl font-bold gradient-gold-text mb-2" id="total-cities">-</div>
+                            <div class="text-sm font-medium text-gray-600">{{ __('Cities') }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-xl border border-blue-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                            <div class="text-3xl font-bold gradient-blue-text mb-2" id="total-countries">-</div>
+                            <div class="text-sm font-medium text-gray-600">{{ __('Countries') }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-xl border border-gold/30 hover:border-gold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                            <div class="text-3xl font-bold gradient-gold-text mb-2">2024</div>
+                            <div class="text-sm font-medium text-gray-600">{{ __('Batch Year') }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
-
+    @push('scripts')
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize map with default center (Indonesia)
-            const map = L.map('map').setView([-2.5489, 118.0149], 5);
+        // Initialize map
+        const map = L.map('map').setView([0, 0], 2);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-            // Add OpenStreetMap tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                maxZoom: 19
-            }).addTo(map);
+        // Fetch member locations
+        fetch('{{ route('map.locations') }}')
+            .then(response => response.json())
+            .then(data => {
+                // Update stats
+                document.getElementById('total-members').textContent = data.total;
+                document.getElementById('total-cities').textContent = data.cities;
+                document.getElementById('total-countries').textContent = data.countries || '-';
 
-            // Fetch member locations via AJAX
-            fetch('{{ route('map.locations') }}')
-                .then(response => response.json())
-                .then(data => {
-                    // Add markers for each member
-                    data.forEach(member => {
-                        const marker = L.marker([member.latitude, member.longitude]).addTo(map);
-                        
-                        // Create popup content with member info
-                        let popupContent = `
+                // Add markers
+                data.members.forEach(member => {
+                    const marker = L.marker([member.latitude, member.longitude])
+                        .addTo(map)
+                        .bindPopup(`
                             <div class="text-center">
-                                ${member.avatar_url ? `<img src="${member.avatar_url}" alt="${member.name}" class="w-16 h-16 rounded-full mx-auto mb-2">` : ''}
                                 <strong>${member.name}</strong><br>
-                                ${member.batch_year ? `Batch: ${member.batch_year}` : ''}
+                                <small>${member.city || 'Unknown'}</small>
                             </div>
-                        `;
-                        
-                        marker.bindPopup(popupContent);
-                    });
-
-                    // Adjust map bounds to show all markers if there are any
-                    if (data.length > 0) {
-                        const bounds = L.latLngBounds(data.map(m => [m.latitude, m.longitude]));
-                        map.fitBounds(bounds, { padding: [50, 50] });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching member locations:', error);
+                        `);
                 });
-        });
+
+                // Fit bounds if there are markers
+                if (data.members.length > 0) {
+                    const bounds = L.latLngBounds(data.members.map(m => [m.latitude, m.longitude]));
+                    map.fitBounds(bounds, { padding: [50, 50] });
+                }
+            });
     </script>
+    @endpush
 </x-app-layout>
+

@@ -20,52 +20,59 @@ class ArticlesTable
                     ->label('ID')
                     ->sortable()
                     ->searchable(),
-                
+
                 TextColumn::make('title')
                     ->label('Title')
                     ->sortable()
                     ->searchable()
-                    ->formatStateUsing(fn ($state) => is_array($state) ? ($state['en'] ?? $state['id'] ?? '') : $state)
+                    ->formatStateUsing(fn ($state) =>
+                        is_array($state) ? ($state['en'] ?? $state['id'] ?? '') : $state
+                    )
                     ->limit(50),
-                
+
                 TextColumn::make('category.name')
                     ->label('Category')
                     ->sortable()
                     ->searchable()
-                    ->formatStateUsing(fn ($state) => is_array($state) ? ($state['en'] ?? $state['id'] ?? '') : $state),
-                
+                    ->formatStateUsing(fn ($state) =>
+                        is_array($state) ? ($state['en'] ?? $state['id'] ?? '') : $state
+                    ),
+
                 BadgeColumn::make('is_featured')
                     ->label('Featured')
                     ->boolean()
                     ->trueColor('success')
                     ->falseColor('gray'),
-                
+
                 TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable()
                     ->limit(30)
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
                 TextColumn::make('updated_at')
                     ->label('Updated At')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+
             ->filters([
                 SelectFilter::make('category')
                     ->label('Category')
                     ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
-                    ->getOptionLabelFromRecordUsing(fn ($record) => is_array($record->name) ? ($record->name['en'] ?? $record->name['id'] ?? '') : $record->name),
-                
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        is_array($record->name) ? ($record->name['en'] ?? $record->name['id'] ?? '') : $record->name
+                    ),
+
                 SelectFilter::make('is_featured')
                     ->label('Featured')
                     ->options([
@@ -73,14 +80,17 @@ class ArticlesTable
                         '0' => 'Not Featured',
                     ]),
             ])
-            ->recordActions([
+
+            ->actions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
+
+            ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
             ])
+
             ->defaultSort('created_at', 'desc');
     }
 }

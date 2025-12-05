@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('title'); // Translatable field
             $table->json('content'); // Translatable field
+            $table->string('image_url')->nullable(); // Article image
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->boolean('is_featured')->default(false);
             $table->string('slug')->unique();

@@ -22,6 +22,60 @@ class ProfileController extends Controller
     }
 
     /**
+     * Display the user's profile with statistics.
+     */
+    public function show(Request $request): View
+    {
+        $user = $request->user();
+        
+        // Get enrolled programs with progress
+        $enrolledPrograms = \App\Models\Registration::where('user_id', $user->id)
+            ->where('status', 'approved')
+            ->with(['program.courses.modules'])
+            ->get();
+
+        // Calculate learning statistics
+        $totalEnrolled = $enrolledPrograms->count();
+        $totalModules = 0;
+        $completedModules = 0;
+
+        foreach ($enrolledPrograms as $enrollment) {
+            foreach ($enrollment->program->courses as $course) {
+                $courseModules = $course->modules;
+                $totalModules += $courseModules->count();
+                
+                // Count completed modules
+                $completed = \App\Models\UserModuleProgress::where('user_id', $user->id)
+                    ->whereIn('course_module_id', $courseModules->pluck('id'))
+                    ->where('is_completed', true)
+                    ->count();
+                
+                $completedModules += $completed;
+            }
+        }
+
+        $completionPercentage = $totalModules > 0 ? round(($completedModules / $totalModules) * 100) : 0;
+
+        // Get recent activity (last 5 completed modules)
+        $recentActivity = \App\Models\UserModuleProgress::where('user_id', $user->id)
+            ->where('is_completed', true)
+            ->with('courseModule.course.program')
+            ->orderBy('completed_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('profile.show', compact(
+            'user',
+            'enrolledPrograms',
+            'totalEnrolled',
+            'totalModules',
+            'completedModules',
+            'completionPercentage',
+            'recentActivity'
+        ));
+    }
+
+    /**
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse

@@ -17,11 +17,28 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'member', 'user'])->default('user');
+            $table->enum('role', ['admin', 'member', 'user', 'member_angkatan', 'member_program'])->default('user');
             $table->string('batch_year')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->string('avatar_url')->nullable();
+            
+            // Social Media
+            $table->string('instagram_url')->nullable();
+            $table->string('linkedin_url')->nullable();
+            $table->string('twitter_url')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('youtube_url')->nullable();
+            $table->string('tiktok_url')->nullable();
+            
+            // Personal Info
+            $table->text('bio')->nullable();
+            $table->string('city')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
             
