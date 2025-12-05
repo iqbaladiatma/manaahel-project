@@ -11,7 +11,7 @@ Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->n
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 // Language Switcher
 Route::get('/locale/{locale}', function ($locale) {

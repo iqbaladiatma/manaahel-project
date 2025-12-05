@@ -1,0 +1,42 @@
+name: Deploy Laravel to cPanel via FTP
+
+on:
+  push:
+    branches:
+      - main  # ⚠️ Pastikan nama branch ini sesuai (biasanya 'main' atau 'master')
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ./ 
+        # Fitur: Hanya upload file yang berubah & hapus file yang tidak ada di git (kecuali yang di-exclude)
+        
+        exclude: |
+          # --- FILE SISTEM & GIT (Wajib Exclude) ---
+          **/.git*
+          **/.git*/**
+          .env
+          .env.example
+          .editorconfig
+          README.md
+          
+          # --- FOLDER PENGEMBANGAN (Wajib Exclude) ---
+          **/node_modules/**
+          **/tests/**
+          
+          # --- PERMINTAAN KHUSUS KAMU (Manual Upload/Jaga File Server) ---
+          **/vendor/**
+          public/**
+          app/Providers/AppServiceProvider.php
