@@ -27,12 +27,7 @@
                     <!-- Logo -->
                     <div class="flex justify-center mb-8">
                         <a href="/">
-                            <div class="relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-amber-500 rounded-2xl blur-md opacity-50"></div>
-                                <div class="relative w-16 h-16 bg-gradient-to-br from-blue-600 to-amber-500 rounded-2xl flex items-center justify-center shadow-lg">
-                                    <span class="text-white font-bold text-2xl">M</span>
-                                </div>
-                            </div>
+                            <img src="{{ asset('manaahel-logolengkap.jpg') }}" alt="Manaahel Logo" class="h-24 w-auto">
                         </a>
                     </div>
 
