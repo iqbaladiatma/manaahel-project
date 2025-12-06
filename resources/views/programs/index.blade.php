@@ -46,10 +46,10 @@
                     </p>
                 </div>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     @foreach($programs as $program)
-                        <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
-                            <div class="{{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-32 sm:h-40 relative overflow-hidden">
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-gray-200">
+                            <div class="{{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-24 sm:h-28 relative overflow-hidden">
                                 <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                                 <div class="absolute bottom-4 left-6">
                                     <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/30">
@@ -57,40 +57,40 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="p-8">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex items-center text-sm text-gray-600">
-                                        <svg class="w-5 h-5 mr-2 {{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }}" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="p-4 sm:p-5">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center text-xs text-gray-600">
+                                        <svg class="w-4 h-4 mr-1.5 {{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }}" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                                         </svg>
                                         {{ $program->start_date->format('M d, Y') }}
                                     </div>
                                     
                                     @if($program->status)
-                                        <span class="flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-green-50 text-green-600 border border-green-200">
-                                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                                        <span class="flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-600 border border-green-200">
+                                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5 animate-pulse"></span>
                                             {{ __('Dibuka') }}
                                         </span>
                                     @else
-                                        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200">
+                                        <span class="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200">
                                             {{ __('Ditutup') }}
                                         </span>
                                     @endif
                                 </div>
 
-                                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors line-clamp-2">
                                     {{ $program->getTranslation('name', app()->getLocale()) }}
                                 </h3>
 
-                                <p class="text-gray-600 mb-6 leading-relaxed line-clamp-3">
+                                <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
                                     {{ $program->getTranslation('description', app()->getLocale()) }}
                                 </p>
 
-                                <div class="flex items-center justify-between mb-6 pb-6 border-b border-gray-100">
-                                    <span class="text-sm text-gray-500 font-medium">{{ __('Biaya Program') }}</span>
-                                    <div class="text-3xl font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
+                                <div class="flex items-center justify-between mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-gray-100">
+                                    <span class="text-xs text-gray-500 font-medium">{{ __('Biaya Program') }}</span>
+                                    <div class="text-base sm:text-lg font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
                                         @if($program->fees > 0)
-                                            Rp {{ number_format($program->fees, 0, ',', '.') }}
+                                            Rp {{ number_format($program->fees / 1000, 0, ',', '.') }}k
                                         @else
                                             {{ __('Gratis') }}
                                         @endif
@@ -98,7 +98,7 @@
                                 </div>
 
                                 <a href="{{ route('programs.show', $program->slug) }}" 
-                                   class="block w-full text-center px-6 py-4 {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                   class="block w-full text-center px-4 py-2 sm:py-2.5 {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white text-xs sm:text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                                     {{ __('Lihat Detail') }} →
                                 </a>
                             </div>

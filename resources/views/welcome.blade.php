@@ -191,80 +191,74 @@
 
     <!-- Programs Section with Islamic Theme -->
     @if(isset($featuredPrograms) && $featuredPrograms->count() > 0)
-    <section class="py-20 bg-gradient-to-b from-gray-50 to-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section class="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <!-- Decorative Elements -->
         <div class="absolute top-10 left-10 w-32 h-32 border-4 border-gold/20 rounded-full"></div>
         <div class="absolute bottom-10 right-10 w-40 h-40 border-4 border-blue-primary/20 rounded-full"></div>
 
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-12 sm:mb-16 animate-fade-in">
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-8 sm:mb-12 animate-fade-in">
                 <!-- Arabic Title -->
                 <div class="mb-3 sm:mb-4">
-                    <p class="text-2xl sm:text-3xl text-gold arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                    <p class="text-xl sm:text-2xl text-gold arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
                         بَرَامِجُنَا
                     </p>
                 </div>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Program Kajian Kami</h2>
-                <div class="w-20 sm:w-24 h-1 gradient-gold mx-auto mb-4 sm:mb-6"></div>
-                <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">Pilih program kajian sesuai kebutuhan untuk meningkatkan pemahaman agama dan ilmu pengetahuan</p>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Program Kajian Kami</h2>
+                <div class="w-20 sm:w-24 h-1 gradient-gold mx-auto mb-3 sm:mb-4"></div>
+                <p class="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">Pilih program kajian sesuai kebutuhan untuk meningkatkan pemahaman agama dan ilmu pengetahuan</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 @foreach($featuredPrograms as $program)
-                <div class="group bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-2 {{ $program->type === 'academy' ? 'border-blue-100 hover:border-blue-primary' : 'border-gold/30 hover:border-gold' }}">
+                <div class="group bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 {{ $program->type === 'academy' ? 'hover:border-blue-primary' : 'hover:border-gold' }}">
                     <!-- Header with Islamic Pattern -->
-                    <div class="relative {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-32 sm:h-40 overflow-hidden">
+                    <div class="relative {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-24 sm:h-28 overflow-hidden">
                         <div class="absolute inset-0 opacity-20">
                             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                                <pattern id="pattern-{{ $loop->index }}" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-                                    <circle cx="25" cy="25" r="3" fill="white"/>
-                                    <path d="M25 15 L30 25 L25 35 L20 25 Z" fill="white" opacity="0.5"/>
+                                <pattern id="pattern-{{ $loop->index }}" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <circle cx="20" cy="20" r="2" fill="white"/>
+                                    <path d="M20 10 L25 20 L20 30 L15 20 Z" fill="white" opacity="0.5"/>
                                 </pattern>
                                 <rect width="100%" height="100%" fill="url(#pattern-{{ $loop->index }})"/>
                             </svg>
                         </div>
                         
-                        <!-- Ornament -->
-                        <div class="absolute top-4 right-4 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                            </svg>
-                        </div>
-
-                        <div class="absolute bottom-4 left-6">
-                            <span class="inline-block bg-white/90 backdrop-blur-sm {{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} px-5 py-2 rounded-full text-sm font-bold shadow-lg">
+                        <!-- Badge -->
+                        <div class="absolute bottom-3 left-4">
+                            <span class="inline-block bg-white/90 backdrop-blur-sm {{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} px-3 py-1 rounded-full text-xs font-bold shadow-md">
                                 {{ $program->type === 'academy' ? '📚 Academy' : '🏆 Competition' }}
                             </span>
                         </div>
                     </div>
 
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors line-clamp-2">
                             {{ $program->getTranslation('name', app()->getLocale()) }}
                         </h3>
 
-                        <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed line-clamp-3">
+                        <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
                             {{ $program->getTranslation('description', app()->getLocale()) }}
                         </p>
 
                         <!-- Info Grid -->
-                        <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b-2 border-gray-100">
+                        <div class="flex items-center justify-between mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-gray-100">
                             <div class="flex items-center text-gray-600">
-                                <div class="w-10 h-10 {{ $program->type === 'academy' ? 'bg-blue-50 text-blue-primary' : 'bg-yellow-50 text-gold' }} rounded-lg flex items-center justify-center mr-3">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <div class="w-8 h-8 {{ $program->type === 'academy' ? 'bg-blue-50 text-blue-primary' : 'bg-yellow-50 text-gold' }} rounded-lg flex items-center justify-center mr-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
                                 <div>
                                     <p class="text-xs text-gray-500">Mulai</p>
-                                    <p class="font-semibold">{{ $program->start_date->format('M Y') }}</p>
+                                    <p class="text-xs font-semibold">{{ $program->start_date->format('M Y') }}</p>
                                 </div>
                             </div>
 
                             <div class="text-right">
-                                <p class="text-xs text-gray-500 mb-1">Investasi</p>
-                                <div class="text-lg sm:text-xl md:text-2xl font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
+                                <p class="text-xs text-gray-500 mb-0.5">Investasi</p>
+                                <div class="text-base sm:text-lg font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
                                     @if($program->fees > 0)
-                                        <span class="hidden sm:inline">Rp {{ number_format($program->fees, 0, ',', '.') }}</span>
+                                        <span class="hidden sm:inline">Rp {{ number_format($program->fees / 1000, 0, ',', '.') }}k</span>
                                         <span class="sm:hidden">Rp {{ number_format($program->fees / 1000, 0, ',', '.') }}k</span>
                                     @else
                                         Gratis
@@ -274,10 +268,9 @@
                         </div>
 
                         <a href="{{ route('programs.show', $program->slug) }}" 
-                           class="group/btn block w-full {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:shadow-xl transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
-                            <span class="hidden sm:inline">Daftar Sekarang</span>
-                            <span class="sm:hidden">Daftar</span>
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           class="group/btn block w-full {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold hover:shadow-lg transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
+                            <span>Lihat Detail</span>
+                            <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-1.5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
                         </a>
