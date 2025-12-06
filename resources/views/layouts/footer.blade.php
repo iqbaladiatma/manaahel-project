@@ -1,19 +1,19 @@
 <footer class="gradient-blue text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid md:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <!-- Brand Section -->
-            <div class="col-span-1 md:col-span-2">
+            <div class="col-span-1 sm:col-span-2 md:col-span-2">
                 <div class="flex items-center space-x-3 mb-4">
                     <div class="w-12 h-12 gradient-gold rounded-lg flex items-center justify-center shadow-lg">
                         <span class="text-white font-bold text-2xl">M</span>
                     </div>
                     <span class="text-2xl font-bold text-white">Manaahel</span>
                 </div>
-                <p class="text-blue-100 mb-6 leading-relaxed max-w-md">
+                <p class="text-blue-100 mb-4 sm:mb-6 leading-relaxed max-w-md text-sm sm:text-base">
                     {{ __('Platform pembelajaran terpercaya untuk meningkatkan pengetahuan dan keterampilan melalui program-program berkualitas.') }}
                 </p>
                 <!-- Social Media Links -->
-                <div class="flex space-x-3">
+                <div class="flex flex-wrap gap-2 sm:gap-3">
                     <a href="https://instagram.com/manaahel" target="_blank" rel="noopener noreferrer" 
                        class="group relative w-12 h-12 bg-white/10 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-xl">
                         <svg class="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">

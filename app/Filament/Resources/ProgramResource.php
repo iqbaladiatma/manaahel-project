@@ -33,7 +33,7 @@ class ProgramResource extends Resource
                 /* -------------------------------------------------------
                  | LEFT COLUMN (2 columns)
                  ------------------------------------------------------- */
-                Grid::make(1)
+                Grid::make(2)
                     ->columnSpan(2)
                     ->schema([
 
@@ -112,7 +112,7 @@ class ProgramResource extends Resource
                 /* -------------------------------------------------------
                  | RIGHT COLUMN (1 column)
                  ------------------------------------------------------- */
-                Grid::make(1)
+                Grid::make(2)
                     ->columnSpan(1)
                     ->schema([
                         Section::make('Settings')

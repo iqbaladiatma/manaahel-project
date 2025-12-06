@@ -31,10 +31,10 @@ class UserResource extends Resource
     {
         return $schema
             ->schema([
-                Grid::make(3)
+                Grid::make(2)
                     ->schema([
                         // Left Column - Main Info
-                        Grid::make(1)
+                        Grid::make(2)
                             ->columnSpan(2)
                             ->schema([
                                 Section::make('Account Information')
@@ -147,7 +147,7 @@ class UserResource extends Resource
                             ]),
                         
                         // Right Column - Avatar & Location
-                        Grid::make(1)
+                        Grid::make(2)
                             ->columnSpan(1)
                             ->schema([
                                 Section::make('Avatar')

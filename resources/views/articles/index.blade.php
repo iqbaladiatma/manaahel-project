@@ -1,21 +1,21 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
+    <div class="bg-gradient-to-br from-blue-50 to-white pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 animate-fade-in">
                 {{ __('Blog') }}
             </h1>
-            <p class="text-xl text-gray-600 animate-slide-up">
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 animate-slide-up">
                 {{ __('Read the latest articles from our community') }}
             </p>
         </div>
     </div>
 
-    <div class="pb-16 bg-gray-50">
+    <div class="pb-12 sm:pb-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Category Filter -->
-            <div class="mb-10 flex justify-center">
-                <form method="GET" action="{{ route('articles.index') }}" class="inline-flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-lg border-2 border-gray-100">
+            <div class="mb-8 sm:mb-10 flex justify-center">
+                <form method="GET" action="{{ route('articles.index') }}" class="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 bg-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg border-2 border-gray-100 w-full sm:w-auto">
                     <label for="category" class="text-sm font-semibold text-gray-700">
                         {{ __('Category:') }}
                     </label>
@@ -45,12 +45,12 @@
                 </div>
             @else
                 <!-- Grid 3 Columns -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     @foreach($articles as $article)
-                        <a href="{{ route('articles.show', $article->slug) }}" class="group bg-white rounded-2xl border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                        <a href="{{ route('articles.show', $article->slug) }}" class="group bg-white rounded-xl sm:rounded-2xl border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
                             <!-- Article Image -->
                             @if($article->image_url)
-                            <div class="h-56 overflow-hidden bg-gray-100">
+                            <div class="h-48 sm:h-56 overflow-hidden bg-gray-100">
                                 <img src="{{ $article->image_url }}" 
                                      alt="{{ $article->getTranslation('title', app()->getLocale()) }}"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">

@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="py-12 mt-20">
+    <div class="py-8 sm:py-12 mt-16 sm:mt-20">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back Button -->
-            <div class="mb-6">
+            <div class="mb-4 sm:mb-6">
                 <a href="{{ route('programs.index') }}" 
-                   class="inline-flex items-center text-blue-primary hover:text-blue-primary:text-emerald-300 transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="inline-flex items-center text-blue-primary hover:text-blue-primary:text-emerald-300 transition-colors text-sm sm:text-base">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
                     {{ __('Back to Programs') }}
@@ -13,7 +13,7 @@
             </div>
 
             <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                <div class="p-8">
+                <div class="p-4 sm:p-6 md:p-8">
                     <!-- Program Title -->
                     <div class="mb-6">
                         <div class="flex items-center gap-3 mb-4">

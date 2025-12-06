@@ -1,31 +1,31 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-blue-50 via-white to-gold/5 pt-32 pb-12">
+    <div class="bg-gradient-to-br from-blue-50 via-white to-gold/5 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 animate-fade-in">
                 {{ __('Program Kami') }}
             </h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-slide-up">
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto animate-slide-up">
                 {{ __('Pilih program sesuai kebutuhan Anda') }}
             </p>
         </div>
     </div>
 
-    <div class="pb-16 bg-gray-50">
+    <div class="pb-12 sm:pb-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Filter Tabs -->
-            <div class="flex justify-center mb-12">
-                <div class="inline-flex rounded-full border-2 border-gray-200 p-1 bg-white shadow-md">
+            <div class="flex justify-center mb-8 sm:mb-12">
+                <div class="inline-flex flex-wrap justify-center rounded-full border-2 border-gray-200 p-1 bg-white shadow-md gap-1">
                     <a href="{{ route('programs.index') }}" 
-                       class="px-6 py-2.5 rounded-full font-medium transition {{ !request('type') ? 'gradient-blue text-white' : 'text-gray-700 hover:text-blue-primary' }}">
+                       class="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-medium transition {{ !request('type') ? 'gradient-blue text-white' : 'text-gray-700 hover:text-blue-primary' }}">
                         {{ __('Semua') }}
                     </a>
                     <a href="{{ route('programs.index', ['type' => 'academy']) }}" 
-                       class="px-6 py-2.5 rounded-full font-medium transition {{ request('type') === 'academy' ? 'gradient-blue text-white' : 'text-gray-700 hover:text-blue-primary' }}">
+                       class="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-medium transition {{ request('type') === 'academy' ? 'gradient-blue text-white' : 'text-gray-700 hover:text-blue-primary' }}">
                         {{ __('Academy') }}
                     </a>
                     <a href="{{ route('programs.index', ['type' => 'competition']) }}" 
-                       class="px-6 py-2.5 rounded-full font-medium transition {{ request('type') === 'competition' ? 'gradient-gold text-white' : 'text-gray-700 hover:text-blue-primary' }}">
+                       class="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-medium transition {{ request('type') === 'competition' ? 'gradient-gold text-white' : 'text-gray-700 hover:text-blue-primary' }}">
                         {{ __('Competition') }}
                     </a>
                 </div>
@@ -46,10 +46,10 @@
                     </p>
                 </div>
             @else
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                     @foreach($programs as $program)
-                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
-                            <div class="{{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-40 relative overflow-hidden">
+                        <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                            <div class="{{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-32 sm:h-40 relative overflow-hidden">
                                 <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                                 <div class="absolute bottom-4 left-6">
                                     <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/30">

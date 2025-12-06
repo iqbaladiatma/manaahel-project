@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="py-12 mt-20 bg-gray-50 min-h-screen">
+    <div class="py-8 sm:py-12 mt-16 sm:mt-20 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back Button -->
-            <div class="mb-8">
+            <div class="mb-6 sm:mb-8">
                 <a href="{{ route('enrolled.index') }}" 
-                   class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors font-semibold group">
-                    <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors font-semibold group text-sm sm:text-base">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
                     {{ __('Back to My Programs') }}
@@ -13,7 +13,7 @@
             </div>
 
             <!-- Program Header -->
-            <div class="group relative bg-gradient-to-br from-blue-600 via-blue-700 to-amber-600 rounded-2xl shadow-2xl p-10 mb-8 text-white overflow-hidden">
+            <div class="group relative bg-gradient-to-br from-blue-600 via-blue-700 to-amber-600 rounded-xl sm:rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10 mb-6 sm:mb-8 text-white overflow-hidden">
                 <!-- Decorative Elements -->
                 <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
                 <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -ml-24 -mb-24"></div>
@@ -32,13 +32,13 @@
                         </span>
                     </div>
 
-                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">{{ $program->getTranslation('name', app()->getLocale()) }}</h1>
-                    <p class="text-xl text-blue-50 max-w-4xl mb-8 leading-relaxed">{{ $program->getTranslation('description', app()->getLocale()) }}</p>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">{{ $program->getTranslation('name', app()->getLocale()) }}</h1>
+                    <p class="text-base sm:text-lg md:text-xl text-blue-50 max-w-4xl mb-6 sm:mb-8 leading-relaxed">{{ $program->getTranslation('description', app()->getLocale()) }}</p>
 
                     @if(isset($nextModule) && isset($nextCourse))
-                        <div class="flex flex-wrap gap-4 items-center">
+                        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center">
                             <a href="{{ route('enrolled.module.show', [$program->slug, $nextCourse->slug, $nextModule->id]) }}" 
-                               class="group/btn relative inline-flex items-center px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-amber-50 transition-all duration-300 shadow-xl transform hover:-translate-y-1 overflow-hidden">
+                               class="group/btn relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 font-bold rounded-lg sm:rounded-xl hover:bg-amber-50 transition-all duration-300 shadow-xl transform hover:-translate-y-1 overflow-hidden text-sm sm:text-base">
                                 <div class="absolute inset-0 bg-gradient-to-r from-amber-50 to-blue-50 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
                                 <svg class="relative w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
@@ -54,9 +54,9 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Main Content -->
-                <div class="lg:col-span-2 space-y-8">
+                <div class="lg:col-span-2 space-y-6 sm:space-y-8">
                     
                     <!-- Syllabus (Shown first for Zoom/Academy, or if no courses) -->
                     @if($program->syllabus && ($program->delivery_type !== 'online_course' || $program->courses->count() === 0))
@@ -308,9 +308,9 @@
                 </div>
 
                 <!-- Sidebar -->
-                <div class="space-y-8">
+                <div class="space-y-6 sm:space-y-8">
                     <!-- Program Info Card -->
-                    <div class="group relative bg-white rounded-2xl shadow-xl border border-gray-200 p-8 overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div class="group relative bg-white rounded-xl sm:rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-8 overflow-hidden hover:shadow-2xl transition-all duration-300">
                         <!-- Glow Effect -->
                         <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-amber-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-amber-500/20 transition-all"></div>
                         

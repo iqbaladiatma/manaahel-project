@@ -1,9 +1,9 @@
 <x-app-layout>
     <!-- Hero Section with Animation -->
-    <div class="relative bg-gradient-to-br from-blue-50 via-white to-gold/5 pt-32 pb-16 overflow-hidden">
+    <div class="relative bg-gradient-to-br from-blue-50 via-white to-gold/5 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 overflow-hidden">
         <!-- Animated Background Elements -->
-        <div class="absolute top-20 right-10 w-64 h-64 bg-blue-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div class="absolute bottom-10 left-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute top-10 sm:top-20 right-5 sm:right-10 w-48 h-48 sm:w-64 sm:h-64 bg-blue-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-5 sm:bottom-10 left-5 sm:left-10 w-56 h-56 sm:w-80 sm:h-80 bg-gold/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
         
         <!-- Islamic Pattern -->
         <div class="absolute inset-0 opacity-5">
@@ -20,23 +20,23 @@
         
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <!-- Arabic Bismillah -->
-            <div class="mb-6 fade-in-up">
-                <p class="text-3xl text-blue-primary arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
+            <div class="mb-4 sm:mb-6 fade-in-up">
+                <p class="text-2xl sm:text-3xl text-blue-primary arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
                     بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                 </p>
             </div>
             
-            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 animate-fade-in">
                 {{ __('About Manaahel') }}
             </h1>
-            <div class="w-24 h-1 gradient-gold mx-auto mb-6"></div>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-slide-up leading-relaxed">
+            <div class="w-20 sm:w-24 h-1 gradient-gold mx-auto mb-4 sm:mb-6"></div>
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto animate-slide-up leading-relaxed px-4">
                 {{ __('Empowering learners worldwide through education and community') }}
             </p>
             
             <!-- Decorative Quote -->
-            <div class="mt-8 max-w-3xl mx-auto bg-white/80 backdrop-blur-sm border-l-4 border-gold p-6 rounded-lg shadow-lg zoom-in">
-                <p class="text-lg text-gray-700 italic">
+            <div class="mt-6 sm:mt-8 max-w-3xl mx-auto bg-white/80 backdrop-blur-sm border-l-4 border-gold p-4 sm:p-6 rounded-lg shadow-lg zoom-in">
+                <p class="text-sm sm:text-base md:text-lg text-gray-700 italic">
                     "{{ __('Education is the most powerful weapon which you can use to change the world') }}"
                 </p>
             </div>
@@ -44,17 +44,17 @@
     </div>
 
     <!-- Our Story with Timeline -->
-    <div class="py-20 bg-gray-50 relative overflow-hidden">
+    <div class="py-12 sm:py-16 md:py-20 bg-gray-50 relative overflow-hidden">
         <!-- Background Decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-blue-primary/5 rounded-full blur-3xl"></div>
         
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ __('Our Story') }}</h2>
-                <div class="w-24 h-1 gradient-blue mx-auto"></div>
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">{{ __('Our Story') }}</h2>
+                <div class="w-20 sm:w-24 h-1 gradient-blue mx-auto"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16">
                 <!-- Story Content -->
                 <div class="space-y-6 slide-in-left">
                     <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift border-l-4 border-blue-primary">

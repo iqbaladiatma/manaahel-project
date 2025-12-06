@@ -1,36 +1,36 @@
 <x-app-layout>
     <!-- Hero Section with Gradient Background -->
-    <div class="relative bg-gradient-to-br from-white via-blue-50 to-amber-50 py-24 mt-16 overflow-hidden">
+    <div class="relative bg-gradient-to-br from-white via-blue-50 to-amber-50 py-16 sm:py-20 md:py-24 mt-16 overflow-hidden">
         <!-- Decorative Blur Elements -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Page Header -->
             <div class="text-center">
                 <!-- Badge -->
-                <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-50 to-amber-50 border border-blue-200 rounded-full mb-6 shadow-sm">
-                    <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <div class="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-50 to-amber-50 border border-blue-200 rounded-full mb-4 sm:mb-6 shadow-sm">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                     </svg>
-                    <span class="text-sm font-semibold text-blue-700">{{ __('Learning Dashboard') }}</span>
+                    <span class="text-xs sm:text-sm font-semibold text-blue-700">{{ __('Learning Dashboard') }}</span>
                 </div>
                 
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-blue-700 to-amber-600 bg-clip-text text-transparent">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-600 via-blue-700 to-amber-600 bg-clip-text text-transparent px-4">
                     {{ __('My Enrolled Programs') }}
                 </h1>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
                     {{ __('Access your enrolled programs and continue learning') }}
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="py-20 bg-white">
+    <div class="py-12 sm:py-16 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             @if($enrolledPrograms->count() > 0)
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     @foreach($enrolledPrograms as $enrollment)
                         <div class="group relative bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-blue-500 transition-all duration-300 shadow-lg hover:shadow-2xl">
                             <!-- Glow Effect -->

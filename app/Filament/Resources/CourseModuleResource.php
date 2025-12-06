@@ -33,10 +33,10 @@ class CourseModuleResource extends Resource
     {
         return $schema
             ->schema([
-                Forms\Components\Grid::make(3)
+                Forms\Components\Grid::make(2)
                     ->schema([
                         // Left Column - Main Info
-                        Forms\Components\Grid::make(1)
+                        Forms\Components\Grid::make(2)
                             ->columnSpan(2)
                             ->schema([
                                 Section::make('Module Information')
@@ -91,7 +91,7 @@ class CourseModuleResource extends Resource
                             ]),
                         
                         // Right Column - Settings
-                        Forms\Components\Grid::make(1)
+                        Forms\Components\Grid::make(2)
                             ->columnSpan(1)
                             ->schema([
                                 Section::make('Delivery Type')

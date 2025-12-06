@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Hero Section with Islamic Pattern -->
-    <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-gold/5">
+    <section class="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-gold/5">
         <!-- Decorative Islamic Pattern Background -->
         <div class="absolute inset-0 opacity-5">
             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -19,37 +19,37 @@
         <div class="absolute bottom-20 left-10 text-blue-primary/10 text-8xl font-bold animate-float-delayed" style="font-family: 'Times New Roman', serif;">الله</div>
 
         <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
                 <!-- Left Content -->
                 <div class="animate-slide-up">
                     <!-- Arabic Bismillah -->
-                    <div class="text-center md:text-right mb-8">
-                        <p class="text-4xl md:text-5xl text-blue-primary mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                    <div class="text-center md:text-right mb-6 sm:mb-8">
+                        <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-primary mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
                             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                         </p>
-                        <p class="text-sm text-gray-600 italic">Bismillahirrahmanirrahim</p>
+                        <p class="text-xs sm:text-sm text-gray-600 italic">Bismillahirrahmanirrahim</p>
                     </div>
 
-                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                         Menuntut Ilmu Bersama <span class="gradient-gold-text">Manaahel</span>
                     </h1>
                     
                     <!-- Arabic Quote -->
-                    <div class="bg-white/80 backdrop-blur-sm border-r-4 border-gold p-6 rounded-lg mb-6 shadow-lg">
-                        <p class="text-2xl text-gray-800 mb-2" style="font-family: 'Times New Roman', serif; direction: rtl; text-align: right;">
+                    <div class="bg-white/80 backdrop-blur-sm border-r-4 border-gold p-4 sm:p-6 rounded-lg mb-4 sm:mb-6 shadow-lg">
+                        <p class="text-lg sm:text-xl md:text-2xl text-gray-800 mb-2" style="font-family: 'Times New Roman', serif; direction: rtl; text-align: right;">
                             طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ
                         </p>
-                        <p class="text-sm text-gray-600 italic border-t border-gray-200 pt-2">
+                        <p class="text-xs sm:text-sm text-gray-600 italic border-t border-gray-200 pt-2">
                             "Menuntut ilmu adalah kewajiban bagi setiap muslim"
                         </p>
                         <p class="text-xs text-gray-500 mt-1">- HR. Ibnu Majah</p>
                     </div>
 
-                    <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+                    <p class="text-gray-700 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                         Platform pembelajaran Islami yang didedikasikan untuk meningkatkan pemahaman agama dan pengetahuan umum melalui metode yang mudah dipahami dan sesuai syariat.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                         @auth
                         <a href="{{ route('dashboard') }}" class="group gradient-blue text-white px-10 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -58,17 +58,19 @@
                             Dashboard
                         </a>
                         @else
-                        <a href="{{ route('register') }}" class="group gradient-blue text-white px-10 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <a href="{{ route('register') }}" class="group gradient-blue text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:shadow-2xl transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
                             </svg>
-                            Mulai Belajar
+                            <span class="hidden sm:inline">Mulai Belajar</span>
+                            <span class="sm:hidden">Daftar</span>
                         </a>
-                        <a href="{{ route('programs.index') }}" class="group border-2 border-gold text-gold px-10 py-4 rounded-full font-semibold hover:bg-gold hover:text-white transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <a href="{{ route('programs.index') }}" class="group border-2 border-gold text-gold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-gold hover:text-white transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
                             </svg>
-                            Lihat Program
+                            <span class="hidden sm:inline">Lihat Program</span>
+                            <span class="sm:hidden">Program</span>
                         </a>
                         @endauth
                     </div>
@@ -116,29 +118,29 @@
     </section>
 
     <!-- Stats Section with Islamic Design -->
-    <section class="py-16 bg-white relative overflow-hidden">
+    <section class="py-12 sm:py-16 bg-white relative overflow-hidden">
         <!-- Decorative Background -->
         <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Section Title with Arabic -->
-            <div class="text-center mb-12">
-                <p class="text-2xl text-gold mb-2" style="font-family: 'Times New Roman', serif;">مَا شَاءَ اللّٰهُ</p>
-                <h2 class="text-3xl font-bold text-gray-900">Pencapaian Kami</h2>
+            <div class="text-center mb-8 sm:mb-12">
+                <p class="text-xl sm:text-2xl text-gold mb-2" style="font-family: 'Times New Roman', serif;">مَا شَاءَ اللّٰهُ</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Pencapaian Kami</h2>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 <!-- Stat Card 1 -->
-                <div class="group bg-white p-8 rounded-2xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-primary relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 gradient-blue opacity-10 rounded-bl-full"></div>
+                <div class="group bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-primary relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 gradient-blue opacity-10 rounded-bl-full"></div>
                     <div class="relative">
-                        <div class="w-16 h-16 gradient-blue rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 gradient-blue rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
                             </svg>
                         </div>
-                        <div class="text-4xl font-bold text-blue-primary mb-2">{{ $totalMembers ?? 150 }}+</div>
-                        <div class="text-gray-600 font-semibold">Santri Aktif</div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-primary mb-1 sm:mb-2">{{ $totalMembers ?? 150 }}+</div>
+                        <div class="text-xs sm:text-sm md:text-base text-gray-600 font-semibold">Santri Aktif</div>
                     </div>
                 </div>
 
@@ -195,22 +197,22 @@
         <div class="absolute bottom-10 right-10 w-40 h-40 border-4 border-blue-primary/20 rounded-full"></div>
 
         <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-16 animate-fade-in">
+            <div class="text-center mb-12 sm:mb-16 animate-fade-in">
                 <!-- Arabic Title -->
-                <div class="mb-4">
-                    <p class="text-3xl text-gold arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                <div class="mb-3 sm:mb-4">
+                    <p class="text-2xl sm:text-3xl text-gold arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
                         بَرَامِجُنَا
                     </p>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Program Kajian Kami</h2>
-                <div class="w-24 h-1 gradient-gold mx-auto mb-6"></div>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Pilih program kajian sesuai kebutuhan untuk meningkatkan pemahaman agama dan ilmu pengetahuan</p>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Program Kajian Kami</h2>
+                <div class="w-20 sm:w-24 h-1 gradient-gold mx-auto mb-4 sm:mb-6"></div>
+                <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">Pilih program kajian sesuai kebutuhan untuk meningkatkan pemahaman agama dan ilmu pengetahuan</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
                 @foreach($featuredPrograms as $program)
-                <div class="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-2 {{ $program->type === 'academy' ? 'border-blue-100 hover:border-blue-primary' : 'border-gold/30 hover:border-gold' }}">
+                <div class="group bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-2 {{ $program->type === 'academy' ? 'border-blue-100 hover:border-blue-primary' : 'border-gold/30 hover:border-gold' }}">
                     <!-- Header with Islamic Pattern -->
-                    <div class="relative {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-40 overflow-hidden">
+                    <div class="relative {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} h-32 sm:h-40 overflow-hidden">
                         <div class="absolute inset-0 opacity-20">
                             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                                 <pattern id="pattern-{{ $loop->index }}" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
@@ -235,17 +237,17 @@
                         </div>
                     </div>
 
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:{{ $program->type === 'academy' ? 'text-blue-primary' : 'text-gold' }} transition-colors">
                             {{ $program->getTranslation('name', app()->getLocale()) }}
                         </h3>
 
-                        <p class="text-gray-600 mb-6 leading-relaxed line-clamp-3">
+                        <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed line-clamp-3">
                             {{ $program->getTranslation('description', app()->getLocale()) }}
                         </p>
 
                         <!-- Info Grid -->
-                        <div class="grid grid-cols-2 gap-4 mb-6 pb-6 border-b-2 border-gray-100">
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b-2 border-gray-100">
                             <div class="flex items-center text-gray-600">
                                 <div class="w-10 h-10 {{ $program->type === 'academy' ? 'bg-blue-50 text-blue-primary' : 'bg-yellow-50 text-gold' }} rounded-lg flex items-center justify-center mr-3">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -260,9 +262,10 @@
 
                             <div class="text-right">
                                 <p class="text-xs text-gray-500 mb-1">Investasi</p>
-                                <div class="text-2xl font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
+                                <div class="text-lg sm:text-xl md:text-2xl font-bold {{ $program->type === 'academy' ? 'gradient-blue-text' : 'gradient-gold-text' }}">
                                     @if($program->fees > 0)
-                                        Rp {{ number_format($program->fees, 0, ',', '.') }}
+                                        <span class="hidden sm:inline">Rp {{ number_format($program->fees, 0, ',', '.') }}</span>
+                                        <span class="sm:hidden">Rp {{ number_format($program->fees / 1000, 0, ',', '.') }}k</span>
                                     @else
                                         Gratis
                                     @endif
@@ -271,9 +274,10 @@
                         </div>
 
                         <a href="{{ route('programs.show', $program->slug) }}" 
-                           class="group/btn block w-full {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white py-4 rounded-full font-semibold hover:shadow-xl transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
-                            Daftar Sekarang
-                            <svg class="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           class="group/btn block w-full {{ $program->type === 'academy' ? 'gradient-blue' : 'gradient-gold' }} text-white py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:shadow-xl transition-all duration-300 text-center transform hover:scale-105 flex items-center justify-center">
+                            <span class="hidden sm:inline">Daftar Sekarang</span>
+                            <span class="sm:hidden">Daftar</span>
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
                         </a>
@@ -281,10 +285,11 @@
                 </div>
                 @endforeach
             </div>
-            <div class="text-center mt-12">
-                <a href="{{ route('programs.index') }}" class="inline-flex items-center gradient-blue text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition shadow-lg">
-                    Lihat Semua Program
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="text-center mt-8 sm:mt-12">
+                <a href="{{ route('programs.index') }}" class="inline-flex items-center gradient-blue text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition shadow-lg">
+                    <span class="hidden sm:inline">Lihat Semua Program</span>
+                    <span class="sm:hidden">Semua Program</span>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </a>
@@ -295,13 +300,13 @@
 
     <!-- Latest News -->
     @if(isset($featuredArticles) && $featuredArticles->count() > 0)
-    <section class="py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
+    <section class="py-12 sm:py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Berita Terbaru</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Ikuti perkembangan dan informasi terbaru dari kami</p>
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">Berita Terbaru</h2>
+                <p class="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">Ikuti perkembangan dan informasi terbaru dari kami</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                 @foreach($featuredArticles->take(3) as $article)
                 <a href="{{ route('articles.show', $article->slug) }}" class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
                     @if($article->image_url)
@@ -335,12 +340,12 @@
     @endif
 
     <!-- About Section -->
-    <section class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+    <section class="py-12 sm:py-16 bg-white px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tentang Manaahel</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Tentang Manaahel</h2>
+                    <p class="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
                         Manaahel adalah platform pembelajaran yang didedikasikan untuk membantu meningkatkan pengetahuan dan keterampilan melalui program-program berkualitas.
                     </p>
                     <p class="text-gray-600 mb-6 leading-relaxed">
@@ -405,7 +410,7 @@
     </section>
 
     <!-- CTA Section with Islamic Design -->
-    <section class="relative py-24 gradient-blue px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section class="relative py-16 sm:py-20 md:py-24 gradient-blue px-4 sm:px-6 lg:px-8 overflow-hidden">
         <!-- Islamic Pattern Overlay -->
         <div class="absolute inset-0 opacity-10">
             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -426,25 +431,25 @@
 
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <!-- Arabic Calligraphy -->
-            <div class="mb-8 animate-fade-in">
-                <p class="text-5xl md:text-6xl text-white/90 mb-3 arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
+            <div class="mb-6 sm:mb-8 animate-fade-in">
+                <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white/90 mb-2 sm:mb-3 arabic-glow" style="font-family: 'Times New Roman', serif; direction: rtl;">
                     وَقُل رَّبِّ زِدْنِي عِلْمًا
                 </p>
-                <p class="text-white/80 text-lg italic">"Dan katakanlah: Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan"</p>
-                <p class="text-white/60 text-sm mt-2">- QS. Taha: 114</p>
+                <p class="text-white/80 text-sm sm:text-base md:text-lg italic px-4">"Dan katakanlah: Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan"</p>
+                <p class="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">- QS. Taha: 114</p>
             </div>
 
-            <div class="w-32 h-1 gradient-gold mx-auto mb-8"></div>
+            <div class="w-24 sm:w-32 h-1 gradient-gold mx-auto mb-6 sm:mb-8"></div>
 
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 animate-slide-up">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 animate-slide-up px-4">
                 Bergabunglah Bersama Kami
             </h2>
-            <p class="text-blue-50 text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p class="text-blue-50 text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
                 Mulai perjalanan menuntut ilmu Anda bersama ribuan santri lainnya. Raih keberkahan ilmu yang bermanfaat untuk dunia dan akhirat.
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-5 justify-center items-center mb-8">
-                <a href="{{ route('register') }}" class="group gradient-gold text-white px-12 py-5 rounded-full font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center text-lg">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center mb-6 sm:mb-8 px-4">
+                <a href="{{ route('register') }}" class="w-full sm:w-auto group gradient-gold text-white px-8 sm:px-10 md:px-12 py-3 sm:py-4 md:py-5 rounded-full text-sm sm:text-base md:text-lg font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center">
                     <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
                     </svg>
@@ -462,18 +467,18 @@
             </div>
 
             <!-- Trust Badges -->
-            <div class="flex flex-wrap justify-center gap-8 mt-12 pt-8 border-t border-white/20">
+            <div class="flex flex-wrap justify-center gap-6 sm:gap-8 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/20 px-4">
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">{{ $totalMembers ?? 150 }}+</div>
-                    <div class="text-blue-100 text-sm">Santri Terdaftar</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white mb-1">{{ $totalMembers ?? 150 }}+</div>
+                    <div class="text-blue-100 text-xs sm:text-sm">Santri Terdaftar</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">4.9/5</div>
-                    <div class="text-blue-100 text-sm">Rating Kepuasan</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white mb-1">4.9/5</div>
+                    <div class="text-blue-100 text-xs sm:text-sm">Rating Kepuasan</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">15+</div>
-                    <div class="text-blue-100 text-sm">Ustadz Berpengalaman</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white mb-1">15+</div>
+                    <div class="text-blue-100 text-xs sm:text-sm">Ustadz Berpengalaman</div>
                 </div>
             </div>
         </div>

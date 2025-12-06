@@ -30,10 +30,10 @@ class CourseResource extends Resource
     {
         return $schema
             ->schema([
-                Grid::make(3)
+                Grid::make(2)
                     ->schema([
                         // Left Column - Main Info
-                        Grid::make(1)
+                        Grid::make(2)
                             ->columnSpan(2)
                             ->schema([
                                 Section::make('Course Information')
@@ -98,7 +98,7 @@ class CourseResource extends Resource
                             ]),
                         
                         // Right Column - Settings
-                        Grid::make(1)
+                        Grid::make(2)
                             ->columnSpan(1)
                             ->schema([
                                 Section::make('Settings')

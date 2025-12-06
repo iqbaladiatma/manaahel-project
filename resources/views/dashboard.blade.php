@@ -1,23 +1,23 @@
 <x-app-layout>
     <!-- Hero Section with Gradient -->
-    <div class="relative bg-gradient-to-br from-white via-blue-50 to-amber-50 pt-24 pb-16 overflow-hidden mt-16">
+    <div class="relative bg-gradient-to-br from-white via-blue-50 to-amber-50 pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden mt-16">
         <!-- Decorative Blur Elements -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Welcome Header -->
-            <div class="text-center mb-12">
+            <div class="text-center mb-8 sm:mb-12">
                 <!-- Arabic Greeting -->
-                <div class="mb-4">
-                    <p class="text-3xl text-blue-600 font-bold" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                <div class="mb-3 sm:mb-4">
+                    <p class="text-xl sm:text-2xl md:text-3xl text-blue-600 font-bold" style="font-family: 'Times New Roman', serif; direction: rtl;">
                         السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
                     </p>
                 </div>
-                <h1 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-blue-700 to-amber-600 bg-clip-text text-transparent">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-blue-700 to-amber-600 bg-clip-text text-transparent px-4">
                     {{ __('Welcome back, :name!', ['name' => Auth::user()->name]) }}
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-base sm:text-lg md:text-xl text-gray-600">
                     {{ __('Your Learning Dashboard') }}
                 </p>
             </div>
@@ -38,18 +38,18 @@
                 $progressPercentage = $totalModules > 0 ? round(($completedModules / $totalModules) * 100) : 0;
             @endphp
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
                 <!-- Stat 1: Programs -->
-                <div class="group relative bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-amber-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-amber-500/20 transition-all"></div>
+                <div class="group relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500/10 to-amber-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-amber-500/20 transition-all"></div>
                     <div class="relative">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center mb-3 shadow-md">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                             </svg>
                         </div>
-                        <div class="text-4xl font-bold text-gray-900 mb-1">{{ $enrolledPrograms->count() }}</div>
-                        <div class="text-sm text-gray-600 font-medium">{{ __('Programs') }}</div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1">{{ $enrolledPrograms->count() }}</div>
+                        <div class="text-xs sm:text-sm text-gray-600 font-medium">{{ __('Programs') }}</div>
                     </div>
                 </div>
 
