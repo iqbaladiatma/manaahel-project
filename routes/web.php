@@ -39,6 +39,10 @@ Route::get('/api/map/locations', [\App\Http\Controllers\MapController::class, 'g
 // Gallery routes (protected)
 Route::middleware('auth')->group(function () {
     Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+    
+    // Member Angkatan can upload to gallery
+    Route::get('/gallery/upload', [\App\Http\Controllers\GalleryUploadController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/upload', [\App\Http\Controllers\GalleryUploadController::class, 'store'])->name('gallery.store');
 });
 
 // Members Directory routes (protected)
