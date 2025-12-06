@@ -37,6 +37,7 @@ class GalleryResource extends Resource
                             ->columnSpan(2)
                             ->schema([
                                 Section::make('Gallery Information')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\Select::make('user_id')
                                             ->label('Member Angkatan (Optional)')
@@ -65,6 +66,7 @@ class GalleryResource extends Resource
                                     ->columns(2),
                                 
                                 Section::make('Description')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\Textarea::make('description')
                                             ->label('Description')
@@ -74,6 +76,7 @@ class GalleryResource extends Resource
                                     ]),
                                 
                                 Section::make('Media')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\Select::make('type')
                                             ->options([
@@ -107,6 +110,7 @@ class GalleryResource extends Resource
                             ->columnSpan(1)
                             ->schema([
                                 Section::make('Settings')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\DatePicker::make('event_date')
                                             ->label('Event Date'),

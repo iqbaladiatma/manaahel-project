@@ -38,6 +38,7 @@ class UserResource extends Resource
                             ->columnSpan(2)
                             ->schema([
                                 Section::make('Account Information')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\TextInput::make('name')
                                             ->required()
@@ -70,6 +71,7 @@ class UserResource extends Resource
                                     ->columns(2),
                                 
                                 Section::make('Personal Information')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\TextInput::make('phone')
                                             ->tel()
@@ -105,6 +107,7 @@ class UserResource extends Resource
                                     ->columns(2),
                                 
                                 Section::make('Social Media')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\TextInput::make('instagram_url')
                                             ->label('Instagram')
@@ -151,6 +154,7 @@ class UserResource extends Resource
                             ->columnSpan(1)
                             ->schema([
                                 Section::make('Avatar')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\FileUpload::make('avatar_url')
                                             ->label('Profile Picture')
@@ -162,6 +166,7 @@ class UserResource extends Resource
                                     ]),
                                 
                                 Section::make('Location')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\TextInput::make('latitude')
                                             ->numeric()

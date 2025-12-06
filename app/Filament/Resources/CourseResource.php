@@ -37,6 +37,7 @@ class CourseResource extends Resource
                             ->columnSpan(2)
                             ->schema([
                                 Section::make('Course Information')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\Select::make('program_id')
                                             ->label('Program')
@@ -63,6 +64,7 @@ class CourseResource extends Resource
                                     ->columns(2),
                                 
                                 Section::make('Description')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\Textarea::make('description.en')
                                             ->label('Description (English)')
@@ -80,6 +82,7 @@ class CourseResource extends Resource
                                     ]),
                                 
                                 Section::make('Content')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\RichEditor::make('content.en')
                                             ->label('Content (English)')
@@ -102,6 +105,7 @@ class CourseResource extends Resource
                             ->columnSpan(1)
                             ->schema([
                                 Section::make('Settings')
+                                    ->columnSpanFull()
                                     ->schema([
                                         Forms\Components\TextInput::make('order')
                                             ->label('Display Order')
