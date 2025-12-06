@@ -38,6 +38,16 @@ class GalleryResource extends Resource
                             ->schema([
                                 Section::make('Gallery Information')
                                     ->schema([
+                                        Forms\Components\Select::make('user_id')
+                                            ->label('Member Angkatan (Optional)')
+                                            ->relationship('user', 'name', function ($query) {
+                                                $query->where('role', 'member_angkatan')->orderBy('name');
+                                            })
+                                            ->searchable()
+                                            ->preload()
+                                            ->helperText('Select a member angkatan if this gallery belongs to them')
+                                            ->columnSpanFull(),
+                                        
                                         Forms\Components\TextInput::make('title.en')
                                             ->label('Title (English)')
                                             ->required()
@@ -56,17 +66,11 @@ class GalleryResource extends Resource
                                 
                                 Section::make('Description')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.en')
-                                            ->label('Description (English)')
-                                            ->rows(3),
-                                        
-                                        Forms\Components\Textarea::make('description.id')
-                                            ->label('Description (Indonesian)')
-                                            ->rows(3),
-                                        
-                                        Forms\Components\Textarea::make('description.ar')
-                                            ->label('Description (Arabic)')
-                                            ->rows(3),
+                                        Forms\Components\Textarea::make('description')
+                                            ->label('Description')
+                                            ->rows(3)
+                                            ->helperText('Short description about this gallery item')
+                                            ->columnSpanFull(),
                                     ]),
                                 
                                 Section::make('Media')
@@ -130,6 +134,12 @@ class GalleryResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->limit(50),
+                
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Member')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 
                 Tables\Columns\BadgeColumn::make('type')
                     ->colors([

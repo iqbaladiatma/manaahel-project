@@ -13,8 +13,8 @@ class MemberController extends Controller
      */
     public function index(Request $request): View
     {
-        // Show member_angkatan and member (legacy)
-        $query = User::whereIn('role', ['member', 'member_angkatan']);
+        // Show only member_angkatan
+        $query = User::where('role', 'member_angkatan');
 
         // Search functionality
         if ($request->has('search') && $request->search) {
@@ -40,7 +40,7 @@ class MemberController extends Controller
         $members = $query->orderBy('name', 'asc')->paginate(12);
 
         // Get available batch years for filter
-        $batchYears = User::whereIn('role', ['member', 'member_angkatan'])
+        $batchYears = User::where('role', 'member_angkatan')
             ->whereNotNull('batch_year')
             ->distinct()
             ->pluck('batch_year')
@@ -55,8 +55,8 @@ class MemberController extends Controller
      */
     public function show(User $member): View
     {
-        // Only show members and member_angkatan
-        if (!in_array($member->role, ['member', 'member_angkatan'])) {
+        // Only show member_angkatan
+        if ($member->role !== 'member_angkatan') {
             abort(404);
         }
 
