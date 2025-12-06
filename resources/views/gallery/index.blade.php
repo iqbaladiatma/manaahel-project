@@ -79,7 +79,7 @@
                             <div class="aspect-video w-full overflow-hidden bg-gray-100">
                                 @if($gallery->media_url)
                                     <img src="{{ $gallery->media_url }}" 
-                                         alt="{{ $gallery->getTranslation('title', app()->getLocale()) }}"
+                                         alt="{{ $gallery->getTranslatedTitle() }}"
                                          class="w-full h-full object-cover">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center">
@@ -94,7 +94,7 @@
                             <div class="p-5">
                                 <!-- Title -->
                                 <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
-                                    {{ $gallery->getTranslation('title', app()->getLocale()) }}
+                                    {{ $gallery->getTranslatedTitle() }}
                                 </h3>
 
                                 <!-- Description -->

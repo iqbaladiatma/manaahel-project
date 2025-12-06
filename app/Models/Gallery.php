@@ -15,11 +15,47 @@ class Gallery extends Model
      * @var array<string>
      */
     protected $fillable = [
+        'user_id',
         'title',
-        'file_path',
-        'batch_filter',
-        'visibility',
+        'description',
+        'type',
+        'media_url',
+        'event_date',
+        'is_featured',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'title' => 'array',
+        'event_date' => 'date',
+        'is_featured' => 'boolean',
+    ];
+
+    /**
+     * Relationship: Gallery belongs to a user (member_angkatan).
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get translated title.
+     */
+    public function getTranslatedTitle($locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        
+        if (is_array($this->title)) {
+            return $this->title[$locale] ?? $this->title['en'] ?? $this->title['id'] ?? 'Untitled';
+        }
+        
+        return $this->title ?? 'Untitled';
+    }
 
     /**
      * Scope a query to only include galleries visible to the user.
