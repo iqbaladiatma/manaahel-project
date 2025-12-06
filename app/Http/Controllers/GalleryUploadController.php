@@ -36,7 +36,6 @@ class GalleryUploadController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // 5MB max
-            'event_date' => 'nullable|date',
             'member_id' => 'nullable|exists:users,id', // For admin to assign to member
         ]);
 
@@ -48,6 +47,10 @@ class GalleryUploadController extends Controller
             ? $validated['member_id'] 
             : Auth::id();
 
+        // Get user's batch year for batch_filter
+        $user = $userId ? \App\Models\User::find($userId) : null;
+        $batchFilter = $user && $user->batch_year ? $user->batch_year : null;
+
         // Create gallery entry
         $gallery = Gallery::create([
             'user_id' => $userId,
@@ -57,10 +60,9 @@ class GalleryUploadController extends Controller
                 'ar' => $validated['title'],
             ],
             'description' => $validated['description'],
-            'type' => 'image',
-            'media_url' => Storage::url($imagePath),
-            'event_date' => $validated['event_date'] ?? now(),
-            'is_featured' => false,
+            'file_path' => $imagePath,
+            'batch_filter' => $batchFilter,
+            'visibility' => 'public',
         ]);
 
         return redirect()->route('gallery.index')

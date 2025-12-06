@@ -18,10 +18,9 @@ class Gallery extends Model
         'user_id',
         'title',
         'description',
-        'type',
-        'media_url',
-        'event_date',
-        'is_featured',
+        'file_path',
+        'batch_filter',
+        'visibility',
     ];
 
     /**
@@ -31,8 +30,6 @@ class Gallery extends Model
      */
     protected $casts = [
         'title' => 'array',
-        'event_date' => 'date',
-        'is_featured' => 'boolean',
     ];
 
     /**

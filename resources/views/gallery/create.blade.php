@@ -147,21 +147,6 @@
                         @enderror
                     </div>
 
-                    <!-- Event Date -->
-                    <div class="mb-8">
-                        <label for="event_date" class="block text-sm font-semibold text-gray-700 mb-3">
-                            {{ __('Event Date') }}
-                        </label>
-                        <input type="date" 
-                               name="event_date" 
-                               id="event_date" 
-                               value="{{ old('event_date', date('Y-m-d')) }}"
-                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all">
-                        @error('event_date')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
                     <!-- Submit Buttons -->
                     <div class="flex gap-4">
                         <button type="submit" 

@@ -77,8 +77,8 @@
                         <div class="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-xl transition-all duration-300">
                             <!-- Image -->
                             <div class="aspect-video w-full overflow-hidden bg-gray-100">
-                                @if($gallery->media_url)
-                                    <img src="{{ $gallery->media_url }}" 
+                                @if($gallery->file_path)
+                                    <img src="{{ asset('storage/' . $gallery->file_path) }}" 
                                          alt="{{ $gallery->getTranslatedTitle() }}"
                                          class="w-full h-full object-cover">
                                 @else
@@ -142,13 +142,11 @@
                                     @endif
 
                                     <!-- Date -->
-                                    @if($gallery->event_date)
-                                        <div class="text-right">
-                                            <p class="text-xs text-gray-500">
-                                                {{ \Carbon\Carbon::parse($gallery->event_date)->format('M d, Y') }}
-                                            </p>
-                                        </div>
-                                    @endif
+                                    <div class="text-right">
+                                        <p class="text-xs text-gray-500">
+                                            {{ $gallery->created_at->format('M d, Y') }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -77,29 +77,13 @@ class GalleryResource extends Resource
                                 Section::make('Media')
                                     ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\Select::make('type')
-                                            ->options([
-                                                'image' => 'Image',
-                                                'video' => 'Video',
-                                            ])
-                                            ->required()
-                                            ->reactive()
-                                            ->columnSpanFull(),
-                                        
-                                        Forms\Components\FileUpload::make('media_url')
-                                            ->label('Media File')
+                                        Forms\Components\FileUpload::make('file_path')
+                                            ->label('Gallery Image')
                                             ->image()
                                             ->directory('gallery')
                                             ->maxSize(5120)
                                             ->imageEditor()
-                                            ->visible(fn ($get) => $get('type') === 'image')
-                                            ->columnSpanFull(),
-                                        
-                                        Forms\Components\TextInput::make('media_url')
-                                            ->label('Video URL (YouTube/Vimeo)')
-                                            ->url()
-                                            ->placeholder('https://www.youtube.com/watch?v=...')
-                                            ->visible(fn ($get) => $get('type') === 'video')
+                                            ->required()
                                             ->columnSpanFull(),
                                     ]),
                             ]),
@@ -111,13 +95,20 @@ class GalleryResource extends Resource
                                 Section::make('Settings')
                                     ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\DatePicker::make('event_date')
-                                            ->label('Event Date'),
+                                        Forms\Components\Select::make('visibility')
+                                            ->label('Visibility')
+                                            ->options([
+                                                'public' => 'Public',
+                                                'member_only' => 'Member Only',
+                                            ])
+                                            ->default('public')
+                                            ->required(),
                                         
-                                        Forms\Components\Toggle::make('is_featured')
-                                            ->label('Featured')
-                                            ->default(false)
-                                            ->helperText('Show in featured gallery'),
+                                        Forms\Components\TextInput::make('batch_filter')
+                                            ->label('Batch Year Filter')
+                                            ->numeric()
+                                            ->placeholder('e.g., 2024')
+                                            ->helperText('Leave empty to show to all members'),
                                     ]),
                             ]),
                     ]),
@@ -128,15 +119,15 @@ class GalleryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('media_url')
-                    ->label('Media')
-                    ->circular()
-                    ->defaultImageUrl(fn ($record) => $record->type === 'video' ? asset('images/video-placeholder.png') : null),
+                Tables\Columns\ImageColumn::make('file_path')
+                    ->label('Image')
+                    ->circular(),
                 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable()
-                    ->limit(50),
+                    ->limit(50)
+                    ->formatStateUsing(fn ($record) => $record->getTranslatedTitle()),
                 
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Member')
@@ -144,19 +135,16 @@ class GalleryResource extends Resource
                     ->sortable()
                     ->toggleable(),
                 
-                Tables\Columns\BadgeColumn::make('type')
+                Tables\Columns\BadgeColumn::make('visibility')
                     ->colors([
-                        'primary' => 'image',
-                        'success' => 'video',
+                        'success' => 'public',
+                        'warning' => 'member_only',
                     ]),
                 
-                Tables\Columns\TextColumn::make('event_date')
-                    ->date()
-                    ->sortable(),
-                
-                Tables\Columns\IconColumn::make('is_featured')
-                    ->label('Featured')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('batch_filter')
+                    ->label('Batch')
+                    ->sortable()
+                    ->placeholder('-'),
                 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -164,14 +152,16 @@ class GalleryResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('type')
+                Tables\Filters\SelectFilter::make('visibility')
                     ->options([
-                        'image' => 'Image',
-                        'video' => 'Video',
+                        'public' => 'Public',
+                        'member_only' => 'Member Only',
                     ]),
                 
-                Tables\Filters\TernaryFilter::make('is_featured')
-                    ->label('Featured'),
+                Tables\Filters\SelectFilter::make('user')
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->preload(),
             ])
             ->actions([
                 EditAction::make(),
@@ -182,7 +172,7 @@ class GalleryResource extends Resource
                     DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('event_date', 'desc');
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
