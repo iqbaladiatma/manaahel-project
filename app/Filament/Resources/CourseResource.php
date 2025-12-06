@@ -47,14 +47,13 @@ class CourseResource extends Resource
                                             ->required()
                                             ->columnSpanFull(),
                                         
-                                        Forms\Components\TextInput::make('title.en')
-                                            ->label('Title (English)')
-                                            ->required()
-                                            ->maxLength(255),
-                                        
                                         Forms\Components\TextInput::make('title.id')
                                             ->label('Title (Indonesian)')
                                             ->required()
+                                            ->maxLength(255),
+                                        
+                                        Forms\Components\TextInput::make('title.en')
+                                            ->label('Title (English)')
                                             ->maxLength(255),
                                         
                                         Forms\Components\TextInput::make('title.ar')
@@ -66,14 +65,13 @@ class CourseResource extends Resource
                                 Section::make('Description')
                                     ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.en')
-                                            ->label('Description (English)')
-                                            ->required()
-                                            ->rows(3),
-                                        
                                         Forms\Components\Textarea::make('description.id')
                                             ->label('Description (Indonesian)')
                                             ->required()
+                                            ->rows(3),
+                                        
+                                        Forms\Components\Textarea::make('description.en')
+                                            ->label('Description (English)')
                                             ->rows(3),
                                         
                                         Forms\Components\Textarea::make('description.ar')
@@ -84,14 +82,13 @@ class CourseResource extends Resource
                                 Section::make('Content')
                                     ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\RichEditor::make('content.en')
-                                            ->label('Content (English)')
-                                            ->required()
-                                            ->columnSpanFull(),
-                                        
                                         Forms\Components\RichEditor::make('content.id')
                                             ->label('Content (Indonesian)')
                                             ->required()
+                                            ->columnSpanFull(),
+                                        
+                                        Forms\Components\RichEditor::make('content.en')
+                                            ->label('Content (English)')
                                             ->columnSpanFull(),
                                         
                                         Forms\Components\RichEditor::make('content.ar')

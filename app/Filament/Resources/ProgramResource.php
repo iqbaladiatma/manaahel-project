@@ -40,16 +40,15 @@ class ProgramResource extends Resource
                         Section::make('Program Information')
                             ->columnSpanFull()
                             ->schema([
-                                Forms\Components\TextInput::make('name.en')
-                                    ->label('Name (English)')
+                                Forms\Components\TextInput::make('name.id')
+                                    ->label('Name (Indonesian)')
                                     ->required()
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state)))
                                     ->maxLength(255),
 
-                                Forms\Components\TextInput::make('name.id')
-                                    ->label('Name (Indonesian)')
-                                    ->required()
+                                Forms\Components\TextInput::make('name.en')
+                                    ->label('Name (English)')
                                     ->maxLength(255),
 
                                 Forms\Components\TextInput::make('name.ar')
@@ -60,21 +59,22 @@ class ProgramResource extends Resource
                                     ->required()
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(255)
-                                    ->helperText('Auto-generated from English name'),
+                                    ->disabled()
+                                    ->dehydrated()
+                                    ->helperText('Auto-generated from Indonesian name'),
                             ])
                             ->columns(2),
 
                         Section::make('Description')
                             ->columnSpanFull()
                             ->schema([
-                                Forms\Components\Textarea::make('description.en')
-                                    ->label('Description (English)')
-                                    ->required()
-                                    ->rows(3),
-
                                 Forms\Components\Textarea::make('description.id')
                                     ->label('Description (Indonesian)')
                                     ->required()
+                                    ->rows(3),
+
+                                Forms\Components\Textarea::make('description.en')
+                                    ->label('Description (English)')
                                     ->rows(3),
 
                                 Forms\Components\Textarea::make('description.ar')
@@ -85,15 +85,15 @@ class ProgramResource extends Resource
                         Section::make('Syllabus')
                             ->columnSpanFull()
                             ->schema([
-                                Forms\Components\RichEditor::make('syllabus.en')
-                                    ->label('Syllabus (English)')
+                                Forms\Components\RichEditor::make('syllabus.id')
+                                    ->label('Syllabus (Indonesian)')
                                     ->columnSpanFull()
                                     ->toolbarButtons([
                                         'bold', 'italic', 'bulletList', 'orderedList'
                                     ]),
 
-                                Forms\Components\RichEditor::make('syllabus.id')
-                                    ->label('Syllabus (Indonesian)')
+                                Forms\Components\RichEditor::make('syllabus.en')
+                                    ->label('Syllabus (English)')
                                     ->columnSpanFull()
                                     ->toolbarButtons([
                                         'bold', 'italic', 'bulletList', 'orderedList'

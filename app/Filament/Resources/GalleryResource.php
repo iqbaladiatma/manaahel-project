@@ -49,14 +49,13 @@ class GalleryResource extends Resource
                                             ->helperText('Select a member angkatan if this gallery belongs to them')
                                             ->columnSpanFull(),
                                         
-                                        Forms\Components\TextInput::make('title.en')
-                                            ->label('Title (English)')
-                                            ->required()
-                                            ->maxLength(255),
-                                        
                                         Forms\Components\TextInput::make('title.id')
                                             ->label('Title (Indonesian)')
                                             ->required()
+                                            ->maxLength(255),
+                                        
+                                        Forms\Components\TextInput::make('title.en')
+                                            ->label('Title (English)')
                                             ->maxLength(255),
                                         
                                         Forms\Components\TextInput::make('title.ar')

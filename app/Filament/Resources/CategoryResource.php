@@ -31,16 +31,15 @@ class CategoryResource extends Resource
             ->schema([
                 Section::make('Category Information')
                     ->schema([
-                        Forms\Components\TextInput::make('name.en')
-                            ->label('Name (English)')
+                        Forms\Components\TextInput::make('name.id')
+                            ->label('Name (Indonesian)')
                             ->required()
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state)))
                             ->maxLength(255),
                         
-                        Forms\Components\TextInput::make('name.id')
-                            ->label('Name (Indonesian)')
-                            ->required()
+                        Forms\Components\TextInput::make('name.en')
+                            ->label('Name (English)')
                             ->maxLength(255),
                         
                         Forms\Components\TextInput::make('name.ar')
@@ -51,18 +50,20 @@ class CategoryResource extends Resource
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->helperText('Auto-generated from English name'),
+                            ->disabled()
+                            ->dehydrated()
+                            ->helperText('Auto-generated from Indonesian name'),
                     ])
                     ->columns(2),
                 
                 Section::make('Description')
                     ->schema([
-                        Forms\Components\Textarea::make('description.en')
-                            ->label('Description (English)')
-                            ->rows(3),
-                        
                         Forms\Components\Textarea::make('description.id')
                             ->label('Description (Indonesian)')
+                            ->rows(3),
+                        
+                        Forms\Components\Textarea::make('description.en')
+                            ->label('Description (English)')
                             ->rows(3),
                         
                         Forms\Components\Textarea::make('description.ar')
