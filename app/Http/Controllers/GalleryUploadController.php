@@ -10,26 +10,26 @@ use Illuminate\Support\Facades\Storage;
 class GalleryUploadController extends Controller
 {
     /**
-     * Show the form for creating a new gallery item (Member Angkatan only).
+     * Show the form for creating a new gallery item (Member Angkatan & Admin).
      */
     public function create()
     {
-        // Check if user is member_angkatan
-        if (!Auth::user()->isMemberAngkatan()) {
-            abort(403, 'Only Member Angkatan can upload to gallery.');
+        // Check if user is member_angkatan or admin
+        if (!Auth::user()->isMemberAngkatan() && !Auth::user()->isAdmin()) {
+            abort(403, 'Only Member Angkatan and Admin can upload to gallery.');
         }
 
         return view('gallery.create');
     }
 
     /**
-     * Store a newly created gallery item (Member Angkatan only).
+     * Store a newly created gallery item (Member Angkatan & Admin).
      */
     public function store(Request $request)
     {
-        // Check if user is member_angkatan
-        if (!Auth::user()->isMemberAngkatan()) {
-            abort(403, 'Only Member Angkatan can upload to gallery.');
+        // Check if user is member_angkatan or admin
+        if (!Auth::user()->isMemberAngkatan() && !Auth::user()->isAdmin()) {
+            abort(403, 'Only Member Angkatan and Admin can upload to gallery.');
         }
 
         $validated = $request->validate([
@@ -37,14 +37,20 @@ class GalleryUploadController extends Controller
             'description' => 'nullable|string|max:1000',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // 5MB max
             'event_date' => 'nullable|date',
+            'member_id' => 'nullable|exists:users,id', // For admin to assign to member
         ]);
 
         // Upload image
         $imagePath = $request->file('image')->store('gallery', 'public');
 
+        // Determine user_id: if admin assigns to member, use member_id, otherwise use current user
+        $userId = Auth::user()->isAdmin() && $request->filled('member_id') 
+            ? $validated['member_id'] 
+            : Auth::id();
+
         // Create gallery entry
         $gallery = Gallery::create([
-            'user_id' => Auth::id(),
+            'user_id' => $userId,
             'title' => [
                 'en' => $validated['title'],
                 'id' => $validated['title'],

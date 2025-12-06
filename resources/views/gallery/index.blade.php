@@ -9,12 +9,45 @@
                 {{ __('Photos and videos from our community events') }}
             </p>
             
-            <!-- Upload Button for Member Angkatan -->
+            <!-- Upload Button for Member Angkatan & Admin -->
             @auth
-                @if(Auth::user()->isMemberAngkatan())
+                @if(Auth::user()->isMemberAngkatan() || Auth::user()->isAdmin())
                     <div class="mt-6">
                         <a href="{{ route('gallery.create') }}" 
-                           class="inline-flex items-center px-8 py-4 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                           class="inline-flex items-center px-8 py-4 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ __('Upload Photo') }}
+                        </a>
+                    </div>
+                @else
+                    <!-- Debug: Show user role if not authorized -->
+                    <div class="mt-6 text-sm text-gray-500">
+                        {{ __('Your role') }}: {{ Auth::user()->role }}
+                    </div>
+                @endif
+            @else
+                <!-- Not logged in -->
+                <div class="mt-6">
+                    <a href="{{ route('login') }}" 
+                       class="inline-flex items-center px-8 py-4 bg-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-300">
+                        {{ __('Login to Upload Photos') }}
+                    </a>
+                </div>
+            @endauth
+        </div>
+    </div>
+
+    <div class="pb-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Upload Button (Alternative Position - Always Visible for Auth Users) -->
+            @auth
+                @if(Auth::user()->isMemberAngkatan() || Auth::user()->isAdmin())
+                    <div class="mb-8 flex justify-end">
+                        <a href="{{ route('gallery.create') }}" 
+                           class="inline-flex items-center px-6 py-3 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                             </svg>
@@ -23,11 +56,7 @@
                     </div>
                 @endif
             @endauth
-        </div>
-    </div>
-
-    <div class="pb-16">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
             @if($galleries->isEmpty())
                 <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
                     <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">

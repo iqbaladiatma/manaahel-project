@@ -22,9 +22,25 @@
                     </div>
                     <div>
                         <h1 class="text-3xl font-bold">{{ __('Upload Photo to Gallery') }}</h1>
-                        <p class="text-blue-100 mt-1">{{ __('Share your moments with the community') }}</p>
+                        <p class="text-blue-100 mt-1">
+                            @if(Auth::user()->isAdmin())
+                                {{ __('Upload photos as administrator') }}
+                            @else
+                                {{ __('Share your moments with the community') }}
+                            @endif
+                        </p>
                     </div>
                 </div>
+                
+                <!-- Admin Badge -->
+                @if(Auth::user()->isAdmin())
+                    <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                        <span class="text-sm font-semibold">{{ __('Admin Mode') }}</span>
+                    </div>
+                @endif
             </div>
 
             <!-- Success Message -->
@@ -73,6 +89,31 @@
                             <img id="preview" class="w-full h-64 object-cover rounded-xl border-2 border-gray-200" alt="Preview">
                         </div>
                     </div>
+
+                    <!-- Assign to Member (Admin Only) -->
+                    @if(Auth::user()->isAdmin())
+                        <div class="mb-6">
+                            <label for="member_id" class="block text-sm font-semibold text-gray-700 mb-3">
+                                {{ __('Assign to Member Angkatan') }} <span class="text-gray-500">({{ __('Optional') }})</span>
+                            </label>
+                            <select name="member_id" 
+                                    id="member_id"
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all">
+                                <option value="">{{ __('-- General Gallery (No specific member) --') }}</option>
+                                @foreach(\App\Models\User::where('role', 'member_angkatan')->orderBy('name')->get() as $member)
+                                    <option value="{{ $member->id }}" {{ old('member_id') == $member->id ? 'selected' : '' }}>
+                                        {{ $member->name }} @if($member->batch_year)({{ $member->batch_year }})@endif
+                                    </option>
+                                @endforeach
+                            </select>
+                            <p class="mt-2 text-sm text-gray-500">
+                                {{ __('Select a member if this photo belongs to them, or leave empty for general gallery') }}
+                            </p>
+                            @error('member_id')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    @endif
 
                     <!-- Title -->
                     <div class="mb-6">
