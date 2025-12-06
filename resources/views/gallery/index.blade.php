@@ -72,22 +72,84 @@
                     </p>
                 </div>
             @else
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($galleries as $gallery)
-                        <div class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-gray-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
-                            <img src="{{ $gallery->file_path }}" 
-                                 alt="{{ $gallery->title }}"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-white font-semibold text-base mb-1">{{ $gallery->title }}</h3>
-                                    <p class="text-blue-100 text-sm">{{ __('Click to view') }}</p>
-                                </div>
+                        <div class="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-xl transition-all duration-300">
+                            <!-- Image -->
+                            <div class="aspect-video w-full overflow-hidden bg-gray-100">
+                                @if($gallery->media_url)
+                                    <img src="{{ $gallery->media_url }}" 
+                                         alt="{{ $gallery->getTranslation('title', app()->getLocale()) }}"
+                                         class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <svg class="w-16 h-16 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                @endif
                             </div>
-                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <svg class="w-5 h-5 text-blue-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-                                </svg>
+
+                            <!-- Content -->
+                            <div class="p-5">
+                                <!-- Title -->
+                                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                                    {{ $gallery->getTranslation('title', app()->getLocale()) }}
+                                </h3>
+
+                                <!-- Description -->
+                                @if($gallery->description)
+                                    <p class="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+                                        {{ $gallery->description }}
+                                    </p>
+                                @endif
+
+                                <!-- Meta Info -->
+                                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                    <!-- Member Info -->
+                                    @if($gallery->user)
+                                        <div class="flex items-center">
+                                            @if($gallery->user->avatar_url)
+                                                <img src="{{ $gallery->user->avatar_url }}" 
+                                                     alt="{{ $gallery->user->name }}"
+                                                     class="w-8 h-8 rounded-full object-cover mr-2 border-2 border-blue-100">
+                                            @else
+                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mr-2 border-2 border-blue-100">
+                                                    <span class="text-white text-xs font-bold">
+                                                        {{ strtoupper(substr($gallery->user->name, 0, 1)) }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                            <div>
+                                                <p class="text-xs font-semibold text-gray-900">{{ $gallery->user->name }}</p>
+                                                @if($gallery->user->batch_year)
+                                                    <p class="text-xs text-gray-500">{{ __('Batch') }} {{ $gallery->user->batch_year }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center mr-2">
+                                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-semibold text-gray-900">{{ __('General') }}</p>
+                                                <p class="text-xs text-gray-500">{{ __('Gallery') }}</p>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <!-- Date -->
+                                    @if($gallery->event_date)
+                                        <div class="text-right">
+                                            <p class="text-xs text-gray-500">
+                                                {{ \Carbon\Carbon::parse($gallery->event_date)->format('M d, Y') }}
+                                            </p>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @endforeach
