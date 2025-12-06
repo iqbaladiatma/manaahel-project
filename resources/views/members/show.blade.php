@@ -176,46 +176,6 @@
                         </div>
                     @endif
 
-                    <!-- Articles Section (Member Angkatan Only) -->
-                    @if($member->isMemberAngkatan() && isset($member->articles) && $member->articles->count() > 0)
-                        <div class="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                                <svg class="w-6 h-6 mr-2 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                                </svg>
-                                {{ __('Latest Articles') }}
-                            </h2>
-                            <div class="space-y-4">
-                                @foreach($member->articles as $article)
-                                    <a href="{{ route('articles.show', $article->slug) }}" 
-                                       class="block p-4 border-2 border-gray-100 rounded-xl hover:border-blue-primary hover:shadow-lg transition-all duration-300 group">
-                                        <div class="flex items-start gap-4">
-                                            @if($article->image_url)
-                                                <img src="{{ $article->image_url }}" 
-                                                     alt="{{ $article->getTranslation('title', app()->getLocale()) }}"
-                                                     class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
-                                            @endif
-                                            <div class="flex-1">
-                                                <h3 class="font-bold text-gray-900 mb-2 group-hover:gradient-blue-text transition-all">
-                                                    {{ $article->getTranslation('title', app()->getLocale()) }}
-                                                </h3>
-                                                <p class="text-sm text-gray-600 line-clamp-2 mb-2">
-                                                    {{ Str::limit(strip_tags($article->getTranslation('content', app()->getLocale())), 100) }}
-                                                </p>
-                                                <div class="flex items-center text-xs text-gray-500">
-                                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                                                    </svg>
-                                                    {{ $article->created_at->format('M d, Y') }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endif
-
                     <!-- Galleries Section (Member Angkatan Only) -->
                     @if($member->isMemberAngkatan() && isset($member->galleries) && $member->galleries->count() > 0)
                         <div class="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8">

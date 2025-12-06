@@ -60,11 +60,9 @@ class MemberController extends Controller
             abort(404);
         }
 
-        // Load articles and galleries for member angkatan
+        // Load galleries for member angkatan
         if ($member->isMemberAngkatan()) {
-            $member->load(['articles' => function($query) {
-                $query->where('is_published', true)->latest()->take(5);
-            }, 'galleries' => function($query) {
+            $member->load(['galleries' => function($query) {
                 $query->latest()->take(6);
             }]);
         }

@@ -123,14 +123,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get articles written by this user.
-     */
-    public function articles(): HasMany
-    {
-        return $this->hasMany(Article::class, 'author_id');
-    }
-
-    /**
      * Get galleries uploaded by this user (for member angkatan).
      */
     public function galleries(): HasMany
