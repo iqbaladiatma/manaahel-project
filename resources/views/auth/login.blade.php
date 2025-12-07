@@ -3,8 +3,8 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ __('Welcome Back') }}</h2>
-        <p class="text-gray-600">{{ __('Sign in to your account to continue') }}</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('Welcome Back') }}</h2>
+        <p class="text-gray-600 dark:text-gray-400">{{ __('Sign in to your account to continue') }}</p>
     </div>
 
     <form method="POST" action="{{ route('login') }}" class="space-y-6">
@@ -12,7 +12,7 @@
 
         <!-- Email Address -->
         <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('Email') }}
             </label>
             <input id="email" 
@@ -22,7 +22,7 @@
                    required 
                    autofocus 
                    autocomplete="username"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors"
+                   class="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg bg-white dark:bg-dark-card text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors dark:border-dark-border dark:bg-dark-bg dark:text-gray-100"
                    placeholder="your@email.com">
             @error('email')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -31,7 +31,7 @@
 
         <!-- Password -->
         <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('Password') }}
             </label>
             <input id="password" 
@@ -39,7 +39,7 @@
                    name="password" 
                    required 
                    autocomplete="current-password"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors"
+                   class="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg bg-white dark:bg-dark-card text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors dark:border-dark-border dark:bg-dark-bg dark:text-gray-100"
                    placeholder="••••••••">
             @error('password')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -52,12 +52,12 @@
                 <input id="remember_me" 
                        type="checkbox" 
                        name="remember"
-                       class="w-4 h-4 rounded border-gray-300 text-blue-primary focus:ring-blue-light:ring-blue-primary transition-colors">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                       class="w-4 h-4 rounded border-gray-300 dark:border-dark-border text-blue-primary dark:text-gold focus:ring-blue-light:ring-blue-primary transition-colors">
+                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
 
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-sm text-blue-primary hover:text-blue-primary:text-emerald-300 transition-colors">
+                <a href="{{ route('password.request') }}" class="text-sm text-blue-primary dark:text-gold hover:text-blue-primary dark:text-gold:text-emerald-300 transition-colors">
                     {{ __('Forgot password?') }}
                 </a>
             @endif
@@ -72,18 +72,18 @@
     <!-- Divider -->
     <div class="relative my-6">
         <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-300"></div>
+            <div class="w-full border-t border-gray-300 dark:border-dark-border"></div>
         </div>
         <div class="relative flex justify-center text-sm">
-            <span class="px-2 bg-white text-gray-500">{{ __('Or') }}</span>
+            <span class="px-2 bg-white dark:bg-dark-card text-gray-500 dark:text-gray-500">{{ __('Or') }}</span>
         </div>
     </div>
 
     <!-- Register Link -->
     <div class="text-center">
-        <p class="text-sm text-gray-600">
+        <p class="text-sm text-gray-600 dark:text-gray-400">
             {{ __("Don't have an account?") }}
-            <a href="{{ route('register') }}" class="text-blue-primary hover:text-blue-primary:text-emerald-300 font-medium transition-colors">
+            <a href="{{ route('register') }}" class="text-blue-primary dark:text-gold hover:text-blue-primary dark:text-gold:text-emerald-300 font-medium transition-colors">
                 {{ __('Sign up for free') }}
             </a>
         </p>

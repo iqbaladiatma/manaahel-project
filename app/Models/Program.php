@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Translatable\HasTranslations;
 
 class Program extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -28,14 +27,8 @@ class Program extends Model
         'fees',
         'start_date',
         'end_date',
+        'creator_id',
     ];
-
-    /**
-     * The attributes that are translatable.
-     *
-     * @var array<string>
-     */
-    public $translatable = ['name', 'description', 'syllabus'];
 
     /**
      * Get the attributes that should be cast.
@@ -74,6 +67,14 @@ class Program extends Model
     public function schedules(): HasMany
     {
         return $this->hasMany(ProgramSchedule::class)->orderBy('scheduled_at');
+    }
+
+    /**
+     * Get the creator of the program.
+     */
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     /**

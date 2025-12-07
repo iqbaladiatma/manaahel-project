@@ -17,7 +17,7 @@
 
         <!-- Current Password -->
         <div>
-            <label for="update_password_current_password" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="update_password_current_password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('Current Password') }}
             </label>
             <div class="relative">
@@ -25,12 +25,12 @@
                     id="update_password_current_password" 
                     name="current_password" 
                     type="password" 
-                    class="block w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
+                    class="block w-full px-4 py-3 pr-12 border-2 border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
                     autocomplete="current-password"
                     placeholder="••••••••"
                 />
                 <button type="button" onclick="togglePassword('update_password_current_password')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                    <svg class="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-gray-400 hover:text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
@@ -41,7 +41,7 @@
 
         <!-- New Password -->
         <div>
-            <label for="update_password_password" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="update_password_password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('New Password') }}
             </label>
             <div class="relative">
@@ -49,12 +49,12 @@
                     id="update_password_password" 
                     name="password" 
                     type="password" 
-                    class="block w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
+                    class="block w-full px-4 py-3 pr-12 border-2 border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
                     autocomplete="new-password"
                     placeholder="••••••••"
                 />
                 <button type="button" onclick="togglePassword('update_password_password')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                    <svg class="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-gray-400 hover:text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
@@ -65,7 +65,7 @@
 
         <!-- Confirm New Password -->
         <div>
-            <label for="update_password_password_confirmation" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="update_password_password_confirmation" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('Confirm New Password') }}
             </label>
             <div class="relative">
@@ -73,12 +73,12 @@
                     id="update_password_password_confirmation" 
                     name="password_confirmation" 
                     type="password" 
-                    class="block w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
+                    class="block w-full px-4 py-3 pr-12 border-2 border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
                     autocomplete="new-password"
                     placeholder="••••••••"
                 />
                 <button type="button" onclick="togglePassword('update_password_password_confirmation')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                    <svg class="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-gray-400 hover:text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
@@ -88,8 +88,8 @@
         </div>
 
         <!-- Submit Button -->
-        <div class="flex items-center gap-4 pt-4 border-t border-gray-200">
-            <button type="submit" class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl">
+        <div class="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-dark-border">
+            <button type="submit" class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-lg dark:shadow-dark-border hover:shadow-xl dark:hover:shadow-gold/20">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
                 </svg>

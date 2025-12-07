@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Translatable\HasTranslations;
 
 class ProgramSchedule extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     protected $fillable = [
         'program_id',
@@ -20,8 +19,6 @@ class ProgramSchedule extends Model
         'duration_minutes',
         'attendance_enabled',
     ];
-
-    public $translatable = ['title', 'description'];
 
     protected function casts(): array
     {

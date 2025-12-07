@@ -77,12 +77,10 @@ class GalleryResource extends Resource
                                 Section::make('Media')
                                     ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\FileUpload::make('file_path')
-                                            ->label('Gallery Image')
-                                            ->image()
-                                            ->directory('gallery')
-                                            ->maxSize(5120)
-                                            ->imageEditor()
+                                        Forms\Components\TextInput::make('file_path')
+                                            ->label('Image URL or Path')
+                                            ->placeholder('https://example.com/image.jpg or gallery/filename.jpg')
+                                            ->helperText('Enter full image URL (e.g., https://picsum.photos/800/600) or local path (e.g., gallery/image.jpg)')
                                             ->required()
                                             ->columnSpanFull(),
                                     ]),

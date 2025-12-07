@@ -13,17 +13,22 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->json('title'); // Translatable field
-            $table->json('content'); // Translatable field
-            $table->string('image_url')->nullable(); // Article image
+            $table->string('title', 255);
+            $table->longText('content');
+            $table->string('image_url')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('author_id')->nullable()->constrained('users')->onDelete('set null');
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_published')->default(false);
             $table->string('slug')->unique();
             $table->timestamps();
             
             // Indexes
             $table->index('category_id');
+            $table->index('author_id');
             $table->index('is_featured');
+            $table->index(['category_id', 'is_featured'], 'articles_category_featured_index');
+            $table->index(['is_featured', 'created_at'], 'articles_featured_created_index');
         });
     }
 

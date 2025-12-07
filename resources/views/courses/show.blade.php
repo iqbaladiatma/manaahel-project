@@ -4,7 +4,7 @@
             <!-- Back Button -->
             <div class="mb-6">
                 <a href="{{ route('courses.index') }}" 
-                   class="inline-flex items-center text-blue-primary hover:text-blue-600 transition-colors font-medium">
+                   class="inline-flex items-center text-blue-primary dark:text-gold hover:text-blue-600 dark:hover:text-gold transition-colors font-medium">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -13,27 +13,27 @@
             </div>
 
             <!-- Course Header -->
-            <div class="bg-white rounded-2xl shadow-xl border-2 border-gray-100 overflow-hidden mb-8">
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-xl dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden mb-8">
                 <div class="gradient-blue p-8 relative overflow-hidden">
                     <!-- Decorative Elements -->
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
-                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 dark:bg-gold/10 rounded-full -mr-32 -mt-32"></div>
+                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 dark:bg-gold/10 rounded-full -ml-24 -mb-24"></div>
                     
                     <div class="relative z-10">
                         <!-- Program Badge -->
                         <div class="mb-4">
                             <a href="{{ route('programs.show', $course->program->slug) }}" 
-                               class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full hover:bg-white/30 transition">
+                               class="inline-flex items-center px-4 py-2 bg-white/20 dark:bg-dark-card/40 backdrop-blur-sm text-white text-sm font-semibold rounded-full hover:bg-white/30 dark:hover:bg-dark-card/60 transition border border-white/20 dark:border-gold/30">
                                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                                 </svg>
-                                {{ $course->program->getTranslation('name', app()->getLocale()) }}
+                                {{ $course->program->name }}
                             </a>
                         </div>
 
                         <!-- Course Title -->
                         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                            {{ $course->getTranslation('title', app()->getLocale()) }}
+                            {{ $course->title }}
                         </h1>
 
                         <!-- Course Meta -->
@@ -55,22 +55,22 @@
                 </div>
 
                 <!-- Course Description -->
-                <div class="p-8 border-b border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
+                <div class="p-8 border-b border-gray-200 dark:border-dark-border">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-blue-primary dark:text-gold" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                         </svg>
                         {{ __('Description') }}
                     </h2>
-                    <div class="prose prose-lg max-w-none text-gray-600">
-                        {{ $course->getTranslation('description', app()->getLocale()) }}
+                    <div class="prose prose-lg max-w-none text-gray-600 dark:text-gray-400">
+                        {{ $course->description }}
                     </div>
                 </div>
 
                 <!-- Course Content -->
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-blue-primary dark:text-gold" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
                         </svg>
                         {{ __('Course Modules') }}
@@ -78,15 +78,15 @@
                     
                     <div class="space-y-4">
                         @foreach($course->modules as $module)
-                            <div class="flex items-center p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-blue-200 transition-colors">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-primary font-bold mr-4">
+                            <div class="flex items-center p-4 bg-gray-50 dark:bg-dark-bg rounded-lg border border-gray-100 dark:border-dark-border hover:border-blue-200 transition-colors">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-primary dark:text-gold font-bold mr-4">
                                     {{ $loop->iteration }}
                                 </div>
                                 <div>
-                                    <h4 class="text-lg font-semibold text-gray-900">
-                                        {{ $module->getTranslation('title', app()->getLocale()) }}
+                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                                        {{ $module->title }}
                                     </h4>
-                                    <p class="text-sm text-gray-500">
+                                    <p class="text-sm text-gray-500 dark:text-gray-500">
                                         {{ $module->duration_minutes }} {{ __('minutes') }}
                                     </p>
                                 </div>
@@ -94,7 +94,7 @@
                         @endforeach
                         
                         @if($course->modules->count() === 0)
-                            <p class="text-gray-500 italic">{{ __('No modules available yet.') }}</p>
+                            <p class="text-gray-500 dark:text-gray-500 italic">{{ __('No modules available yet.') }}</p>
                         @endif
                     </div>
                 </div>
@@ -103,23 +103,23 @@
             <!-- Related Courses -->
             @if($relatedCourses->count() > 0)
                 <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                         {{ __('Related Courses') }}
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         @foreach($relatedCourses as $related)
-                            <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-xl transition-all duration-300 group">
+                            <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden hover:border-blue-primary dark:hover:border-gold hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 group">
                                 <div class="gradient-blue p-4">
                                     <h3 class="text-lg font-bold text-white line-clamp-2">
-                                        {{ $related->getTranslation('title', app()->getLocale()) }}
+                                        {{ $related->title }}
                                     </h3>
                                 </div>
                                 <div class="p-4">
-                                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                        {{ $related->getTranslation('description', app()->getLocale()) }}
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                                        {{ $related->description }}
                                     </p>
                                     <a href="{{ route('courses.show', $related) }}" 
-                                       class="inline-flex items-center text-blue-primary font-semibold text-sm hover:gap-2 transition-all">
+                                       class="inline-flex items-center text-blue-primary dark:text-gold font-semibold text-sm hover:gap-2 transition-all">
                                         {{ __('View Course') }}
                                         <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -133,7 +133,7 @@
             @endif
 
             <!-- CTA Section -->
-            <div class="bg-gradient-to-r from-blue-primary to-blue-600 rounded-2xl p-8 text-center shadow-xl">
+            <div class="bg-gradient-to-r from-blue-primary to-blue-600 rounded-2xl p-8 text-center shadow-xl dark:shadow-dark-border">
                 <h3 class="text-2xl font-bold text-white mb-4">
                     {{ __('Ready to Start Learning?') }}
                 </h3>
@@ -141,7 +141,7 @@
                     {{ __('Enroll in the program to access this course and many more') }}
                 </p>
                 <a href="{{ route('programs.show', $course->program->slug) }}" 
-                   class="inline-flex items-center px-8 py-4 bg-white text-blue-primary font-bold rounded-full hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg">
+                   class="inline-flex items-center px-8 py-4 bg-white dark:bg-dark-card text-blue-primary dark:text-gold font-bold rounded-full hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg dark:shadow-dark-border">
                     {{ __('View Program Details') }}
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>

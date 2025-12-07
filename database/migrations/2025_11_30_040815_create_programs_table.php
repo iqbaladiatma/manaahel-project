@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->json('name'); // Translatable field
+            $table->foreignId('creator_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('name', 255);
             $table->string('slug')->unique();
             $table->enum('type', ['academy', 'competition']);
             $table->enum('delivery_type', ['online_zoom', 'online_course'])->default('online_course');
-            $table->boolean('status')->default(true); // true = active, false = closed
-            $table->json('description'); // Translatable field
-            $table->json('syllabus')->nullable(); // Translatable syllabus content
+            $table->boolean('status')->default(true);
+            $table->text('description');
+            $table->text('syllabus')->nullable();
             $table->string('meeting_link')->nullable();
             $table->decimal('fees', 10, 2)->nullable();
             $table->date('start_date')->nullable();
@@ -27,8 +28,10 @@ return new class extends Migration
             $table->timestamps();
             
             // Indexes
+            $table->index('creator_id');
             $table->index('slug');
             $table->index('status');
+            $table->index(['status', 'type'], 'programs_status_type_index');
         });
     }
 

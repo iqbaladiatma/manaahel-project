@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'member', 'user', 'member_angkatan', 'member_program'])->default('user');
             $table->string('batch_year')->nullable();
+            $table->string('position')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->string('avatar_url')->nullable();
@@ -44,6 +45,7 @@ return new class extends Migration
             
             // Indexes
             $table->index('role');
+            $table->index(['role', 'batch_year'], 'users_role_batch_index');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

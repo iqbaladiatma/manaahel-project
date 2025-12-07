@@ -3,22 +3,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Page Header -->
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900">{{ __('My Profile') }}</h1>
-                <p class="text-gray-600 mt-2">{{ __('View your account information and learning progress') }}</p>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ __('My Profile') }}</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">{{ __('View your account information and learning progress') }}</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Left Column - Profile Info -->
                 <div class="lg:col-span-1 space-y-6">
                     <!-- Profile Card -->
-                    <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 overflow-hidden">
+                    <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden">
                         <!-- Header with gradient -->
-                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-center relative">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-gold-dark dark:to-gold p-6 text-center relative">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 dark:bg-gold/20 rounded-full -mr-16 -mt-16"></div>
                             
                             <div class="relative z-10">
                                 <!-- Avatar -->
-                                <div class="mx-auto w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm border-4 border-white/30 flex items-center justify-center overflow-hidden mb-4">
+                                <div class="mx-auto w-24 h-24 rounded-full bg-white/20 dark:bg-dark-card/40 backdrop-blur-sm border-4 border-white/30 dark:border-gold/50 flex items-center justify-center overflow-hidden mb-4">
                                     @if($user->avatar_url)
                                         <img src="{{ asset('storage/' . $user->avatar_url) }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
                                     @else
@@ -30,7 +30,7 @@
                                 <h2 class="text-2xl font-bold text-white mb-1">{{ $user->name }}</h2>
                                 
                                 <!-- Role Badge -->
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-sm text-white">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/20 dark:bg-dark-card/40 backdrop-blur-sm text-white">
                                     @if($user->role === 'admin')
                                         <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
@@ -49,8 +49,8 @@
                         <div class="p-6 space-y-4">
                             <!-- Email -->
                             <div>
-                                <label class="text-xs text-gray-500 uppercase tracking-wide font-semibold">{{ __('Email') }}</label>
-                                <p class="text-gray-900 font-medium mt-1 flex items-center">
+                                <label class="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide font-semibold">{{ __('Email') }}</label>
+                                <p class="text-gray-900 dark:text-gray-100 font-medium mt-1 flex items-center">
                                     <svg class="w-4 h-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
@@ -70,8 +70,8 @@
                             <!-- Phone -->
                             @if($user->phone)
                                 <div>
-                                    <label class="text-xs text-gray-500 uppercase tracking-wide font-semibold">{{ __('Phone') }}</label>
-                                    <p class="text-gray-900 font-medium mt-1 flex items-center">
+                                    <label class="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide font-semibold">{{ __('Phone') }}</label>
+                                    <p class="text-gray-900 dark:text-gray-100 font-medium mt-1 flex items-center">
                                         <svg class="w-4 h-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                                         </svg>
@@ -82,8 +82,8 @@
 
                             <!-- Member Since -->
                             <div>
-                                <label class="text-xs text-gray-500 uppercase tracking-wide font-semibold">{{ __('Member Since') }}</label>
-                                <p class="text-gray-900 font-medium mt-1 flex items-center">
+                                <label class="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide font-semibold">{{ __('Member Since') }}</label>
+                                <p class="text-gray-900 dark:text-gray-100 font-medium mt-1 flex items-center">
                                     <svg class="w-4 h-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
                                     </svg>
@@ -94,15 +94,15 @@
                             <!-- Bio -->
                             @if($user->bio)
                                 <div>
-                                    <label class="text-xs text-gray-500 uppercase tracking-wide font-semibold">{{ __('Bio') }}</label>
-                                    <p class="text-gray-700 mt-1 text-sm">{{ $user->bio }}</p>
+                                    <label class="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide font-semibold">{{ __('Bio') }}</label>
+                                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm">{{ $user->bio }}</p>
                                 </div>
                             @endif
 
                             <!-- Social Media Links -->
                             @if($user->instagram_url || $user->linkedin_url || $user->twitter_url || $user->facebook_url || $user->youtube_url || $user->tiktok_url)
-                                <div class="pt-4 border-t border-gray-200">
-                                    <label class="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-3 block">{{ __('Social Media') }}</label>
+                                <div class="pt-4 border-t border-gray-200 dark:border-dark-border">
+                                    <label class="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide font-semibold mb-3 block">{{ __('Social Media') }}</label>
                                     <div class="flex flex-wrap gap-2">
                                         @if($user->instagram_url)
                                             <a href="{{ $user->instagram_url }}" target="_blank" class="p-2 bg-pink-50 text-pink-600 rounded-lg hover:bg-pink-100 transition">
@@ -110,17 +110,17 @@
                                             </a>
                                         @endif
                                         @if($user->linkedin_url)
-                                            <a href="{{ $user->linkedin_url }}" target="_blank" class="p-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition">
+                                            <a href="{{ $user->linkedin_url }}" target="_blank" class="p-2 bg-blue-50 dark:bg-blue-dark/20 text-blue-700 rounded-lg hover:bg-blue-100 transition">
                                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                                             </a>
                                         @endif
                                         @if($user->facebook_url)
-                                            <a href="{{ $user->facebook_url }}" target="_blank" class="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition">
+                                            <a href="{{ $user->facebook_url }}" target="_blank" class="p-2 bg-blue-50 dark:bg-blue-dark/20 text-blue-600 rounded-lg hover:bg-blue-100 transition">
                                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                                             </a>
                                         @endif
                                         @if($user->youtube_url)
-                                            <a href="{{ $user->youtube_url }}" target="_blank" class="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition">
+                                            <a href="{{ $user->youtube_url }}" target="_blank" class="p-2 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg hover:bg-red-100 transition">
                                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                                             </a>
                                         @endif
@@ -129,7 +129,7 @@
                             @endif
 
                             <!-- Edit Profile Button -->
-                            <div class="pt-4 border-t border-gray-200">
+                            <div class="pt-4 border-t border-gray-200 dark:border-dark-border">
                                 <a href="{{ route('profile.edit') }}" class="w-full inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
@@ -146,7 +146,7 @@
                     <!-- Learning Statistics -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <!-- Enrolled Programs -->
-                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg dark:shadow-dark-border p-6 text-white">
                             <div class="flex items-center justify-between mb-4">
                                 <svg class="w-12 h-12 text-white/30" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
@@ -157,7 +157,7 @@
                         </div>
 
                         <!-- Total Modules -->
-                        <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg p-6 text-white">
+                        <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg dark:shadow-dark-border p-6 text-white">
                             <div class="flex items-center justify-between mb-4">
                                 <svg class="w-12 h-12 text-white/30" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
@@ -168,7 +168,7 @@
                         </div>
 
                         <!-- Completion Rate -->
-                        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg dark:shadow-dark-border p-6 text-white">
                             <div class="flex items-center justify-between mb-4">
                                 <svg class="w-12 h-12 text-white/30" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -181,9 +181,9 @@
 
                     <!-- Enrolled Programs List -->
                     @if($enrolledPrograms->count() > 0)
-                        <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 overflow-hidden">
+                        <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden">
                             <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-blue-100">
-                                <h3 class="text-lg font-bold text-gray-900 flex items-center">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 flex items-center">
                                     <svg class="w-5 h-5 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                                     </svg>
@@ -209,11 +209,11 @@
                                             $programProgress = $programModules > 0 ? round(($programCompleted / $programModules) * 100) : 0;
                                         @endphp
                                         
-                                        <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+                                        <div class="border-2 border-gray-200 dark:border-dark-border rounded-lg p-4 hover:border-blue-300 transition">
                                             <div class="flex items-start justify-between mb-3">
                                                 <div class="flex-1">
-                                                    <h4 class="font-bold text-gray-900 text-lg mb-1">{{ $program->getTranslation('name', app()->getLocale()) }}</h4>
-                                                    <div class="flex items-center gap-3 text-sm text-gray-500">
+                                                    <h4 class="font-bold text-gray-900 dark:text-gray-100 text-lg mb-1">{{ $program->name }}</h4>
+                                                    <div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-500">
                                                         <span class="flex items-center">
                                                             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
@@ -234,13 +234,13 @@
                                                 <!-- Progress Bar -->
                                                 <div>
                                                     <div class="flex items-center justify-between text-sm mb-2">
-                                                        <span class="text-gray-600 font-medium">{{ __('Progress') }}</span>
-                                                        <span class="text-gray-900 font-bold">{{ $programProgress }}%</span>
+                                                        <span class="text-gray-600 dark:text-gray-400 font-medium">{{ __('Progress') }}</span>
+                                                        <span class="text-gray-900 dark:text-gray-100 font-bold">{{ $programProgress }}%</span>
                                                     </div>
                                                     <div class="bg-gray-200 rounded-full h-2 overflow-hidden">
                                                         <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full transition-all duration-300" style="width: {{ $programProgress }}%"></div>
                                                     </div>
-                                                    <p class="text-xs text-gray-500 mt-1">{{ $programCompleted }} / {{ $programModules }} {{ __('modules completed') }}</p>
+                                                    <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">{{ $programCompleted }} / {{ $programModules }} {{ __('modules completed') }}</p>
                                                 </div>
                                             @endif
                                         </div>
@@ -252,9 +252,9 @@
 
                     <!-- Recent Activity -->
                     @if($recentActivity->count() > 0)
-                        <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 overflow-hidden">
+                        <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden">
                             <div class="bg-gradient-to-r from-green-50 to-emerald-50 px-6 py-4 border-b border-green-100">
-                                <h3 class="text-lg font-bold text-gray-900 flex items-center">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 flex items-center">
                                     <svg class="w-5 h-5 mr-2 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                                     </svg>
@@ -273,10 +273,10 @@
                                                 </div>
                                             </div>
                                             <div class="flex-1">
-                                                <p class="text-sm font-semibold text-gray-900">{{ __('Completed') }}: {{ $activity->courseModule->getTranslation('title', app()->getLocale()) }}</p>
-                                                <p class="text-xs text-gray-500 mt-1">
-                                                    {{ $activity->courseModule->course->getTranslation('title', app()->getLocale()) }}
-                                                    • {{ $activity->courseModule->course->program->getTranslation('name', app()->getLocale()) }}
+                                                <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">{{ __('Completed') }}: {{ $activity->courseModule->title }}</p>
+                                                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                                                    {{ $activity->courseModule->course->title }}
+                                                    • {{ $activity->courseModule->course->program->name }}
                                                 </p>
                                                 <p class="text-xs text-gray-400 mt-1">{{ $activity->completed_at->diffForHumans() }}</p>
                                             </div>

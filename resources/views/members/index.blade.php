@@ -2,10 +2,10 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <h1 class="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">
                 {{ __('Members Directory') }}
             </h1>
-            <p class="text-xl text-gray-600 animate-slide-up">
+            <p class="text-xl text-gray-600 dark:text-gray-400 animate-slide-up">
                 {{ __('Connect with fellow batch members') }}
             </p>
         </div>
@@ -14,11 +14,11 @@
     <div class="pb-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Search and Filter Section -->
-            <div class="bg-white rounded-2xl border-2 border-gray-100 p-8 mb-8 shadow-lg">
+            <div class="bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-100 dark:border-dark-border p-8 mb-8 shadow-lg dark:shadow-dark-border">
                 <form method="GET" action="{{ route('members.index') }}" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Search Input -->
                     <div class="md:col-span-2">
-                        <label for="search" class="block text-sm font-semibold text-gray-700 mb-3">
+                        <label for="search" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                             {{ __('Search Members') }}
                         </label>
                         <div class="relative">
@@ -32,18 +32,18 @@
                                    id="search" 
                                    value="{{ request('search') }}"
                                    placeholder="{{ __('Search by name, email, or city...') }}"
-                                   class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-primary focus:ring-2 focus:ring-blue-100 transition-all">
+                                   class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all">
                         </div>
                     </div>
 
                     <!-- Batch Year Filter -->
                     <div>
-                        <label for="batch_year" class="block text-sm font-semibold text-gray-700 mb-3">
+                        <label for="batch_year" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                             {{ __('Batch Year') }}
                         </label>
                         <select name="batch_year" 
                                 id="batch_year"
-                                class="w-full py-3 rounded-xl border-2 border-gray-200 focus:border-blue-primary focus:ring-2 focus:ring-blue-100 transition-all">
+                                class="w-full py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all">
                             <option value="">{{ __('All Batches') }}</option>
                             @foreach($batchYears as $year)
                                 <option value="{{ $year }}" {{ request('batch_year') == $year ? 'selected' : '' }}>
@@ -55,12 +55,12 @@
 
                     <!-- Role Filter -->
                     <div class="md:col-span-3">
-                        <label for="role" class="block text-sm font-semibold text-gray-700 mb-3">
+                        <label for="role" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                             {{ __('Member Type') }}
                         </label>
                         <select name="role" 
                                 id="role"
-                                class="w-full py-3 rounded-xl border-2 border-gray-200 focus:border-blue-primary focus:ring-2 focus:ring-blue-100 transition-all">
+                                class="w-full py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all">
                             <option value="">{{ __('All Members') }}</option>
                             <option value="member_angkatan" {{ request('role') == 'member_angkatan' ? 'selected' : '' }}>
                                 {{ __('Member Angkatan') }}
@@ -74,12 +74,12 @@
                     <!-- Submit Button -->
                     <div class="md:col-span-3 flex gap-3">
                         <button type="submit" 
-                                class="px-8 py-3 gradient-blue text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                class="px-8 py-3 gradient-blue text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all duration-300 transform hover:scale-105">
                             {{ __('Search') }}
                         </button>
                         @if(request('search') || request('batch_year'))
                             <a href="{{ route('members.index') }}" 
-                               class="px-8 py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300">
+                               class="px-8 py-3 bg-gray-100 dark:bg-dark-card text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300">
                                 {{ __('Clear') }}
                             </a>
                         @endif
@@ -91,7 +91,7 @@
             @if($members->count() > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     @foreach($members as $member)
-                        <div class="bg-white rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden hover:border-blue-primary dark:hover:border-gold hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-2 group">
                             <!-- Member Avatar -->
                             <div class="aspect-square w-full overflow-hidden gradient-blue relative">
                                 @if($member->avatar_url)
@@ -109,7 +109,7 @@
 
                             <!-- Member Info -->
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:gradient-blue-text transition-all">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:gradient-blue-text transition-all">
                                     {{ $member->name }}
                                 </h3>
 
@@ -120,8 +120,8 @@
                                 @endif
 
                                 @if($member->city)
-                                    <div class="flex items-center text-sm text-gray-600 mb-4">
-                                        <svg class="w-4 h-4 mr-2 text-blue-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                        <svg class="w-4 h-4 mr-2 text-blue-primary dark:text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         </svg>
@@ -197,7 +197,7 @@
                                 <!-- Member Angkatan Badge -->
                                 @if($member->role === 'member_angkatan')
                                     <div class="mb-4">
-                                        <span class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-primary text-xs font-semibold rounded-full border border-blue-200">
+                                        <span class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-dark/20 text-blue-primary dark:text-gold text-xs font-semibold rounded-full border border-blue-200">
                                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                             </svg>
@@ -207,7 +207,7 @@
                                 @endif
 
                                 <a href="{{ route('members.show', $member) }}" 
-                                   class="block w-full text-center px-4 py-3 gradient-blue text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                   class="block w-full text-center px-4 py-3 gradient-blue text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all duration-300 transform hover:scale-105">
                                     {{ __('View Profile') }}
                                 </a>
                             </div>
@@ -220,16 +220,16 @@
                     {{ $members->links() }}
                 </div>
             @else
-                <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-dark-border p-12 text-center">
+                    <div class="w-16 h-16 bg-gray-100 dark:bg-dark-card rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                         {{ __('No Members Found') }}
                     </h3>
-                    <p class="text-gray-600">
+                    <p class="text-gray-600 dark:text-gray-400">
                         {{ __('Try adjusting your search or filter criteria') }}
                     </p>
                 </div>

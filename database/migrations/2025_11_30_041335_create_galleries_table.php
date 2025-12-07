@@ -13,15 +13,19 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title');
+            $table->text('description')->nullable();
             $table->string('file_path');
             $table->string('batch_filter')->nullable();
             $table->enum('visibility', ['public', 'member_only'])->default('public');
             $table->timestamps();
             
             // Indexes
+            $table->index('user_id');
             $table->index('visibility');
             $table->index('batch_filter');
+            $table->index(['visibility', 'batch_filter'], 'galleries_visibility_batch_index');
         });
     }
 

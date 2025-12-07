@@ -47,52 +47,28 @@ class CourseResource extends Resource
                                             ->required()
                                             ->columnSpanFull(),
                                         
-                                        Forms\Components\TextInput::make('title.id')
-                                            ->label('Title (Indonesian)')
+                                        Forms\Components\Select::make('creator_id')
+                                            ->label('Creator')
+                                            ->relationship('creator', 'name')
+                                            ->searchable()
+                                            ->preload()
+                                            ->helperText('Pilih pembuat course')
+                                            ->columnSpanFull(),
+                                        
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Judul')
                                             ->required()
-                                            ->maxLength(255),
-                                        
-                                        Forms\Components\TextInput::make('title.en')
-                                            ->label('Title (English)')
-                                            ->maxLength(255),
-                                        
-                                        Forms\Components\TextInput::make('title.ar')
-                                            ->label('Title (Arabic)')
                                             ->maxLength(255),
                                     ])
                                     ->columns(2),
                                 
-                                Section::make('Description')
+                                Section::make('Deskripsi')
                                     ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.id')
-                                            ->label('Description (Indonesian)')
+                                        Forms\Components\Textarea::make('description')
+                                            ->label('Deskripsi')
                                             ->required()
-                                            ->rows(3),
-                                        
-                                        Forms\Components\Textarea::make('description.en')
-                                            ->label('Description (English)')
-                                            ->rows(3),
-                                        
-                                        Forms\Components\Textarea::make('description.ar')
-                                            ->label('Description (Arabic)')
-                                            ->rows(3),
-                                    ]),
-                                
-                                Section::make('Content')
-                                    ->columnSpanFull()
-                                    ->schema([
-                                        Forms\Components\RichEditor::make('content.id')
-                                            ->label('Content (Indonesian)')
-                                            ->required()
-                                            ->columnSpanFull(),
-                                        
-                                        Forms\Components\RichEditor::make('content.en')
-                                            ->label('Content (English)')
-                                            ->columnSpanFull(),
-                                        
-                                        Forms\Components\RichEditor::make('content.ar')
-                                            ->label('Content (Arabic)')
+                                            ->rows(3)
                                             ->columnSpanFull(),
                                     ]),
                             ]),

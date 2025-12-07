@@ -24,6 +24,8 @@ return new class extends Migration
             $table->index('user_id');
             $table->index('program_id');
             $table->index('status');
+            $table->index(['user_id', 'status'], 'registrations_user_status_index');
+            $table->index(['program_id', 'status'], 'registrations_program_status_index');
         });
     }
 

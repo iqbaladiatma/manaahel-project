@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('program_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('program_id')->constrained()->onDelete('cascade');
-            $table->json('title'); // Translatable field
-            $table->json('description')->nullable(); // Translatable field
+            $table->string('title', 255);
+            $table->text('description')->nullable();
             $table->string('meeting_link')->nullable();
             $table->dateTime('scheduled_at');
             $table->integer('duration_minutes')->default(60);

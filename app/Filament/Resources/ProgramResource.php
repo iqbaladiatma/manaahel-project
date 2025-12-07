@@ -40,19 +40,19 @@ class ProgramResource extends Resource
                         Section::make('Program Information')
                             ->columnSpanFull()
                             ->schema([
-                                Forms\Components\TextInput::make('name.id')
-                                    ->label('Name (Indonesian)')
+                                Forms\Components\Select::make('creator_id')
+                                    ->label('Creator')
+                                    ->relationship('creator', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->helperText('Select the creator of this program')
+                                    ->columnSpanFull(),
+                                
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nama Program')
                                     ->required()
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state)))
-                                    ->maxLength(255),
-
-                                Forms\Components\TextInput::make('name.en')
-                                    ->label('Name (English)')
-                                    ->maxLength(255),
-
-                                Forms\Components\TextInput::make('name.ar')
-                                    ->label('Name (Arabic)')
                                     ->maxLength(255),
 
                                 Forms\Components\TextInput::make('slug')
@@ -61,46 +61,25 @@ class ProgramResource extends Resource
                                     ->maxLength(255)
                                     ->disabled()
                                     ->dehydrated()
-                                    ->helperText('Auto-generated from Indonesian name'),
+                                    ->helperText('Auto-generated from name'),
                             ])
                             ->columns(2),
 
                         Section::make('Description')
                             ->columnSpanFull()
                             ->schema([
-                                Forms\Components\Textarea::make('description.id')
-                                    ->label('Description (Indonesian)')
+                                Forms\Components\Textarea::make('description')
+                                    ->label('Deskripsi')
                                     ->required()
-                                    ->rows(3),
-
-                                Forms\Components\Textarea::make('description.en')
-                                    ->label('Description (English)')
-                                    ->rows(3),
-
-                                Forms\Components\Textarea::make('description.ar')
-                                    ->label('Description (Arabic)')
-                                    ->rows(3),
+                                    ->rows(3)
+                                    ->columnSpanFull(),
                             ]),
 
                         Section::make('Syllabus')
                             ->columnSpanFull()
                             ->schema([
-                                Forms\Components\RichEditor::make('syllabus.id')
-                                    ->label('Syllabus (Indonesian)')
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold', 'italic', 'bulletList', 'orderedList'
-                                    ]),
-
-                                Forms\Components\RichEditor::make('syllabus.en')
-                                    ->label('Syllabus (English)')
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold', 'italic', 'bulletList', 'orderedList'
-                                    ]),
-
-                                Forms\Components\RichEditor::make('syllabus.ar')
-                                    ->label('Syllabus (Arabic)')
+                                Forms\Components\RichEditor::make('syllabus')
+                                    ->label('Silabus')
                                     ->columnSpanFull()
                                     ->toolbarButtons([
                                         'bold', 'italic', 'bulletList', 'orderedList'

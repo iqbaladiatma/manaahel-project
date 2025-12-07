@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'role',
         'batch_year',
+        'position',
         'latitude',
         'longitude',
         'avatar_url',
@@ -72,6 +73,22 @@ class User extends Authenticatable
     public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class);
+    }
+
+    /**
+     * Get the academy registrations for the user.
+     */
+    public function academyRegistrations(): HasMany
+    {
+        return $this->hasMany(AcademyRegistration::class);
+    }
+
+    /**
+     * Check if user profile is complete for academy registration.
+     */
+    public function hasCompleteProfileForAcademy(): bool
+    {
+        return !empty($this->name) && !empty($this->email) && !empty($this->phone);
     }
 
     /**
@@ -128,6 +145,38 @@ class User extends Authenticatable
     public function galleries(): HasMany
     {
         return $this->hasMany(Gallery::class, 'user_id');
+    }
+
+    /**
+     * Get achievements for this user.
+     */
+    public function achievements(): HasMany
+    {
+        return $this->hasMany(Achievement::class)->orderBy('order');
+    }
+
+    /**
+     * Get articles authored by this user.
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
+
+    /**
+     * Get programs created by this user.
+     */
+    public function createdPrograms(): HasMany
+    {
+        return $this->hasMany(Program::class, 'creator_id');
+    }
+
+    /**
+     * Get courses created by this user.
+     */
+    public function createdCourses(): HasMany
+    {
+        return $this->hasMany(Course::class, 'creator_id');
     }
 
     /**

@@ -32,67 +32,52 @@ class ArticleResource extends Resource
     {
         return $schema
             ->schema([
-                Section::make('Article Details')
+                Section::make('Detail Artikel')
                     ->schema([
-                        // --- Title Fields (Indonesian WAJIB, English Optional) ---
-                        Forms\Components\TextInput::make('title.id')
-                            ->label('Title (Indonesian)')
+                        Forms\Components\TextInput::make('title')
+                            ->label('Judul')
                             ->required()
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (callable $set, ?string $state) => $set('slug', Str::slug($state)))
                             ->maxLength(255),
                         
-                        Forms\Components\TextInput::make('title.en')
-                            ->label('Title (English)')
-                            ->maxLength(255),
-                        
-                        Forms\Components\TextInput::make('title.ar')
-                            ->label('Title (Arabic)')
-                            ->maxLength(255),
-                        
-                        // --- Slug (Auto-generated, tidak bisa di-custom) ---
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
                             ->disabled()
                             ->dehydrated()
-                            ->helperText('Auto-generated from Indonesian title'),
+                            ->helperText('Auto-generated dari judul'),
                         
-                        // --- Category ---
                         Forms\Components\Select::make('category_id')
-                            ->label('Category')
+                            ->label('Kategori')
                             ->relationship('category', 'name')
                             ->searchable()
                             ->preload()
                             ->createOptionForm([
-                                Forms\Components\TextInput::make('name.id')
-                                    ->label('Name (Indonesian)')
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nama Kategori')
                                     ->required(),
-                                Forms\Components\TextInput::make('name.en')
-                                    ->label('Name (English)'),
                             ])
                             ->required(),
                         
+                        Forms\Components\Select::make('author_id')
+                            ->label('Penulis')
+                            ->relationship('author', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->helperText('Pilih penulis artikel'),
+                        
                         Forms\Components\FileUpload::make('image_url')
-                            ->label('Featured Image')
+                            ->label('Gambar Utama')
                             ->image()
                             ->directory('articles')
                             ->maxSize(2048)
-                            ->columnSpanFull(), // Pastikan image menggunakan kolom penuh
+                            ->columnSpanFull(),
                         
-                        // --- Content Fields (Indonesian WAJIB, English Optional) ---
-                        Forms\Components\RichEditor::make('content.id')
-                            ->label('Content (Indonesian)')
+                        Forms\Components\RichEditor::make('content')
+                            ->label('Konten')
                             ->required()
-                            ->columnSpanFull(),
-                        
-                        Forms\Components\RichEditor::make('content.en')
-                            ->label('Content (English)')
-                            ->columnSpanFull(),
-                        
-                        Forms\Components\RichEditor::make('content.ar')
-                            ->label('Content (Arabic)')
                             ->columnSpanFull(),
                         
                         Forms\Components\Toggle::make('is_published')

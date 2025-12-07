@@ -4,7 +4,7 @@
             <!-- Back Button -->
             <div class="mb-6">
                 <a href="{{ route('members.index') }}" 
-                   class="inline-flex items-center text-blue-primary hover:text-blue-600 transition-colors font-medium">
+                   class="inline-flex items-center text-blue-primary dark:text-gold hover:text-blue-600 dark:hover:text-gold transition-colors font-medium">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -15,7 +15,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Profile Card -->
                 <div class="lg:col-span-1">
-                    <div class="bg-white rounded-2xl shadow-xl border-2 border-gray-100 overflow-hidden sticky top-24">
+                    <div class="bg-white dark:bg-dark-card rounded-2xl shadow-xl dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden sticky top-24">
                         <!-- Avatar -->
                         <div class="aspect-square w-full overflow-hidden gradient-blue relative">
                             @if($member->avatar_url)
@@ -33,7 +33,7 @@
                             <!-- Member Angkatan Badge -->
                             @if($member->isMemberAngkatan())
                                 <div class="absolute top-4 right-4">
-                                    <span class="inline-flex items-center px-3 py-1.5 bg-white/90 backdrop-blur-sm text-blue-primary text-xs font-bold rounded-full shadow-lg">
+                                    <span class="inline-flex items-center px-3 py-1.5 bg-white/90 dark:bg-dark-card/90 backdrop-blur-sm text-blue-primary dark:text-gold text-xs font-bold rounded-full shadow-lg dark:shadow-dark-border">
                                         <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
@@ -45,21 +45,29 @@
 
                         <!-- Profile Info -->
                         <div class="p-6">
-                            <h1 class="text-2xl font-bold text-gray-900 mb-2">
+                            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                                 {{ $member->name }}
                             </h1>
 
-                            @if($member->batch_year)
-                                <div class="inline-block px-4 py-1.5 gradient-gold text-white text-sm font-semibold rounded-full mb-4">
-                                    {{ __('Batch') }} {{ $member->batch_year }}
-                                </div>
-                            @endif
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                @if($member->batch_year)
+                                    <div class="inline-block px-4 py-1.5 gradient-gold text-white text-sm font-semibold rounded-full">
+                                        {{ __('Batch') }} {{ $member->batch_year }}
+                                    </div>
+                                @endif
+                                
+                                @if($member->position)
+                                    <div class="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">
+                                        {{ $member->position }}
+                                    </div>
+                                @endif
+                            </div>
 
                             <!-- Contact Info -->
                             <div class="space-y-3 mb-6">
                                 @if($member->email)
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-5 h-5 mr-3 text-blue-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400">
+                                        <svg class="w-5 h-5 mr-3 text-blue-primary dark:text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                         </svg>
                                         <span class="text-sm">{{ $member->email }}</span>
@@ -67,8 +75,8 @@
                                 @endif
 
                                 @if($member->phone)
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-5 h-5 mr-3 text-blue-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400">
+                                        <svg class="w-5 h-5 mr-3 text-blue-primary dark:text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                         </svg>
                                         <span class="text-sm">{{ $member->phone }}</span>
@@ -76,8 +84,8 @@
                                 @endif
 
                                 @if($member->city)
-                                    <div class="flex items-center text-gray-600">
-                                        <svg class="w-5 h-5 mr-3 text-blue-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400">
+                                        <svg class="w-5 h-5 mr-3 text-blue-primary dark:text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         </svg>
@@ -88,8 +96,8 @@
 
                             <!-- Social Media Links -->
                             @if($member->instagram_url || $member->linkedin_url || $member->twitter_url || $member->facebook_url || $member->youtube_url || $member->tiktok_url)
-                                <div class="border-t border-gray-200 pt-6">
-                                    <h3 class="text-sm font-semibold text-gray-900 mb-3">
+                                <div class="border-t border-gray-200 dark:border-dark-border pt-6">
+                                    <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">
                                         {{ __('Social Media') }}
                                     </h3>
                                     <div class="grid grid-cols-3 gap-3">
@@ -163,35 +171,197 @@
                 <div class="lg:col-span-2 space-y-8">
                     <!-- Bio Section -->
                     @if($member->bio)
-                        <div class="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                                <svg class="w-6 h-6 mr-2 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-blue-primary dark:text-gold" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                                 </svg>
                                 {{ __('About') }}
                             </h2>
-                            <p class="text-gray-600 leading-relaxed text-lg">
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                                 {{ $member->bio }}
                             </p>
                         </div>
                     @endif
 
+                    <!-- Achievements Section (Member Angkatan Only) -->
+                    @if($member->isMemberAngkatan() && isset($achievements) && $achievements->count() > 0)
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                {{ __('Achievements') }}
+                            </h2>
+                            <div class="space-y-4">
+                                @foreach($achievements as $achievement)
+                                    <div class="p-5 border-2 border-gray-100 dark:border-dark-border rounded-xl hover:border-yellow-400 hover:shadow-lg dark:shadow-dark-border transition-all duration-300 group">
+                                        <div class="flex items-start gap-4">
+                                            @if($achievement->icon)
+                                                <div class="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                                                    {{ $achievement->icon }}
+                                                </div>
+                                            @endif
+                                            <div class="flex-1">
+                                                <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1 group-hover:text-yellow-600 transition-colors">
+                                                    {{ $achievement->title }}
+                                                </h3>
+                                                @if($achievement->description)
+                                                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                                                        {{ $achievement->description }}
+                                                    </p>
+                                                @endif
+                                                @if($achievement->achieved_at)
+                                                    <div class="flex items-center text-xs text-gray-500 dark:text-gray-500">
+                                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                                        </svg>
+                                                        {{ $achievement->achieved_at->format('M d, Y') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            @if($achievement->certificate_url)
+                                                <a href="{{ asset('storage/' . $achievement->certificate_url) }}" 
+                                                   target="_blank"
+                                                   class="flex-shrink-0 px-3 py-1.5 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg hover:bg-yellow-100 transition-colors">
+                                                    <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                    Certificate
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Articles Section (Member Angkatan Only) -->
+                    {{-- Debug: Articles count = {{ $articles->count() ?? 0 }} --}}
+                    @if($member->isMemberAngkatan() && isset($articles) && $articles->count() > 0)
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-blue-primary dark:text-gold" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                                </svg>
+                                {{ __('Published Articles') }}
+                            </h2>
+                            <div class="space-y-4">
+                                @foreach($articles as $article)
+                                    <a href="{{ route('articles.show', $article->slug) }}" 
+                                       class="block p-4 border-2 border-gray-100 dark:border-dark-border rounded-xl hover:border-blue-primary dark:hover:border-gold hover:shadow-lg dark:shadow-dark-border transition-all duration-300 group">
+                                        <div class="flex items-start gap-4">
+                                            @if($article->image_url)
+                                                <img src="{{ asset('storage/' . $article->image_url) }}" 
+                                                     alt="{{ $article->title }}"
+                                                     class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
+                                            @endif
+                                            <div class="flex-1">
+                                                <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-primary dark:text-gold transition-colors">
+                                                    {{ $article->title }}
+                                                </h3>
+                                                <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-2">
+                                                    {{ Str::limit(strip_tags($article->content), 100) }}
+                                                </p>
+                                                <div class="flex items-center text-xs text-gray-500 dark:text-gray-500">
+                                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                    {{ $article->created_at->format('M d, Y') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Programs & Courses Created (Member Angkatan Only) -->
+                    @if($member->isMemberAngkatan() && (($programs && $programs->count() > 0) || ($courses && $courses->count() > 0)))
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                                </svg>
+                                {{ __('Created Programs & Courses') }}
+                            </h2>
+                            
+                            @if($programs && $programs->count() > 0)
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">{{ __('Programs') }}</h3>
+                                    <div class="space-y-3">
+                                        @foreach($programs as $program)
+                                            <div class="p-4 bg-green-50 dark:bg-green-900/20 border-2 border-green-100 rounded-xl">
+                                                <h4 class="font-bold text-gray-900 dark:text-gray-100">
+                                                    {{ $program->name }}
+                                                </h4>
+                                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                                                    {{ Str::limit($program->description, 100) }}
+                                                </p>
+                                                <div class="flex items-center gap-2 mt-2">
+                                                    <span class="text-xs px-2 py-1 bg-green-200 text-green-800 rounded-full">
+                                                        {{ ucfirst($program->type) }}
+                                                    </span>
+                                                    <span class="text-xs text-gray-500 dark:text-gray-500">
+                                                        {{ $program->start_date->format('M Y') }} - {{ $program->end_date->format('M Y') }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                            
+                            @if($courses && $courses->count() > 0)
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">{{ __('Courses') }}</h3>
+                                    <div class="space-y-3">
+                                        @foreach($courses as $course)
+                                            <div class="p-4 bg-blue-50 dark:bg-blue-dark/20 border-2 border-blue-100 rounded-xl">
+                                                <h4 class="font-bold text-gray-900 dark:text-gray-100">
+                                                    {{ $course->title }}
+                                                </h4>
+                                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                                                    {{ Str::limit($course->description, 100) }}
+                                                </p>
+                                                @if($course->program)
+                                                    <span class="text-xs px-2 py-1 bg-blue-200 text-blue-800 rounded-full mt-2 inline-block">
+                                                        {{ $course->program->name }}
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+
                     <!-- Galleries Section (Member Angkatan Only) -->
-                    @if($member->isMemberAngkatan() && isset($member->galleries) && $member->galleries->count() > 0)
-                        <div class="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                                <svg class="w-6 h-6 mr-2 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
+                    @if($member->isMemberAngkatan() && isset($galleries) && $galleries->count() > 0)
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-blue-primary dark:text-gold" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
                                 </svg>
                                 {{ __('Gallery') }}
                             </h2>
                             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                @foreach($member->galleries as $gallery)
-                                    <div class="aspect-square overflow-hidden rounded-xl border-2 border-gray-100 hover:border-blue-primary transition-all duration-300 group">
+                                @foreach($galleries as $gallery)
+                                    <div class="aspect-square overflow-hidden rounded-xl border-2 border-gray-100 dark:border-dark-border hover:border-blue-primary dark:hover:border-gold transition-all duration-300 group">
                                         @if($gallery->file_path)
-                                            <img src="{{ asset('storage/' . $gallery->file_path) }}" 
+                                            @php
+                                                // Check if file_path is external URL or local path
+                                                $imageUrl = str_starts_with($gallery->file_path, 'http') 
+                                                    ? $gallery->file_path 
+                                                    : asset('storage/' . $gallery->file_path);
+                                            @endphp
+                                            <img src="{{ $imageUrl }}" 
                                                  alt="{{ $gallery->getTranslatedTitle() }}"
-                                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                 onerror="this.parentElement.innerHTML='<div class=\'w-full h-full gradient-blue flex items-center justify-center\'><svg class=\'w-12 h-12 text-white\' fill=\'currentColor\' viewBox=\'0 0 20 20\'><path fill-rule=\'evenodd\' d=\'M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z\' clip-rule=\'evenodd\'/></svg></div>'">
                                         @else
                                             <div class="w-full h-full gradient-blue flex items-center justify-center">
                                                 <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -214,9 +384,9 @@
                     @endphp
 
                     @if($enrolledPrograms->count() > 0)
-                        <div class="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                                <svg class="w-6 h-6 mr-2 text-blue-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-blue-primary dark:text-gold" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                                 </svg>
                                 {{ __('Enrolled Programs') }}
@@ -226,16 +396,16 @@
                                     @php
                                         $program = $registration->program;
                                     @endphp
-                                    <div class="border-2 border-gray-100 rounded-xl p-5 hover:border-blue-primary hover:shadow-lg transition-all duration-300">
+                                    <div class="border-2 border-gray-100 dark:border-dark-border rounded-xl p-5 hover:border-blue-primary dark:hover:border-gold hover:shadow-lg dark:shadow-dark-border transition-all duration-300">
                                         <div class="flex items-center justify-between mb-3">
                                             <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $program->type === 'academy' ? 'gradient-blue text-white' : 'gradient-gold text-white' }}">
                                                 {{ ucfirst($program->type) }}
                                             </span>
                                         </div>
-                                        <h3 class="font-bold text-gray-900 mb-2">
-                                            {{ $program->getTranslation('name', app()->getLocale()) }}
+                                        <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">
+                                            {{ $program->name }}
                                         </h3>
-                                        <p class="text-sm text-gray-600">
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">
                                             {{ __('Enrolled') }}: {{ $registration->created_at->format('M d, Y') }}
                                         </p>
                                     </div>

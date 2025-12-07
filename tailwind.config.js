@@ -9,8 +9,8 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
-    // Disable dark mode by default (use 'class' if you want to enable it later)
-    darkMode: false,
+    // Enable dark mode with class strategy
+    darkMode: 'class',
 
     theme: {
         extend: {
@@ -20,8 +20,13 @@ export default {
             colors: {
                 'gold': '#D4AF37',
                 'gold-light': '#F4D03F',
+                'gold-dark': '#B8941F',
                 'blue-primary': '#1E40AF',
                 'blue-light': '#3B82F6',
+                'blue-dark': '#1E3A8A',
+                'dark-bg': '#0F172A',
+                'dark-card': '#1E293B',
+                'dark-border': '#334155',
             },
             screens: {
                 'xs': '475px',

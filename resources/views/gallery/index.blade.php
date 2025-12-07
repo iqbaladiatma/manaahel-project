@@ -2,10 +2,10 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <h1 class="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">
                 {{ __('Gallery') }}
             </h1>
-            <p class="text-xl text-gray-600 animate-slide-up">
+            <p class="text-xl text-gray-600 dark:text-gray-400 animate-slide-up">
                 {{ __('Photos and videos from our community events') }}
             </p>
             
@@ -14,7 +14,7 @@
                 @if(Auth::user()->isMemberAngkatan() || Auth::user()->isAdmin())
                     <div class="mt-6">
                         <a href="{{ route('gallery.create') }}" 
-                           class="inline-flex items-center px-8 py-4 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                           class="inline-flex items-center px-8 py-4 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:scale-105 shadow-lg dark:shadow-dark-border">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                             </svg>
@@ -23,7 +23,7 @@
                     </div>
                 @else
                     <!-- Debug: Show user role if not authorized -->
-                    <div class="mt-6 text-sm text-gray-500">
+                    <div class="mt-6 text-sm text-gray-500 dark:text-gray-500">
                         {{ __('Your role') }}: {{ Auth::user()->role }}
                     </div>
                 @endif
@@ -31,7 +31,7 @@
                 <!-- Not logged in -->
                 <div class="mt-6">
                     <a href="{{ route('login') }}" 
-                       class="inline-flex items-center px-8 py-4 bg-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-300">
+                       class="inline-flex items-center px-8 py-4 bg-gray-200 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-300">
                         {{ __('Login to Upload Photos') }}
                     </a>
                 </div>
@@ -47,7 +47,7 @@
                 @if(Auth::user()->isMemberAngkatan() || Auth::user()->isAdmin())
                     <div class="mb-8 flex justify-end">
                         <a href="{{ route('gallery.create') }}" 
-                           class="inline-flex items-center px-6 py-3 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                           class="inline-flex items-center px-6 py-3 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:scale-105">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                             </svg>
@@ -58,29 +58,36 @@
             @endauth
             
             @if($galleries->isEmpty())
-                <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div class="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-dark-border p-12 text-center">
+                    <div class="w-16 h-16 bg-gray-100 dark:bg-dark-card rounded-lg flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                         {{ __('No Photos Yet') }}
                     </h3>
-                    <p class="text-gray-600">
+                    <p class="text-gray-600 dark:text-gray-400">
                         {{ __('Check back later for event photos') }}
                     </p>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($galleries as $gallery)
-                        <div class="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden hover:border-blue-primary hover:shadow-xl transition-all duration-300">
+                        <div class="bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-100 dark:border-dark-border overflow-hidden hover:border-blue-primary dark:hover:border-gold hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300">
                             <!-- Image -->
-                            <div class="aspect-video w-full overflow-hidden bg-gray-100">
+                            <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-dark-card">
                                 @if($gallery->file_path)
-                                    <img src="{{ asset('storage/' . $gallery->file_path) }}" 
+                                    @php
+                                        // Check if file_path is external URL or local path
+                                        $imageUrl = str_starts_with($gallery->file_path, 'http') 
+                                            ? $gallery->file_path 
+                                            : asset('storage/' . $gallery->file_path);
+                                    @endphp
+                                    <img src="{{ $imageUrl }}" 
                                          alt="{{ $gallery->getTranslatedTitle() }}"
-                                         class="w-full h-full object-cover">
+                                         class="w-full h-full object-cover"
+                                         onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center\'><svg class=\'w-16 h-16 text-gray-300\' fill=\'currentColor\' viewBox=\'0 0 20 20\'><path fill-rule=\'evenodd\' d=\'M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z\' clip-rule=\'evenodd\'/></svg></div>'">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center">
                                         <svg class="w-16 h-16 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
@@ -93,19 +100,19 @@
                             <!-- Content -->
                             <div class="p-5">
                                 <!-- Title -->
-                                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2 line-clamp-2">
                                     {{ $gallery->getTranslatedTitle() }}
                                 </h3>
 
                                 <!-- Description -->
                                 @if($gallery->description)
-                                    <p class="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2 leading-relaxed">
                                         {{ $gallery->description }}
                                     </p>
                                 @endif
 
                                 <!-- Meta Info -->
-                                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-dark-border">
                                     <!-- Member Info -->
                                     @if($gallery->user)
                                         <div class="flex items-center">
@@ -121,9 +128,9 @@
                                                 </div>
                                             @endif
                                             <div>
-                                                <p class="text-xs font-semibold text-gray-900">{{ $gallery->user->name }}</p>
+                                                <p class="text-xs font-semibold text-gray-900 dark:text-gray-100">{{ $gallery->user->name }}</p>
                                                 @if($gallery->user->batch_year)
-                                                    <p class="text-xs text-gray-500">{{ __('Batch') }} {{ $gallery->user->batch_year }}</p>
+                                                    <p class="text-xs text-gray-500 dark:text-gray-500">{{ __('Batch') }} {{ $gallery->user->batch_year }}</p>
                                                 @endif
                                             </div>
                                         </div>
@@ -135,15 +142,15 @@
                                                 </svg>
                                             </div>
                                             <div>
-                                                <p class="text-xs font-semibold text-gray-900">{{ __('General') }}</p>
-                                                <p class="text-xs text-gray-500">{{ __('Gallery') }}</p>
+                                                <p class="text-xs font-semibold text-gray-900 dark:text-gray-100">{{ __('General') }}</p>
+                                                <p class="text-xs text-gray-500 dark:text-gray-500">{{ __('Gallery') }}</p>
                                             </div>
                                         </div>
                                     @endif
 
                                     <!-- Date -->
                                     <div class="text-right">
-                                        <p class="text-xs text-gray-500">
+                                        <p class="text-xs text-gray-500 dark:text-gray-500">
                                             {{ $gallery->created_at->format('M d, Y') }}
                                         </p>
                                     </div>

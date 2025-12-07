@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Translatable\HasTranslations;
 
 class CourseModule extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     protected $fillable = [
         'course_id',
@@ -25,8 +24,6 @@ class CourseModule extends Model
         'meeting_link',
         'scheduled_at',
     ];
-
-    public $translatable = ['title', 'content', 'description'];
 
     protected function casts(): array
     {

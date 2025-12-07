@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ __('Reset Password') }}</h2>
-        <p class="text-gray-600">{{ __('Enter your new password below') }}</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('Reset Password') }}</h2>
+        <p class="text-gray-600 dark:text-gray-400">{{ __('Enter your new password below') }}</p>
     </div>
 
     <form method="POST" action="{{ route('password.store') }}" class="space-y-6">
@@ -12,7 +12,7 @@
 
         <!-- Email Address -->
         <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('Email') }}
             </label>
             <input id="email" 
@@ -22,7 +22,7 @@
                    required 
                    autofocus 
                    autocomplete="username"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors"
+                   class="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg bg-white dark:bg-dark-card text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors dark:border-dark-border dark:bg-dark-bg dark:text-gray-100"
                    placeholder="your@email.com">
             @error('email')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -31,7 +31,7 @@
 
         <!-- Password -->
         <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('New Password') }}
             </label>
             <input id="password" 
@@ -39,17 +39,17 @@
                    name="password" 
                    required 
                    autocomplete="new-password"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors"
+                   class="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg bg-white dark:bg-dark-card text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors dark:border-dark-border dark:bg-dark-bg dark:text-gray-100"
                    placeholder="••••••••">
             @error('password')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
-            <p class="mt-2 text-xs text-gray-500">{{ __('Minimum 8 characters') }}</p>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-500">{{ __('Minimum 8 characters') }}</p>
         </div>
 
         <!-- Confirm Password -->
         <div>
-            <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ __('Confirm Password') }}
             </label>
             <input id="password_confirmation" 
@@ -57,7 +57,7 @@
                    name="password_confirmation" 
                    required 
                    autocomplete="new-password"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors"
+                   class="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg bg-white dark:bg-dark-card text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-light focus:border-blue-light transition-colors dark:border-dark-border dark:bg-dark-bg dark:text-gray-100"
                    placeholder="••••••••">
             @error('password_confirmation')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>

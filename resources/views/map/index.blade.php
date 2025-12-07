@@ -2,10 +2,10 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <h1 class="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">
                 {{ __('Member Map') }}
             </h1>
-            <p class="text-xl text-gray-600 animate-slide-up">
+            <p class="text-xl text-gray-600 dark:text-gray-400 animate-slide-up">
                 {{ __('See where our members are located around the world') }}
             </p>
         </div>
@@ -13,28 +13,28 @@
 
     <div class="pb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-2xl border-2 border-gray-100 overflow-hidden shadow-xl">
+            <div class="bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-100 dark:border-dark-border overflow-hidden shadow-xl dark:shadow-dark-border">
                 <!-- Map Container -->
-                <div id="map" class="w-full h-[600px] bg-gray-100"></div>
+                <div id="map" class="w-full h-[600px] bg-gray-100 dark:bg-dark-card"></div>
 
                 <!-- Stats Sidebar -->
-                <div class="p-8 border-t-2 border-gray-100 bg-gradient-to-br from-blue-50 to-white">
+                <div class="p-8 border-t-2 border-gray-100 dark:border-dark-border bg-gradient-to-br from-blue-50 to-white">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <div class="text-center p-4 bg-white rounded-xl border border-blue-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                        <div class="text-center p-4 bg-white dark:bg-dark-card rounded-xl border border-blue-100 hover:border-blue-primary dark:hover:border-gold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:shadow-dark-border">
                             <div class="text-3xl font-bold gradient-blue-text mb-2" id="total-members">-</div>
-                            <div class="text-sm font-medium text-gray-600">{{ __('Total Members') }}</div>
+                            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Total Members') }}</div>
                         </div>
-                        <div class="text-center p-4 bg-white rounded-xl border border-blue-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                        <div class="text-center p-4 bg-white dark:bg-dark-card rounded-xl border border-blue-100 hover:border-blue-primary dark:hover:border-gold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:shadow-dark-border">
                             <div class="text-3xl font-bold gradient-gold-text mb-2" id="total-cities">-</div>
-                            <div class="text-sm font-medium text-gray-600">{{ __('Cities') }}</div>
+                            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Cities') }}</div>
                         </div>
-                        <div class="text-center p-4 bg-white rounded-xl border border-blue-100 hover:border-blue-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                        <div class="text-center p-4 bg-white dark:bg-dark-card rounded-xl border border-blue-100 hover:border-blue-primary dark:hover:border-gold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:shadow-dark-border">
                             <div class="text-3xl font-bold gradient-blue-text mb-2" id="total-countries">-</div>
-                            <div class="text-sm font-medium text-gray-600">{{ __('Countries') }}</div>
+                            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Countries') }}</div>
                         </div>
-                        <div class="text-center p-4 bg-white rounded-xl border border-gold/30 hover:border-gold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                        <div class="text-center p-4 bg-white dark:bg-dark-card rounded-xl border border-gold/30 hover:border-gold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:shadow-dark-border">
                             <div class="text-3xl font-bold gradient-gold-text mb-2">2024</div>
-                            <div class="text-sm font-medium text-gray-600">{{ __('Batch Year') }}</div>
+                            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Batch Year') }}</div>
                         </div>
                     </div>
                 </div>

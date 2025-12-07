@@ -90,6 +90,11 @@ class UserResource extends Resource
                                             ->label('Angkatan/Batch Year')
                                             ->maxLength(10),
                                         
+                                        Forms\Components\TextInput::make('position')
+                                            ->label('Position in Angkatan')
+                                            ->placeholder('e.g., Ketua, Sekretaris, Bendahara')
+                                            ->maxLength(100),
+                                        
                                         Forms\Components\TextInput::make('city')
                                             ->maxLength(100),
                                         
@@ -257,7 +262,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\UserResource\RelationManagers\AchievementsRelationManager::class,
+            \App\Filament\Resources\UserResource\RelationManagers\GalleriesRelationManager::class,
         ];
     }
 
@@ -266,6 +272,7 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
+            'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }

@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Translatable\HasTranslations;
 
 class Article extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -21,16 +20,11 @@ class Article extends Model
         'content',
         'image_url',
         'category_id',
+        'author_id',
         'is_featured',
+        'is_published',
         'slug',
     ];
-
-    /**
-     * The attributes that are translatable.
-     *
-     * @var array<string>
-     */
-    public $translatable = ['title', 'content'];
 
     /**
      * Get the attributes that should be cast.
@@ -41,6 +35,7 @@ class Article extends Model
     {
         return [
             'is_featured' => 'boolean',
+            'is_published' => 'boolean',
         ];
     }
 
@@ -50,6 +45,14 @@ class Article extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the author of the article.
+     */
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /**

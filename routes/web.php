@@ -13,18 +13,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Language Switcher
-Route::get('/locale/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'ar', 'id'])) {
-        session(['locale' => $locale]);
-        app()->setLocale($locale);
-    }
-    return redirect()->back();
-});
-
 // Program routes
 Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
 Route::get('/programs/{program:slug}', [ProgramController::class, 'show'])->name('programs.show');
+
+// Manaahel Academy routes
+Route::get('/academy', [\App\Http\Controllers\AcademyController::class, 'index'])->name('academy.index');
+Route::get('/academy/{slug}', [\App\Http\Controllers\AcademyController::class, 'show'])->name('academy.show');
+Route::post('/academy/{slug}/register', [\App\Http\Controllers\AcademyController::class, 'register'])->name('academy.register');
+Route::get('/academy-success/{registration}', [\App\Http\Controllers\AcademyController::class, 'success'])->name('academy.success');
 
 // Article routes
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
@@ -56,6 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Profile Completion for Academy
+    Route::get('/profile/complete', [\App\Http\Controllers\ProfileCompletionController::class, 'show'])->name('profile.complete');
+    Route::post('/profile/complete', [\App\Http\Controllers\ProfileCompletionController::class, 'update'])->name('profile.complete.update');
     
     // Registration routes (requires authentication)
     Route::get('/registrations/create', [\App\Http\Controllers\RegistrationController::class, 'create'])->name('registrations.create');

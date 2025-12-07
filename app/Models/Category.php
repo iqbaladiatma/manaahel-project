@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -20,13 +19,6 @@ class Category extends Model
         'name',
         'slug',
     ];
-
-    /**
-     * The attributes that are translatable.
-     *
-     * @var array<string>
-     */
-    public $translatable = ['name'];
 
     /**
      * Get the articles for the category.

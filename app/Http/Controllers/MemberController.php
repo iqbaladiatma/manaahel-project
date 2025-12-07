@@ -60,13 +60,39 @@ class MemberController extends Controller
             abort(404);
         }
 
-        // Load galleries for member angkatan
+        // Get galleries, achievements, articles, programs, and courses for member angkatan
+        $galleries = collect();
+        $achievements = collect();
+        $articles = collect();
+        $programs = collect();
+        $courses = collect();
+        
         if ($member->isMemberAngkatan()) {
-            $member->load(['galleries' => function($query) {
-                $query->latest()->take(6);
-            }]);
+            $galleries = \App\Models\Gallery::where('user_id', $member->id)
+                ->latest()
+                ->limit(6)
+                ->get();
+            
+            $achievements = \App\Models\Achievement::where('user_id', $member->id)
+                ->orderBy('order')
+                ->get();
+            
+            $articles = \App\Models\Article::where('author_id', $member->id)
+                ->where('is_published', true)
+                ->latest()
+                ->limit(5)
+                ->get();
+            
+            $programs = \App\Models\Program::where('creator_id', $member->id)
+                ->latest()
+                ->get();
+            
+            $courses = \App\Models\Course::where('creator_id', $member->id)
+                ->with('program')
+                ->latest()
+                ->get();
         }
 
-        return view('members.show', compact('member'));
+        return view('members.show', compact('member', 'galleries', 'achievements', 'articles', 'programs', 'courses'));
     }
 }

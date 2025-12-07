@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<html lang="id">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-gray-50">
+    <body class="font-sans antialiased bg-gray-50 dark:bg-dark-bg">
         <div class="min-h-screen">
             <!-- Navigation -->
             @include('layouts.navigation')
@@ -32,7 +32,7 @@
                     </div>
 
                     <!-- Form Card -->
-                    <div class="bg-white rounded-lg border border-gray-200 p-8 shadow-lg">
+                    <div class="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-dark-border p-8 shadow-lg dark:shadow-dark-border">
                         {{ $slot }}
                     </div>
                 </div>
