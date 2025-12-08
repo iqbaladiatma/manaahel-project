@@ -7,8 +7,22 @@
                     <div class="w-12 h-12 gradient-gold rounded-lg flex items-center justify-center shadow-lg dark:shadow-dark-border">
                         <span class="text-white font-bold text-2xl">M</span>
                     </div>
-                    <span class="text-2xl font-bold text-white">Manaahel</span>
+                    <div>
+                        <span class="text-2xl font-bold text-white block">Manaahel</span>
+                        <span class="text-sm text-gold-light" style="font-family: 'Times New Roman', serif;">مَنَاهِل</span>
+                    </div>
                 </div>
+                
+                <!-- Islamic Quote -->
+                <div class="bg-white/10 backdrop-blur-sm border-l-4 border-gold rounded-lg p-4 mb-4">
+                    <p class="text-lg text-white mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                        بَارَكَ اللهُ فِيْكُمْ
+                    </p>
+                    <p class="text-sm text-blue-100 italic">
+                        Barakallahu Fiikum - Semoga Allah memberkahi kalian
+                    </p>
+                </div>
+
                 <p class="text-blue-100 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed max-w-md text-sm sm:text-base">
                     {{ __('Platform pembelajaran terpercaya untuk meningkatkan pengetahuan dan keterampilan melalui program-program berkualitas.') }}
                 </p>
@@ -109,13 +123,25 @@
         </div>
 
         <!-- Bottom Bar -->
-        <div class="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p class="text-blue-100 text-sm">
-                &copy; {{ date('Y') }} Manaahel. {{ __('All rights reserved.') }}
-            </p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" class="text-blue-100 hover:text-white text-sm transition">{{ __('Privacy Policy') }}</a>
-                <a href="#" class="text-blue-100 hover:text-white text-sm transition">{{ __('Terms of Service') }}</a>
+        <div class="border-t border-white/20 mt-8 pt-8">
+            <!-- Arabic Closing -->
+            <div class="text-center mb-6">
+                <p class="text-xl text-gold-light mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                    جَزَاكُمُ اللهُ خَيْرًا
+                </p>
+                <p class="text-sm text-blue-100 italic">
+                    Jazakumullahu Khairan - Semoga Allah membalas kalian dengan kebaikan
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-blue-100 text-sm">
+                    &copy; {{ date('Y') }} Manaahel. {{ __('All rights reserved.') }}
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-blue-100 hover:text-white text-sm transition">{{ __('Privacy Policy') }}</a>
+                    <a href="#" class="text-blue-100 hover:text-white text-sm transition">{{ __('Terms of Service') }}</a>
+                </div>
             </div>
         </div>
     </div>

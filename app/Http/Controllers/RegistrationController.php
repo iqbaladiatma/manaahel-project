@@ -85,6 +85,6 @@ class RegistrationController extends Controller
         ]);
 
         return redirect()->route('dashboard')
-            ->with('success', 'Ahlan Wa Sahlan! Antum Berhasil Terdaftar di Program: ' . $program->getTranslation('name', app()->getLocale()));
+            ->with('success', 'Ahlan Wa Sahlan! Antum Berhasil Terdaftar di Program: ' . $program->name);
     }
 }

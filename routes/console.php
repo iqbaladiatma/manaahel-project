@@ -15,7 +15,7 @@ Artisan::command('test-data', function () {
     $programs = \App\Models\Program::all();
     $this->info("📚 Programs: " . $programs->count());
     foreach ($programs as $program) {
-        $this->line("  ✓ {$program->getTranslation('name', 'id')} ({$program->delivery_type})");
+        $this->line("  ✓ {$program->name} ({$program->delivery_type})");
     }
     $this->newLine();
 
@@ -24,7 +24,7 @@ Artisan::command('test-data', function () {
     $this->info("📖 Courses: " . $courses->count());
     foreach ($courses as $course) {
         $modules = $course->modules()->count();
-        $this->line("  ✓ {$course->getTranslation('title', 'id')} ({$modules} modules)");
+        $this->line("  ✓ {$course->title} ({$modules} modules)");
     }
     $this->newLine();
 
@@ -50,7 +50,7 @@ Artisan::command('test-data', function () {
     $registrations = \App\Models\Registration::where('status', 'approved')->get();
     $this->info("✅ Approved Registrations: " . $registrations->count());
     foreach ($registrations as $reg) {
-        $this->line("  ✓ {$reg->user->name} → {$reg->program->getTranslation('name', 'id')}");
+        $this->line("  ✓ {$reg->user->name} → {$reg->program->name}");
     }
     $this->newLine();
 

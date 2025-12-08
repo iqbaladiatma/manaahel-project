@@ -18,33 +18,37 @@ class AchievementsRelationManager extends RelationManager
     {
         return $schema
             ->schema([
-                Forms\Components\TextInput::make('title.id')
-                    ->label('Title (Indonesian)')
-                    ->required(),
+                Forms\Components\TextInput::make('title')
+                    ->label('Title')
+                    ->required()
+                    ->maxLength(255),
                 
-                Forms\Components\TextInput::make('title.en')
-                    ->label('Title (English)'),
-                
-                Forms\Components\Textarea::make('description.id')
-                    ->label('Description (Indonesian)')
-                    ->rows(3),
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->rows(3)
+                    ->maxLength(1000),
                 
                 Forms\Components\TextInput::make('icon')
                     ->label('Icon (Emoji)')
-                    ->placeholder('🏆'),
+                    ->placeholder('🏆')
+                    ->maxLength(10),
                 
                 Forms\Components\DatePicker::make('achieved_at')
                     ->label('Achievement Date')
-                    ->default(now()),
+                    ->default(now())
+                    ->required(),
                 
                 Forms\Components\FileUpload::make('certificate_url')
                     ->label('Certificate')
                     ->image()
-                    ->directory('certificates'),
+                    ->directory('certificates')
+                    ->maxSize(2048),
                 
                 Forms\Components\TextInput::make('order')
+                    ->label('Order')
                     ->numeric()
-                    ->default(0),
+                    ->default(0)
+                    ->required(),
             ]);
     }
 
@@ -53,22 +57,36 @@ class AchievementsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('icon')
-                    ->alignCenter(),
+                    ->label('Icon')
+                    ->alignCenter()
+                    ->size('lg'),
                 
                 Tables\Columns\TextColumn::make('title')
-                    ->formatStateUsing(fn ($record) => $record->getTranslation('title', app()->getLocale()))
-                    ->searchable(),
+                    ->label('Title')
+                    ->searchable()
+                    ->sortable()
+                    ->wrap(),
+                
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Description')
+                    ->limit(50)
+                    ->wrap()
+                    ->toggleable(),
                 
                 Tables\Columns\TextColumn::make('achieved_at')
-                    ->date()
+                    ->label('Achievement Date')
+                    ->date('d M Y')
                     ->sortable(),
                 
                 Tables\Columns\ImageColumn::make('certificate_url')
                     ->label('Certificate')
-                    ->circular(),
+                    ->circular()
+                    ->size(40),
                 
                 Tables\Columns\TextColumn::make('order')
-                    ->sortable(),
+                    ->label('Order')
+                    ->sortable()
+                    ->alignCenter(),
             ])
             ->filters([
                 //

@@ -1,18 +1,41 @@
 <x-app-layout>
-    <!-- Hero Section with Gradient -->
-    <div class="relative bg-gradient-to-br from-white via-blue-50 dark:from-dark-bg dark:via-dark-card to-amber-50 pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden mt-16">
-        <!-- Decorative Blur Elements -->
-        <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-blue-50 dark:bg-blue-900/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-amber-50 dark:bg-amber-900/5 rounded-full blur-3xl"></div>
+    <!-- Hero Section with Islamic Pattern -->
+    <div class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 dark:from-dark-bg dark:via-blue-dark dark:to-dark-bg overflow-hidden">
+        <!-- Islamic Pattern Background -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="islamic-pattern-dashboard" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <path d="M50 0 L60 20 L80 20 L65 32 L70 50 L50 38 L30 50 L35 32 L20 20 L40 20 Z" fill="currentColor" class="text-white"/>
+                        <circle cx="50" cy="50" r="8" fill="currentColor" class="text-gold"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#islamic-pattern-dashboard)"/>
+            </svg>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
             <!-- Welcome Header -->
-            <div class="text-center mb-8 sm:mb-12">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-blue-700 to-amber-600 bg-clip-text text-transparent px-4">
-                    Selamat Datang Kembali, {{ Auth::user()->name }}!
+            <div class="text-center mb-8">
+                <!-- Arabic Greeting -->
+                <div class="mb-4">
+                    <p class="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-light mb-2 animate-fade-in" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                        أَهْلاً وَسَهْلاً
+                    </p>
+                    <p class="text-sm sm:text-base text-blue-100 italic">
+                        Ahlan Wa Sahlan - Selamat Datang Kembali
+                    </p>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 animate-slide-up">
+                    {{ Auth::user()->name }}
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400">
-                    Dashboard Pembelajaran Anda
+                <p class="text-base sm:text-lg text-blue-100 max-w-2xl mx-auto">
+                    Mari lanjutkan perjalanan belajar Anda hari ini
                 </p>
             </div>
 
@@ -32,60 +55,94 @@
                 $progressPercentage = $totalModules > 0 ? round(($completedModules / $totalModules) * 100) : 0;
             @endphp
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <!-- Stat 1: Programs -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500/10 to-amber-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-amber-500/20 transition-all"></div>
+                <div class="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-gold/20 rounded-full blur-2xl group-hover:bg-gold/30 transition-all"></div>
                     <div class="relative">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                             </svg>
                         </div>
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $enrolledPrograms->count() }}</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Programs') }}</div>
+                        <div class="text-4xl font-bold text-white mb-2">{{ $enrolledPrograms->count() }}</div>
+                        <div class="text-sm text-blue-100 font-medium">Program Aktif</div>
                     </div>
                 </div>
 
                 <!-- Stat 2: Courses -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500/10 to-blue-500/10 rounded-full blur-2xl group-hover:from-amber-500/20 group-hover:to-blue-500/20 transition-all"></div>
+                <div class="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-gold/20 rounded-full blur-2xl group-hover:bg-gold/30 transition-all"></div>
                     <div class="relative">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
                             </svg>
                         </div>
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $totalCourses }}</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Courses') }}</div>
+                        <div class="text-4xl font-bold text-white mb-2">{{ $totalCourses }}</div>
+                        <div class="text-sm text-blue-100 font-medium">Kursus Tersedia</div>
                     </div>
                 </div>
 
                 <!-- Stat 3: Progress -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-2xl group-hover:from-green-500/20 group-hover:to-emerald-500/20 transition-all"></div>
+                <div class="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-green-400/20 rounded-full blur-2xl group-hover:bg-green-400/30 transition-all"></div>
                     <div class="relative">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
                         </div>
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $progressPercentage }}%</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Progress') }}</div>
+                        <div class="text-4xl font-bold text-white mb-2">{{ $progressPercentage }}%</div>
+                        <div class="text-sm text-blue-100 font-medium">Progress Belajar</div>
                     </div>
                 </div>
 
-                <!-- Stat 4: Days Active -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all"></div>
+                <!-- Stat 4: Member Since -->
+                <div class="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-purple-400/20 rounded-full blur-2xl group-hover:bg-purple-400/30 transition-all"></div>
                     <div class="relative">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
                             </svg>
                         </div>
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ Auth::user()->created_at->diffInDays(now()) }}</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Days Active') }}</div>
+                        <div class="text-lg font-bold text-white mb-1">Bergabung Pada</div>
+                        <div class="text-sm text-blue-100 font-medium">{{ Auth::user()->created_at->format('d M Y') }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6">
+                <!-- Completed Modules -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 hover:bg-white/20 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-blue-100 mb-1">Modul Selesai</p>
+                            <p class="text-2xl font-bold text-white">{{ $completedModules }} / {{ $totalModules }}</p>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Modules -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 hover:bg-white/20 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-blue-100 mb-1">Total Modul</p>
+                            <p class="text-2xl font-bold text-white">{{ $totalModules }}</p>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,8 +150,8 @@
     </div>
 
     <!-- Main Content -->
-    <div class="py-12 bg-white dark:bg-dark-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="py-12 bg-gray-50 dark:bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             
             <!-- My Enrolled Programs -->
             @if($enrolledPrograms->count() > 0)

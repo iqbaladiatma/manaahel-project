@@ -28,6 +28,14 @@
                         </svg>
                     </div>
 
+                    <!-- Arabic Greeting -->
+                    <div class="mb-4">
+                        <p class="text-2xl sm:text-3xl text-gold-light mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                            مَرْحَبًا بِكُمْ
+                        </p>
+                        <p class="text-sm text-blue-100 italic">Marhaban Bikum - Selamat Datang</p>
+                    </div>
+
                     <!-- Arabic Title -->
                     <div class="mb-3 sm:mb-4">
                         <p class="text-xl sm:text-2xl md:text-3xl text-white/90" style="font-family: 'Times New Roman', serif; direction: rtl;">

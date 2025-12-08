@@ -18,6 +18,16 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
                 <!-- Left Content -->
                 <div class="animate-slide-up">
+                    <!-- Arabic Greeting -->
+                    <div class="mb-4 sm:mb-6">
+                        <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-gold dark:text-gold-light mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                            السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
+                        </p>
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 italic">
+                            Assalamu'alaikum Warahmatullahi Wabarakatuh
+                        </p>
+                    </div>
+
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 leading-tight">
                         Menuntut Ilmu Bersama <span class="gradient-gold-text">Manaahel</span>
                     </h1>

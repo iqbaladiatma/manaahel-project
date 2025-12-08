@@ -2,6 +2,14 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-br from-blue-50 via-white to-gold dark:from-dark-bg dark:via-dark-card dark:to-dark-bg/5 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Arabic Title -->
+            <div class="mb-4">
+                <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-gold dark:text-gold-light" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                    بَرَامِجُنَا
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Baramijuna - Program-Program Kami</p>
+            </div>
+
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4 animate-fade-in">
                 {{ __('Program Kami') }}
             </h1>

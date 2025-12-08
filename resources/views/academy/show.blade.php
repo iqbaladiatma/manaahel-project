@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gold dark:from-dark-bg dark:via-dark-card dark:to-dark-bg/5 dark:from-dark-bg dark:via-dark-card dark:to-dark-bg transition-colors duration-200">
+    <div class="min-h-screen bg-white dark:bg-dark-bg transition-colors duration-200">
         <section class="relative pt-20 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-r from-blue-primary to-blue-600 dark:from-blue-dark dark:to-dark-bg transition-colors duration-200">
             <div class="absolute inset-0 opacity-10">
                 <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +59,7 @@
         </section>
 
 
-        <section class="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <section class="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark-bg transition-colors duration-200">
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                     <div class="lg:col-span-2 space-y-6 sm:space-y-8">
@@ -117,7 +117,7 @@
 
                                 <div class="space-y-3 sm:space-y-4 mb-5 sm:mb-6">
                                     @if($program->start_date)
-                                    <div class="flex items-start p-3 bg-blue-50 rounded-xl">
+                                    <div class="flex items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
                                         <svg class="w-5 h-5 text-blue-primary dark:text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
@@ -129,72 +129,50 @@
                                     @endif
 
                                     @if($program->end_date)
-                                    <div class="flex items-start p-3 bg-blue-50 rounded-xl">
+                                    <div class="flex items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
                                         <svg class="w-5 h-5 text-blue-primary dark:text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
                                         <div class="flex-1">
-                                            <div class="text-xs sm:text-sm text-gray-600 font-medium">Tanggal Selesai</div>
+                                            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Tanggal Selesai</div>
                                             <div class="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100">{{ $program->end_date->format('d F Y') }}</div>
                                         </div>
                                     </div>
                                     @endif
 
                                     @if($program->max_participants)
-                                    <div class="flex items-start p-3 bg-blue-50 rounded-xl">
+                                    <div class="flex items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
                                         <svg class="w-5 h-5 text-blue-primary dark:text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                         </svg>
                                         <div class="flex-1">
-                                            <div class="text-xs sm:text-sm text-gray-600 font-medium">Kuota Peserta</div>
+                                            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Kuota Peserta</div>
                                             <div class="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100">{{ $program->max_participants }} Orang</div>
                                         </div>
                                     </div>
                                     @endif
                                 </div>
 
-                                @if(session('error'))
-                                <div class="mb-4 p-3 sm:p-4 bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 rounded-lg">
-                                    <div class="flex items-start">
-                                        <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <p class="text-xs sm:text-sm text-red-800">{{ session('error') }}</p>
-                                    </div>
-                                </div>
-                                @endif
-
-                                @if(session('info'))
-                                <div class="mb-4 p-3 sm:p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
-                                    <div class="flex items-start">
-                                        <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <p class="text-xs sm:text-sm text-blue-800">{{ session('info') }}</p>
-                                    </div>
-                                </div>
-                                @endif
-
-                                @if(session('success'))
-                                <div class="mb-4 p-3 sm:p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
-                                    <div class="flex items-start">
-                                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <p class="text-xs sm:text-sm text-green-800">{{ session('success') }}</p>
-                                    </div>
-                                </div>
-                                @endif
+                                <!-- Session Alerts with Arabic Nuance -->
+                                <x-session-alerts />
 
 
                                 @auth
                                     @if(!auth()->user()->hasCompleteProfileForAcademy())
-                                        <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-4 sm:p-5">
-                                            <div class="flex items-start mb-3 sm:mb-4">
-                                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 mr-2 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-4 sm:p-5 shadow-lg dark:shadow-dark-border">
+                                            <div class="flex items-start gap-3">
+                                                <svg class="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                                 </svg>
                                                 <div class="flex-1">
+                                                    <!-- Arabic Text -->
+                                                    <div class="mb-2">
+                                                        <p class="text-lg font-bold text-amber-700 dark:text-amber-400" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                                                            تَنَبَّهْ
+                                                        </p>
+                                                        <p class="text-xs text-amber-600 dark:text-amber-500 italic">Tanabbah - Perhatian</p>
+                                                    </div>
+                                                    
                                                     <h3 class="font-semibold text-amber-900 dark:text-amber-300 text-sm sm:text-base mb-1">Profil Belum Lengkap</h3>
                                                     <p class="text-xs sm:text-sm text-amber-800 dark:text-amber-400 mb-3">Lengkapi profil Anda (Nama, Email, No. WhatsApp) untuk mendaftar.</p>
                                                     <a href="{{ route('profile.edit') }}" class="inline-flex items-center gradient-gold text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md text-xs sm:text-sm">
@@ -207,10 +185,16 @@
                                             </div>
                                         </div>
                                     @elseif($alreadyRegistered)
-                                        <div class="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-xl p-5 sm:p-6 text-center">
-                                            <svg class="w-14 h-14 sm:w-16 sm:h-16 text-green-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-xl p-5 sm:p-6 text-center shadow-lg dark:shadow-dark-border">
+                                            <svg class="w-14 h-14 sm:w-16 sm:h-16 text-green-600 dark:text-green-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
+                                            <!-- Arabic Text -->
+                                            <p class="text-2xl font-bold text-green-700 dark:text-green-400 mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                                                مَاشَاءَ اللّٰه
+                                            </p>
+                                            <p class="text-xs text-green-600 dark:text-green-500 italic mb-3">Maa Syaa Allah</p>
+                                            
                                             <p class="text-green-800 dark:text-green-300 font-bold text-base sm:text-lg mb-1">Anda Sudah Terdaftar</p>
                                             <p class="text-xs sm:text-sm text-green-700 dark:text-green-400">Anda sudah terdaftar di program ini</p>
                                         </div>
@@ -229,7 +213,7 @@
 
                                             <div>
                                                 <label for="notes" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Catatan (Opsional)</label>
-                                                <textarea name="notes" id="notes" rows="3" class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 rounded-xl focus:ring-2 focus:ring-blue-primary dark:focus:ring-gold focus:border-transparent dark:border-dark-border dark:bg-dark-bg dark:text-gray-100" placeholder="Tulis pertanyaan atau catatan...">{{ old('notes') }}</textarea>
+                                                <textarea name="notes" id="notes" rows="3" class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 rounded-xl focus:ring-2 focus:ring-blue-primary dark:focus:ring-gold focus:border-transparent transition-colors duration-200" placeholder="Tulis pertanyaan atau catatan...">{{ old('notes') }}</textarea>
                                             </div>
 
                                             <button type="submit" class="w-full gradient-blue text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base transition-all duration-200 transform hover:scale-105 shadow-lg dark:shadow-dark-border hover:shadow-xl dark:hover:shadow-gold/20 flex items-center justify-center">
@@ -254,7 +238,7 @@
                                             <a href="{{ route('login') }}" class="block w-full gradient-blue text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base transition-all duration-200 transform hover:scale-105 shadow-lg dark:shadow-dark-border hover:shadow-xl dark:hover:shadow-gold/20">
                                                 Login Sekarang
                                             </a>
-                                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-500 dark:text-gray-400">Belum punya akun?</p>
+                                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Belum punya akun?</p>
                                             <a href="{{ route('register') }}" class="block w-full border-2 border-blue-primary dark:border-gold text-blue-primary dark:text-gold font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl text-sm sm:text-base transition-all duration-200 hover:bg-blue-primary dark:hover:bg-gold hover:text-white">
                                                 Daftar Akun Baru
                                             </a>

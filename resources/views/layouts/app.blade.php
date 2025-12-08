@@ -25,7 +25,14 @@
             @include('layouts.navigation')
 
             <!-- Page Content -->
-            <main class="flex-grow">
+            <main class="flex-grow pt-20">
+                <!-- Global Session Alerts (only show if there are messages) -->
+                @if(session('success') || session('error') || session('warning') || session('info') || $errors->any())
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                    <x-session-alerts />
+                </div>
+                @endif
+                
                 {{ $slot }}
             </main>
 
@@ -55,6 +62,68 @@
                 </svg>
             </a>
         </div>
+
+        <!-- Dark Mode Script -->
+        <script>
+            // Dark Mode Toggle
+            function initDarkMode() {
+                // Check for saved theme preference or default to light mode
+                const theme = localStorage.getItem('theme') || 'light';
+                
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                
+                // Update all toggle checkboxes
+                updateToggleStates(theme === 'dark');
+            }
+
+            function updateToggleStates(isDark) {
+                const toggles = [
+                    document.getElementById('darkModeToggle'),
+                    document.getElementById('darkModeToggleSidebar'),
+                    document.getElementById('darkModeToggleMobile')
+                ];
+                
+                toggles.forEach(toggle => {
+                    if (toggle) {
+                        toggle.checked = isDark;
+                    }
+                });
+            }
+
+            function toggleDarkMode() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                updateToggleStates(isDark);
+            }
+
+            // Initialize dark mode on page load
+            initDarkMode();
+
+            // Add event listeners when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                // Desktop toggle
+                const desktopToggle = document.getElementById('darkModeToggle');
+                if (desktopToggle) {
+                    desktopToggle.addEventListener('change', toggleDarkMode);
+                }
+
+                // Sidebar toggle
+                const sidebarToggle = document.getElementById('darkModeToggleSidebar');
+                if (sidebarToggle) {
+                    sidebarToggle.addEventListener('change', toggleDarkMode);
+                }
+
+                // Mobile toggle (if exists)
+                const mobileToggle = document.getElementById('darkModeToggleMobile');
+                if (mobileToggle) {
+                    mobileToggle.addEventListener('change', toggleDarkMode);
+                }
+            });
+        </script>
 
         <!-- Scroll to Top Script -->
         <script>

@@ -49,36 +49,19 @@ class AchievementResource extends Resource
                                             ->required()
                                             ->columnSpanFull(),
                                         
-                                        Forms\Components\TextInput::make('title.id')
-                                            ->label('Title (Indonesian)')
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Title')
                                             ->required()
-                                            ->maxLength(255),
+                                            ->maxLength(255)
+                                            ->columnSpanFull(),
                                         
-                                        Forms\Components\TextInput::make('title.en')
-                                            ->label('Title (English)')
-                                            ->maxLength(255),
-                                        
-                                        Forms\Components\TextInput::make('title.ar')
-                                            ->label('Title (Arabic)')
-                                            ->maxLength(255),
+                                        Forms\Components\Textarea::make('description')
+                                            ->label('Description')
+                                            ->rows(4)
+                                            ->maxLength(1000)
+                                            ->columnSpanFull(),
                                     ])
-                                    ->columns(2),
-                                
-                                Section::make('Description')
-                                    ->columnSpanFull()
-                                    ->schema([
-                                        Forms\Components\Textarea::make('description.id')
-                                            ->label('Description (Indonesian)')
-                                            ->rows(3),
-                                        
-                                        Forms\Components\Textarea::make('description.en')
-                                            ->label('Description (English)')
-                                            ->rows(3),
-                                        
-                                        Forms\Components\Textarea::make('description.ar')
-                                            ->label('Description (Arabic)')
-                                            ->rows(3),
-                                    ]),
+                                    ->columns(1),
                             ]),
                         
                         // Right Column
@@ -124,10 +107,11 @@ class AchievementResource extends Resource
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Title')
                     ->searchable()
                     ->sortable()
                     ->limit(50)
-                    ->formatStateUsing(fn ($record) => $record->getTranslation('title', app()->getLocale())),
+                    ->wrap(),
                 
                 Tables\Columns\TextColumn::make('icon')
                     ->label('Icon')
