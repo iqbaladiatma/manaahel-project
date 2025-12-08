@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
+    <div class="bg-gradient-to-br from-blue-50 to-white dark:from-dark-bg dark:to-dark-card pt-32 pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">
                 {{ __('Members Directory') }}
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="pb-16">
+    <div class="pb-16 bg-gray-50 dark:bg-dark-bg">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Search and Filter Section -->
             <div class="bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-100 dark:border-dark-border p-8 mb-8 shadow-lg dark:shadow-dark-border">
@@ -32,7 +32,7 @@
                                    id="search" 
                                    value="{{ request('search') }}"
                                    placeholder="{{ __('Search by name, email, or city...') }}"
-                                   class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all">
+                                   class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 focus:border-blue-primary dark:focus:border-gold focus:ring-2 focus:ring-blue-100 dark:focus:ring-gold/20 transition-all">
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                         </label>
                         <select name="batch_year" 
                                 id="batch_year"
-                                class="w-full py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all">
+                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 focus:border-blue-primary dark:focus:border-gold focus:ring-2 focus:ring-blue-100 dark:focus:ring-gold/20 transition-all">
                             <option value="">{{ __('All Batches') }}</option>
                             @foreach($batchYears as $year)
                                 <option value="{{ $year }}" {{ request('batch_year') == $year ? 'selected' : '' }}>
@@ -60,7 +60,7 @@
                         </label>
                         <select name="role" 
                                 id="role"
-                                class="w-full py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all">
+                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 focus:border-blue-primary dark:focus:border-gold focus:ring-2 focus:ring-blue-100 dark:focus:ring-gold/20 transition-all">
                             <option value="">{{ __('All Members') }}</option>
                             <option value="member_angkatan" {{ request('role') == 'member_angkatan' ? 'selected' : '' }}>
                                 {{ __('Member Angkatan') }}
@@ -74,12 +74,12 @@
                     <!-- Submit Button -->
                     <div class="md:col-span-3 flex gap-3">
                         <button type="submit" 
-                                class="px-8 py-3 gradient-blue text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all duration-300 transform hover:scale-105">
+                                class="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gold-dark dark:to-gold text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all duration-300 transform hover:scale-105">
                             {{ __('Search') }}
                         </button>
                         @if(request('search') || request('batch_year'))
                             <a href="{{ route('members.index') }}" 
-                               class="px-8 py-3 bg-gray-100 dark:bg-dark-card text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300">
+                               class="px-8 py-3 bg-gray-100 dark:bg-dark-card text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-dark-border transition-all duration-300">
                                 {{ __('Clear') }}
                             </a>
                         @endif
@@ -93,7 +93,7 @@
                     @foreach($members as $member)
                         <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg dark:shadow-dark-border border-2 border-gray-100 dark:border-dark-border overflow-hidden hover:border-blue-primary dark:hover:border-gold hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-2 group">
                             <!-- Member Avatar -->
-                            <div class="aspect-square w-full overflow-hidden gradient-blue relative">
+                            <div class="aspect-square w-full overflow-hidden bg-gradient-to-br from-blue-600 to-blue-700 dark:from-gold-dark dark:to-gold relative">
                                 @if($member->avatar_url)
                                     <img src="{{ $member->avatar_url }}" 
                                          alt="{{ $member->name }}"
@@ -109,12 +109,12 @@
 
                             <!-- Member Info -->
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:gradient-blue-text transition-all">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-gold transition-all">
                                     {{ $member->name }}
                                 </h3>
 
                                 @if($member->batch_year)
-                                    <div class="inline-block px-3 py-1 gradient-gold text-white text-xs font-semibold rounded-full mb-3">
+                                    <div class="inline-block px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 dark:from-gold-dark dark:to-gold text-white text-xs font-semibold rounded-full mb-3">
                                         {{ __('Batch') }} {{ $member->batch_year }}
                                     </div>
                                 @endif
@@ -197,7 +197,7 @@
                                 <!-- Member Angkatan Badge -->
                                 @if($member->role === 'member_angkatan')
                                     <div class="mb-4">
-                                        <span class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-dark/20 text-blue-primary dark:text-gold text-xs font-semibold rounded-full border border-blue-200">
+                                        <span class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-primary dark:text-gold text-xs font-semibold rounded-full border border-blue-200 dark:border-gold/30">
                                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                             </svg>
@@ -207,7 +207,7 @@
                                 @endif
 
                                 <a href="{{ route('members.show', $member) }}" 
-                                   class="block w-full text-center px-4 py-3 gradient-blue text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all duration-300 transform hover:scale-105">
+                                   class="block w-full text-center px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gold-dark dark:to-gold text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all duration-300 transform hover:scale-105">
                                     {{ __('View Profile') }}
                                 </a>
                             </div>

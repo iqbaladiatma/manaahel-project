@@ -2,8 +2,8 @@
     <!-- Hero Section with Gradient -->
     <div class="relative bg-gradient-to-br from-white via-blue-50 dark:from-dark-bg dark:via-dark-card to-amber-50 pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden mt-16">
         <!-- Decorative Blur Elements -->
-        <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-blue-50 dark:bg-blue-dark/200/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-amber-50 dark:bg-amber-900/200/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-blue-50 dark:bg-blue-900/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-amber-50 dark:bg-amber-900/5 rounded-full blur-3xl"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Welcome Header -->
@@ -48,44 +48,44 @@
                 </div>
 
                 <!-- Stat 2: Courses -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-2xl p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-amber-500/10 to-blue-500/10 rounded-full blur-2xl group-hover:from-amber-500/20 group-hover:to-blue-500/20 transition-all"></div>
+                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500/10 to-blue-500/10 rounded-full blur-2xl group-hover:from-amber-500/20 group-hover:to-blue-500/20 transition-all"></div>
                     <div class="relative">
-                        <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center mb-3 shadow-md">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
                             </svg>
                         </div>
-                        <div class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $totalCourses }}</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Courses') }}</div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $totalCourses }}</div>
+                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Courses') }}</div>
                     </div>
                 </div>
 
                 <!-- Stat 3: Progress -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-2xl p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-2xl group-hover:from-green-500/20 group-hover:to-emerald-500/20 transition-all"></div>
+                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-2xl group-hover:from-green-500/20 group-hover:to-emerald-500/20 transition-all"></div>
                     <div class="relative">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-3 shadow-md">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
                         </div>
-                        <div class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $progressPercentage }}%</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Progress') }}</div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ $progressPercentage }}%</div>
+                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Progress') }}</div>
                     </div>
                 </div>
 
                 <!-- Stat 4: Days Active -->
-                <div class="group relative bg-white dark:bg-dark-card rounded-2xl p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all"></div>
+                <div class="group relative bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg dark:shadow-dark-border border border-gray-200 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all"></div>
                     <div class="relative">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-3 shadow-md">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 shadow-md">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                             </svg>
                         </div>
-                        <div class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ Auth::user()->created_at->diffInDays(now()) }}</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Days Active') }}</div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{ Auth::user()->created_at->diffInDays(now()) }}</div>
+                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">{{ __('Days Active') }}</div>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="py-12 bg-white dark:bg-dark-card">
+    <div class="py-12 bg-white dark:bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             
             <!-- My Enrolled Programs -->
@@ -125,7 +125,7 @@
                                         <span class="px-3 py-1 bg-white/20 dark:bg-dark-card/40 backdrop-blur-sm text-white text-xs font-semibold rounded-full border border-white/20 dark:border-gold/30">
                                             {{ ucfirst($program->type) }}
                                         </span>
-                                        <span class="px-3 py-1 bg-green-50 dark:bg-green-900/200 text-white text-xs font-semibold rounded-full">
+                                        <span class="px-3 py-1 bg-green-500 dark:bg-green-600 text-white text-xs font-semibold rounded-full">
                                             ✓ {{ __('Enrolled') }}
                                         </span>
                                     </div>
@@ -337,9 +337,9 @@
 
             <!-- Empty State for No Programs -->
             @if($enrolledPrograms->count() === 0)
-                <div class="relative bg-gradient-to-br from-blue-50 to-amber-50 rounded-2xl p-16 text-center overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 dark:bg-blue-dark/200/5 rounded-full blur-3xl"></div>
-                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-50 dark:bg-amber-900/200/5 rounded-full blur-3xl"></div>
+                <div class="relative bg-gradient-to-br from-blue-50 to-amber-50 dark:from-dark-card dark:to-dark-bg rounded-2xl p-16 text-center overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 dark:bg-blue-900/5 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-50 dark:bg-amber-900/5 rounded-full blur-3xl"></div>
                     
                     <div class="relative">
                         <div class="w-24 h-24 bg-gradient-to-br from-blue-600 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl dark:shadow-gold/20">

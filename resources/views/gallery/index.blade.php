@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-blue-50 to-white pt-32 pb-12">
+    <div class="bg-gradient-to-br from-blue-50 to-white dark:from-dark-bg dark:to-dark-card pt-32 pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">
                 {{ __('Gallery') }}
@@ -14,24 +14,19 @@
                 @if(Auth::user()->isMemberAngkatan() || Auth::user()->isAdmin())
                     <div class="mt-6">
                         <a href="{{ route('gallery.create') }}" 
-                           class="inline-flex items-center px-8 py-4 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:scale-105 shadow-lg dark:shadow-dark-border">
+                           class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 dark:from-gold-dark dark:to-gold text-white font-semibold rounded-xl hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:scale-105 shadow-lg dark:shadow-dark-border">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                             </svg>
                             {{ __('Upload Photo') }}
                         </a>
                     </div>
-                @else
-                    <!-- Debug: Show user role if not authorized -->
-                    <div class="mt-6 text-sm text-gray-500 dark:text-gray-500">
-                        {{ __('Your role') }}: {{ Auth::user()->role }}
-                    </div>
                 @endif
             @else
                 <!-- Not logged in -->
                 <div class="mt-6">
                     <a href="{{ route('login') }}" 
-                       class="inline-flex items-center px-8 py-4 bg-gray-200 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-300">
+                       class="inline-flex items-center px-8 py-4 bg-gray-200 dark:bg-dark-card text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-300 dark:hover:bg-dark-border transition-all duration-300">
                         {{ __('Login to Upload Photos') }}
                     </a>
                 </div>
@@ -39,7 +34,7 @@
         </div>
     </div>
 
-    <div class="pb-16">
+    <div class="pb-16 bg-gray-50 dark:bg-dark-bg">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Upload Button (Alternative Position - Always Visible for Auth Users) -->
@@ -47,7 +42,7 @@
                 @if(Auth::user()->isMemberAngkatan() || Auth::user()->isAdmin())
                     <div class="mb-8 flex justify-end">
                         <a href="{{ route('gallery.create') }}" 
-                           class="inline-flex items-center px-6 py-3 gradient-gold text-white font-semibold rounded-xl hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:scale-105">
+                           class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 dark:from-gold-dark dark:to-gold text-white font-semibold rounded-xl hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:scale-105">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                             </svg>
@@ -119,9 +114,9 @@
                                             @if($gallery->user->avatar_url)
                                                 <img src="{{ $gallery->user->avatar_url }}" 
                                                      alt="{{ $gallery->user->name }}"
-                                                     class="w-8 h-8 rounded-full object-cover mr-2 border-2 border-blue-100">
+                                                     class="w-8 h-8 rounded-full object-cover mr-2 border-2 border-blue-100 dark:border-gold/30">
                                             @else
-                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mr-2 border-2 border-blue-100">
+                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mr-2 border-2 border-blue-100 dark:border-gold/30">
                                                     <span class="text-white text-xs font-bold">
                                                         {{ strtoupper(substr($gallery->user->name, 0, 1)) }}
                                                     </span>
@@ -136,7 +131,7 @@
                                         </div>
                                     @else
                                         <div class="flex items-center">
-                                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center mr-2">
+                                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 flex items-center justify-center mr-2">
                                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
                                                 </svg>

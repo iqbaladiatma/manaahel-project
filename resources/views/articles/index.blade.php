@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-blue-50 to-white pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12">
+    <div class="bg-gradient-to-br from-blue-50 to-white dark:from-dark-card dark:to-dark-bg pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4 animate-fade-in">
                 {{ __('Blog') }}
@@ -20,7 +20,7 @@
                         {{ __('Category:') }}
                     </label>
                     <select name="category" id="category" 
-                            class="rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-primary dark:border-gold focus:ring-2 focus:ring-blue-100 transition-all"
+                            class="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card text-gray-900 dark:text-gray-100 focus:border-blue-primary dark:focus:border-gold focus:ring-2 focus:ring-blue-100 dark:focus:ring-gold/20 transition-all"
                             onchange="this.form.submit()">
                         <option value="">{{ __('All Categories') }}</option>
                         @foreach($categories as $category)
@@ -50,13 +50,13 @@
                         <a href="{{ route('articles.show', $article->slug) }}" class="group bg-white dark:bg-dark-card rounded-xl sm:rounded-2xl border-2 border-gray-100 dark:border-dark-border overflow-hidden hover:border-blue-primary dark:hover:border-gold hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
                             <!-- Article Image -->
                             @if($article->image_url)
-                            <div class="h-48 sm:h-56 overflow-hidden bg-gray-100 dark:bg-dark-card">
+                            <div class="h-48 sm:h-56 overflow-hidden bg-gray-100 dark:bg-dark-bg">
                                 <img src="{{ $article->image_url }}" 
                                      alt="{{ $article->title }}"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             </div>
                             @else
-                            <div class="h-56 gradient-blue flex items-center justify-center">
+                            <div class="h-48 sm:h-56 gradient-blue flex items-center justify-center">
                                 <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                 </svg>
@@ -74,7 +74,7 @@
                                         {{ $article->created_at->format('d M Y') }}
                                     </div>
                                     @if($article->category)
-                                    <span class="px-3 py-1 text-xs font-semibold rounded-full gradient-blue text-white">
+                                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-primary dark:text-gold">
                                         {{ $article->category->name }}
                                     </span>
                                     @endif
