@@ -21,12 +21,12 @@
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold">{{ __('Upload Photo to Gallery') }}</h1>
+                        <h1 class="text-3xl font-bold">Upload Media ke Galeri</h1>
                         <p class="text-blue-100 mt-1">
                             @if(Auth::user()->isAdmin())
-                                {{ __('Upload photos as administrator') }}
+                                Upload foto dan video sebagai administrator
                             @else
-                                {{ __('Share your moments with the community') }}
+                                Bagikan momen Anda dengan komunitas
                             @endif
                         </p>
                     </div>
@@ -60,10 +60,10 @@
                 <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                     @csrf
 
-                    <!-- Image Upload -->
+                    <!-- Media Upload -->
                     <div class="mb-6">
-                        <label for="image" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                            {{ __('Photo') }} <span class="text-red-500">*</span>
+                        <label for="media" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            Foto atau Video <span class="text-red-500">*</span>
                         </label>
                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-dark-border border-dashed rounded-xl hover:border-blue-500 transition-colors">
                             <div class="space-y-1 text-center">
@@ -71,22 +71,28 @@
                                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <div class="flex text-sm text-gray-600 dark:text-gray-400">
-                                    <label for="image" class="relative cursor-pointer bg-white dark:bg-dark-card rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                        <span>{{ __('Upload a file') }}</span>
-                                        <input id="image" name="image" type="file" class="sr-only" accept="image/*" required onchange="previewImage(event)">
+                                    <label for="media" class="relative cursor-pointer bg-white dark:bg-dark-card rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                        <span>Upload file</span>
+                                        <input id="media" name="media" type="file" class="sr-only" accept="image/*,video/*" required onchange="previewMedia(event)">
                                     </label>
-                                    <p class="pl-1">{{ __('or drag and drop') }}</p>
+                                    <p class="pl-1">atau drag and drop</p>
                                 </div>
-                                <p class="text-xs text-gray-500 dark:text-gray-500">PNG, JPG, GIF up to 5MB</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-500">
+                                    Foto: PNG, JPG, GIF (max 5MB)<br>
+                                    Video: MP4, AVI, MOV, WMV, FLV, WEBM, MKV (max 50MB)
+                                </p>
                             </div>
                         </div>
-                        @error('image')
+                        @error('media')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
 
-                        <!-- Image Preview -->
-                        <div id="imagePreview" class="mt-4 hidden">
-                            <img id="preview" class="w-full h-64 object-cover rounded-xl border-2 border-gray-200 dark:border-dark-border" alt="Preview">
+                        <!-- Media Preview -->
+                        <div id="mediaPreview" class="mt-4 hidden">
+                            <img id="imagePreview" class="w-full h-64 object-cover rounded-xl border-2 border-gray-200 dark:border-dark-border hidden" alt="Preview">
+                            <video id="videoPreview" class="w-full h-64 object-cover rounded-xl border-2 border-gray-200 dark:border-dark-border hidden" controls>
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
 
@@ -118,7 +124,7 @@
                     <!-- Title -->
                     <div class="mb-6">
                         <label for="title" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                            {{ __('Title') }} <span class="text-red-500">*</span>
+                            Judul <span class="text-red-500">*</span>
                         </label>
                         <input type="text" 
                                name="title" 
@@ -126,7 +132,7 @@
                                value="{{ old('title') }}"
                                required
                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
-                               placeholder="{{ __('Enter photo title...') }}">
+                               placeholder="Masukkan judul media...">
                         @error('title')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -135,14 +141,53 @@
                     <!-- Description -->
                     <div class="mb-6">
                         <label for="description" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                            {{ __('Description') }}
+                            Deskripsi
                         </label>
                         <textarea name="description" 
                                   id="description" 
                                   rows="4"
                                   class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
-                                  placeholder="{{ __('Tell us about this photo...') }}">{{ old('description') }}</textarea>
+                                  placeholder="Ceritakan tentang foto atau video ini...">{{ old('description') }}</textarea>
                         @error('description')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Folder -->
+                    <div class="mb-6">
+                        <label for="folder" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            Folder
+                        </label>
+                        <div class="relative">
+                            <select name="folder_select" 
+                                    id="folder_select" 
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all mb-2"
+                                    onchange="handleFolderSelection()">
+                                <option value="">-- Pilih Folder yang Ada --</option>
+                                <option value="__new__">+ Buat Folder Baru</option>
+                                @php
+                                    $existingFolders = \App\Models\GalleryFolder::orderBy('folder')->get();
+                                @endphp
+                                @foreach($existingFolders as $folderItem)
+                                    <option value="{{ $folderItem->folder }}">
+                                        📁 {{ $folderItem->folder }}
+                                        @if($folderItem->description)
+                                            - {{ Str::limit($folderItem->description, 30) }}
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                            
+                            <input type="text" 
+                                   name="folder" 
+                                   id="folder" 
+                                   value="{{ old('folder') }}"
+                                   class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-dark-border focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                                   placeholder="Atau ketik nama folder baru..."
+                                   style="display: none;">
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500">Pilih folder yang sudah ada atau buat folder baru</p>
+                        @error('folder')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -154,7 +199,7 @@
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                             </svg>
-                            {{ __('Upload Photo') }}
+                            Upload Media
                         </button>
                         <a href="{{ route('gallery.index') }}" 
                            class="px-8 py-4 bg-gray-100 dark:bg-dark-card text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-300 flex items-center justify-center">
@@ -171,12 +216,15 @@
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                     </svg>
                     <div>
-                        <h3 class="text-sm font-semibold text-blue-800 mb-2">{{ __('Upload Guidelines') }}</h3>
+                        <h3 class="text-sm font-semibold text-blue-800 mb-2">Panduan Upload</h3>
                         <ul class="text-sm text-blue-700 space-y-1">
-                            <li>• {{ __('Maximum file size: 5MB') }}</li>
-                            <li>• {{ __('Accepted formats: JPG, PNG, GIF') }}</li>
-                            <li>• {{ __('Your photo will be visible to all members') }}</li>
-                            <li>• {{ __('Please upload appropriate content only') }}</li>
+                            <li>• Ukuran maksimal foto: 5MB</li>
+                            <li>• Ukuran maksimal video: 50MB</li>
+                            <li>• Format foto: JPG, PNG, GIF</li>
+                            <li>• Format video: MP4, AVI, MOV, WMV, FLV, WEBM, MKV</li>
+                            <li>• Media akan disimpan di Cloudinary untuk performa optimal</li>
+                            <li>• Media Anda akan terlihat oleh semua anggota</li>
+                            <li>• Harap upload konten yang sesuai saja</li>
                         </ul>
                     </div>
                 </div>
@@ -185,16 +233,64 @@
     </div>
 
     <script>
-        function previewImage(event) {
+        function previewMedia(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('preview').src = e.target.result;
-                    document.getElementById('imagePreview').classList.remove('hidden');
+                const mediaPreview = document.getElementById('mediaPreview');
+                const imagePreview = document.getElementById('imagePreview');
+                const videoPreview = document.getElementById('videoPreview');
+                
+                // Hide both previews first
+                imagePreview.classList.add('hidden');
+                videoPreview.classList.add('hidden');
+                
+                if (file.type.startsWith('image/')) {
+                    // Show image preview
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.classList.remove('hidden');
+                        mediaPreview.classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(file);
+                } else if (file.type.startsWith('video/')) {
+                    // Show video preview
+                    reader.onload = function(e) {
+                        videoPreview.src = e.target.result;
+                        videoPreview.classList.remove('hidden');
+                        mediaPreview.classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(file);
             }
         }
+
+        // Handle folder selection
+        function handleFolderSelection() {
+            const folderSelect = document.getElementById('folder_select');
+            const folderInput = document.getElementById('folder');
+            
+            if (folderSelect.value === '__new__') {
+                // Show input for new folder
+                folderSelect.style.display = 'none';
+                folderInput.style.display = 'block';
+                folderInput.focus();
+                folderInput.value = '';
+            } else if (folderSelect.value) {
+                // Use existing folder
+                folderInput.value = folderSelect.value;
+            } else {
+                // No folder selected
+                folderInput.value = '';
+            }
+        }
+        
+        // Allow switching back to folder select
+        document.getElementById('folder').addEventListener('blur', function() {
+            if (this.value === '') {
+                document.getElementById('folder_select').style.display = 'block';
+                this.style.display = 'none';
+            }
+        });
     </script>
 </x-app-layout>

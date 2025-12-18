@@ -27,18 +27,19 @@
             </div>
             
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4 animate-fade-in">
-                {{ __('About Manaahel') }}
+                Tentang Manaahel
             </h1>
             <div class="w-20 sm:w-24 h-1 gradient-gold mx-auto mb-4 sm:mb-6"></div>
-            <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto animate-slide-up leading-relaxed px-4">
-                {{ __('Empowering learners worldwide through education and community') }}
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto animate-slide-up leading-relaxed px-4">
+                Angkatan yang melahirkan para pembuka pintu kebaikan, menghidupkan dan menyejukkan umat
             </p>
             
             <!-- Decorative Quote -->
             <div class="mt-6 sm:mt-8 max-w-3xl mx-auto bg-white/80 dark:bg-dark-card/80 backdrop-blur-sm border-l-4 border-gold dark:border-gold-light p-4 sm:p-6 rounded-lg shadow-lg dark:shadow-dark-border zoom-in">
                 <p class="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 italic">
-                    "{{ __('Education is the most powerful weapon which you can use to change the world') }}"
+                    "Menuntut ilmu adalah kewajiban bagi setiap muslim"
                 </p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">- HR. Ibnu Majah</p>
             </div>
         </div>
     </div>
@@ -50,7 +51,7 @@
         
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4">{{ __('Our Story') }}</h2>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4">Tentang Kami</h2>
                 <div class="w-20 sm:w-24 h-1 gradient-blue mx-auto"></div>
             </div>
             
@@ -65,9 +66,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('Our Vision') }}</h3>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Siapa Kami</h3>
                                 <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                    {{ __('Manaahel Platform was founded with a vision to democratize education and create a global community of learners. We believe that quality education should be accessible to everyone, regardless of their location or background.') }}
+                                    Manaahel adalah angkatan yang didedikasikan untuk melahirkan para pembuka pintu kebaikan. Kami berkomitmen menghidupkan dan menyejukkan umat dengan ilmu yang bermanfaat, akhlak mulia, serta aksi nyata yang membawa berkah bagi masyarakat dan lingkungan sekitar sesuai Al Quran dan As Sunnah serta pemahaman Salaful Ummah.
                                 </p>
                             </div>
                         </div>
@@ -81,9 +82,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('Our Community') }}</h3>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Nilai-Nilai Kami</h3>
                                 <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                    {{ __('Our platform brings together students, educators, and professionals from around the world, fostering collaboration, innovation, and lifelong learning. Through our comprehensive programs and supportive community, we help individuals achieve their personal and professional goals.') }}
+                                    Kami menjunjung tinggi nilai-nilai Islam yang murni berdasarkan Al Quran dan As Sunnah dengan pemahaman Salafush Shalih. Setiap program dan kegiatan kami dirancang untuk membentuk pribadi yang shaleh, berilmu, ikhlas, dan bermanfaat bagi umat.
                                 </p>
                             </div>
                         </div>
@@ -97,9 +98,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('Our Impact') }}</h3>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Dampak Kami</h3>
                                 <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                    {{ __('Today, Manaahel serves thousands of members across multiple countries, offering diverse programs in technology, business, and personal development.') }}
+                                    Melalui program pendidikan, sosial, keagamaan, dan lingkungan yang terukur, kami mengalirkan kebaikan berkelanjutan. Kami memperkokoh ukhuwah, berkolaborasi, serta menjadi teladan generasi muda pembangun peradaban Islami.
                                 </p>
                             </div>
                         </div>
@@ -154,31 +155,66 @@
 
     <!-- Vision & Mission -->
     <div class="py-16 bg-white dark:bg-dark-card">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-dark-card rounded-xl p-8 border-2 border-blue-100 hover:border-blue-primary dark:hover:border-gold hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6 shadow-lg dark:shadow-dark-border">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                        </svg>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Title -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Visi & Misi</h2>
+                <div class="w-24 h-1 gradient-gold mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Vision -->
+                <div class="bg-gradient-to-br from-blue-50 to-white dark:from-dark-bg dark:to-dark-card rounded-2xl p-8 border-2 border-blue-100 dark:border-dark-border hover:border-blue-primary dark:hover:border-gold hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-blue rounded-xl flex items-center justify-center mr-4 shadow-lg dark:shadow-dark-border">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Visi Angkatan Manaahel</h3>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ __('Vision') }}</h3>
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {{ __('To be the leading platform that empowers individuals worldwide through accessible education, fostering innovation, and building a connected community of lifelong learners.') }}
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+                        Menjadi angkatan yang melahirkan para pembuka pintu kebaikan, menghidupkan dan menyejukkan umat dengan ilmu yang bermanfaat, akhlak mulia, serta aksi nyata yang membawa berkah bagi masyarakat dan lingkungan sekitar sesuai Al Quran dan As Sunnah serta pemahaman Salaful Ummah.
                     </p>
                 </div>
 
-                <div class="bg-white dark:bg-dark-card rounded-xl p-8 border-2 border-gold/30 hover:border-gold hover:shadow-xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="w-14 h-14 gradient-gold rounded-xl flex items-center justify-center mb-6 shadow-lg dark:shadow-dark-border">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
+                <!-- Mission -->
+                <div class="bg-gradient-to-br from-amber-50 to-white dark:from-dark-bg dark:to-dark-card rounded-2xl p-8 border-2 border-gold/30 dark:border-dark-border hover:border-gold hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-gold rounded-xl flex items-center justify-center mr-4 shadow-lg dark:shadow-dark-border">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Misi Manaahel Generation</h3>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ __('Mission') }}</h3>
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {{ __('We provide high-quality educational programs, facilitate meaningful connections among members, and create opportunities for personal and professional growth.') }}
-                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 gradient-gold rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                                <span class="text-white font-bold text-sm">1</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+                                Membentuk anggota menjadi pribadi yang shaleh, berilmu, ikhlas, dan bermanfaat bagi umat.
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 gradient-gold rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                                <span class="text-white font-bold text-sm">2</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+                                Mengalirkan kebaikan berkelanjutan melalui program pendidikan, sosial, keagamaan, dan lingkungan yang terukur.
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 gradient-gold rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                                <span class="text-white font-bold text-sm">3</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+                                Memperkokoh ukhuwah, berkolaborasi, serta menjadi teladan generasi muda pembangun peradaban sesuai Al Quran dan As Sunnah serta pemahaman Salaful ummah.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -271,16 +307,24 @@
             <div class="absolute bottom-0 right-0 w-96 h-96 bg-white dark:bg-dark-card rounded-full translate-x-1/2 translate-y-1/2"></div>
         </div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-4xl font-bold text-white mb-4">{{ __('Ready to Start?') }}</h2>
+            <!-- Arabic Text -->
+            <div class="mb-6">
+                <p class="text-3xl text-gold-light mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                    هَيَّا بِنَا
+                </p>
+                <p class="text-sm text-blue-100 italic">Hayya Bina - Mari Bersama</p>
+            </div>
+            
+            <h2 class="text-4xl font-bold text-white mb-4">Siap Bergabung?</h2>
             <p class="text-xl text-blue-50 mb-10 max-w-2xl mx-auto">
-                {{ __('Join thousands of learners worldwide and unlock your potential') }}
+                Bergabunglah bersama kami dalam perjalanan menuntut ilmu dan berbagi kebaikan
             </p>
             <div class="flex flex-wrap gap-4 justify-center">
                 <a href="{{ route('register') }}" class="px-10 py-4 bg-white dark:bg-dark-card text-blue-primary dark:text-gold font-semibold rounded-full hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105 shadow-xl dark:shadow-dark-border">
-                    {{ __('Join Now') }}
+                    Daftar Sekarang
                 </a>
-                <a href="{{ route('programs.index') }}" class="px-10 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white dark:bg-dark-card hover:text-blue-primary dark:text-gold transition-all duration-300 transform hover:scale-105">
-                    {{ __('Browse Programs') }}
+                <a href="{{ route('academy.index') }}" class="px-10 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-primary dark:hover:text-gold transition-all duration-300 transform hover:scale-105">
+                    Lihat Academy
                 </a>
             </div>
         </div>

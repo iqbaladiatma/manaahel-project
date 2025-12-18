@@ -83,9 +83,13 @@
                     <li>
                         <a href="{{ route('about') }}" class="text-blue-100 hover:text-white transition">{{ __('Tentang') }}</a>
                     </li>
+
+                    <!-- Program Menu - DISABLED -->
+                    <!-- 
                     <li>
                         <a href="{{ route('programs.index') }}" class="text-blue-100 hover:text-white transition">{{ __('Program') }}</a>
                     </li>
+                    -->
                     <li>
                         <a href="{{ route('articles.index') }}" class="text-blue-100 hover:text-white transition">{{ __('Blog') }}</a>
                     </li>

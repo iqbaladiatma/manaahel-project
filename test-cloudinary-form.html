@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Cloudinary Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .info { background: #e7f3ff; padding: 15px; border-left: 4px solid #007bff; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Test Form - Tambah Media Cloudinary</h1>
+    
+    <div class="info">
+        <strong>Langkah-langkah:</strong><br>
+        1. Pastikan Anda sudah login sebagai Admin<br>
+        2. Isi form di bawah dengan URL Cloudinary yang valid<br>
+        3. Submit dan cek apakah muncul di gallery
+    </div>
+
+    <form action="/gallery/cloudinary/add" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        
+        <div class="form-group">
+            <label>URL Cloudinary *</label>
+            <input type="url" name="cloudinary_url" required 
+                   placeholder="https://res.cloudinary.com/demo/image/upload/sample.jpg"
+                   value="https://res.cloudinary.com/demo/image/upload/sample.jpg">
+        </div>
+
+        <div class="form-group">
+            <label>Tipe Media *</label>
+            <select name="file_type" required>
+                <option value="image">Gambar/Foto</option>
+                <option value="video">Video</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Judul *</label>
+            <input type="text" name="title" required 
+                   placeholder="Masukkan judul media..."
+                   value="Test Gambar dari Cloudinary">
+        </div>
+
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea name="description" rows="3" 
+                      placeholder="Ceritakan tentang media ini...">Test upload gambar dari Cloudinary untuk memastikan sistem berfungsi</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Visibilitas *</label>
+            <select name="visibility" required>
+                <option value="public">Publik (Semua orang bisa lihat)</option>
+                <option value="member_only">Khusus Member</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Filter Angkatan (Opsional)</label>
+            <input type="number" name="batch_filter" min="2020" max="2030" 
+                   placeholder="2024">
+        </div>
+
+        <button type="submit">Tambah ke Galeri</button>
+    </form>
+
+    <hr style="margin: 40px 0;">
+    
+    <h2>Troubleshooting</h2>
+    <ul>
+        <li><strong>Error 403:</strong> Pastikan login sebagai Admin</li>
+        <li><strong>Error 422:</strong> Cek validasi form (URL harus valid)</li>
+        <li><strong>Error 500:</strong> Cek log Laravel untuk detail error</li>
+        <li><strong>Tidak muncul di gallery:</strong> Cek database apakah data tersimpan</li>
+    </ul>
+
+    <h3>Contoh URL Cloudinary yang Valid:</h3>
+    <ul>
+        <li>https://res.cloudinary.com/demo/image/upload/sample.jpg</li>
+        <li>https://res.cloudinary.com/demo/video/upload/sample.mp4</li>
+        <li>https://res.cloudinary.com/your-cloud/image/upload/v1234567890/folder/image.jpg</li>
+    </ul>
+</body>
+</html>

@@ -14,15 +14,19 @@ return new class extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->string('title', 255);
             $table->text('description')->nullable();
             $table->string('file_path');
+            $table->string('cloudinary_public_id')->nullable();
+            $table->enum('file_type', ['image', 'video'])->default('image');
+            $table->string('folder')->nullable(); // Only folder, no category
             $table->string('batch_filter')->nullable();
             $table->enum('visibility', ['public', 'member_only'])->default('public');
             $table->timestamps();
             
             // Indexes
             $table->index('user_id');
+            $table->index('folder');
             $table->index('visibility');
             $table->index('batch_filter');
             $table->index(['visibility', 'batch_filter'], 'galleries_visibility_batch_index');

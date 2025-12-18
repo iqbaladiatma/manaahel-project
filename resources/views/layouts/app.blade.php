@@ -28,7 +28,7 @@
             <main class="flex-grow pt-20">
                 <!-- Global Session Alerts (only show if there are messages) -->
                 @if(session('success') || session('error') || session('warning') || session('info') || $errors->any())
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <div class="fixed top-20 left-0 right-0 z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
                     <x-session-alerts />
                 </div>
                 @endif

@@ -394,6 +394,13 @@ class DatabaseSeeder extends Seeder
         echo "   ✓ 2 achievements berhasil dibuat\n\n";
 
         // ============================================
+        // 9. GALLERY FOLDERS
+        // ============================================
+        echo "📁 Membuat gallery folders...\n";
+        
+        $this->call(GalleryFolderSeeder::class);
+
+        // ============================================
         // SELESAI
         // ============================================
         echo "✅ Seeding database selesai!\n";
@@ -407,6 +414,7 @@ class DatabaseSeeder extends Seeder
         echo "   - Academy Programs: 3\n";
         echo "   - Registrations: 3\n";
         echo "   - Achievements: 2\n";
+        echo "   - Gallery Folders: 8\n";
         echo "\n🔐 Login Credentials:\n";
         echo "   Admin: admin@manaahel.com / password\n";
         echo "   User: ahmad@example.com / password\n";

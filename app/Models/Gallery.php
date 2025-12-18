@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\CloudinaryService;
 
 class Gallery extends Model
 {
@@ -18,7 +19,10 @@ class Gallery extends Model
         'user_id',
         'title',
         'description',
+        'folder',
         'file_path',
+        'cloudinary_public_id',
+        'file_type',
         'batch_filter',
         'visibility',
     ];
@@ -29,7 +33,7 @@ class Gallery extends Model
      * @var array
      */
     protected $casts = [
-        'title' => 'array',
+        //
     ];
 
     /**
@@ -41,16 +45,10 @@ class Gallery extends Model
     }
 
     /**
-     * Get translated title.
+     * Get title.
      */
     public function getTranslatedTitle($locale = null)
     {
-        $locale = $locale ?? app()->getLocale();
-        
-        if (is_array($this->title)) {
-            return $this->title[$locale] ?? $this->title['en'] ?? $this->title['id'] ?? 'Untitled';
-        }
-        
         return $this->title ?? 'Untitled';
     }
 
@@ -66,8 +64,13 @@ class Gallery extends Model
                 $q->orWhere(function ($subQuery) use ($user) {
                     $subQuery->where('visibility', 'member_only')
                         ->where(function ($batchQuery) use ($user) {
-                            $batchQuery->whereNull('batch_filter')
-                                ->orWhere('batch_filter', $user->batch_year);
+                            // Admin can see all galleries regardless of batch
+                            if ($user->role === 'admin') {
+                                $batchQuery->whereRaw('1 = 1'); // Always true for admin
+                            } else {
+                                $batchQuery->whereNull('batch_filter')
+                                    ->orWhere('batch_filter', $user->batch_year);
+                            }
                         });
                 });
             }
@@ -107,5 +110,57 @@ class Gallery extends Model
         }
 
         return false;
+    }
+
+    /**
+     * Get the Cloudinary image URL
+     */
+    public function getImageUrl($options = [])
+    {
+        if ($this->cloudinary_public_id) {
+            return CloudinaryService::getImageUrl($this->cloudinary_public_id, $options);
+        }
+        
+        return $this->file_path;
+    }
+
+    /**
+     * Get the Cloudinary video URL
+     */
+    public function getVideoUrl($options = [])
+    {
+        if ($this->cloudinary_public_id && $this->file_type === 'video') {
+            return CloudinaryService::getVideoUrl($this->cloudinary_public_id, $options);
+        }
+        
+        return $this->file_path;
+    }
+
+    /**
+     * Get video thumbnail
+     */
+    public function getVideoThumbnail($options = [])
+    {
+        if ($this->cloudinary_public_id && $this->file_type === 'video') {
+            return CloudinaryService::getVideoThumbnail($this->cloudinary_public_id, $options);
+        }
+        
+        return null;
+    }
+
+    /**
+     * Check if this gallery item is a video
+     */
+    public function isVideo()
+    {
+        return $this->file_type === 'video';
+    }
+
+    /**
+     * Check if this gallery item is an image
+     */
+    public function isImage()
+    {
+        return $this->file_type === 'image';
     }
 }

@@ -55,8 +55,9 @@
                 $progressPercentage = $totalModules > 0 ? round(($completedModules / $totalModules) * 100) : 0;
             @endphp
 
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <!-- Stat 1: Programs -->
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Stat 1: Programs - DISABLED -->
+                <!-- 
                 <div class="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 overflow-hidden">
                     <div class="absolute top-0 right-0 w-20 h-20 bg-gold/20 rounded-full blur-2xl group-hover:bg-gold/30 transition-all"></div>
                     <div class="relative">
@@ -69,6 +70,7 @@
                         <div class="text-sm text-blue-100 font-medium">Program Aktif</div>
                     </div>
                 </div>
+                -->
 
                 <!-- Stat 2: Courses -->
                 <div class="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 overflow-hidden">
@@ -152,8 +154,8 @@
     <!-- Main Content -->
     <div class="py-12 bg-gray-50 dark:bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            
-            <!-- My Enrolled Programs -->
+            <!-- My Enrolled Programs - DISABLED -->
+            <!-- 
             @if($enrolledPrograms->count() > 0)
                 <div>
                     <div class="flex items-center justify-between mb-8">
@@ -173,10 +175,8 @@
                         @foreach($enrolledPrograms->take(3) as $registration)
                             @php $program = $registration->program; @endphp
                             <div class="group relative bg-white dark:bg-dark-card rounded-2xl border border-gray-200 dark:border-dark-border overflow-hidden hover:border-blue-500 transition-all duration-300 shadow-lg dark:shadow-dark-border hover:shadow-2xl dark:hover:shadow-gold/20">
-                                <!-- Glow Effect -->
                                 <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-500/10 to-amber-500/10 rounded-full blur-3xl group-hover:from-blue-500/20 group-hover:to-amber-500/20 transition-all"></div>
                                 
-                                <!-- Program Header -->
                                 <div class="relative bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gold-dark dark:to-gold p-6">
                                     <div class="flex items-center justify-between mb-3">
                                         <span class="px-3 py-1 bg-white/20 dark:bg-dark-card/40 backdrop-blur-sm text-white text-xs font-semibold rounded-full border border-white/20 dark:border-gold/30">
@@ -191,7 +191,6 @@
                                     </h3>
                                 </div>
 
-                                <!-- Program Content -->
                                 <div class="relative p-6">
                                     <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                                         {{ Str::limit($program->description, 100) }}
@@ -216,6 +215,7 @@
                     </div>
                 </div>
             @endif
+            -->
 
             <!-- My Academy Programs -->
             @php
@@ -223,19 +223,52 @@
             @endphp
 
             @if($academyRegistrations->count() > 0)
-                <div>
-                    <div class="flex items-center justify-between mb-8">
-                        <div>
-                            <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('My Academy Programs') }}</h2>
-                            <p class="text-gray-600 dark:text-gray-400">{{ __('Programs you have registered for') }}</p>
-                        </div>
-                        <a href="{{ route('academy.index') }}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all">
-                            {{ __('Browse Academy') }}
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </a>
+                <!-- Academy Section Header with Islamic Design -->
+                <div class="relative bg-gradient-to-r from-amber-50 via-gold/5 to-amber-50 dark:from-dark-card dark:via-gold/5 dark:to-dark-card rounded-3xl p-8 mb-8 overflow-hidden border-2 border-gold/30 dark:border-gold/50">
+                    <!-- Decorative Pattern -->
+                    <div class="absolute inset-0 opacity-5">
+                        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="academy-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                                    <circle cx="30" cy="30" r="2" fill="currentColor" class="text-gold"/>
+                                    <path d="M30 15 L35 30 L30 45 L25 30 Z" fill="currentColor" class="text-gold" opacity="0.3"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#academy-pattern)"/>
+                        </svg>
                     </div>
+
+                    <div class="relative z-10">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="flex items-center gap-4">
+                                <!-- Icon -->
+                                <div class="w-16 h-16 gradient-gold rounded-2xl flex items-center justify-center shadow-lg dark:shadow-dark-border">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                                    </svg>
+                                </div>
+                                
+                                <div>
+                                    <!-- Arabic Text -->
+                                    <p class="text-lg text-gold dark:text-gold-light mb-1" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                                        أَكَادِيمِيَّتِي
+                                    </p>
+                                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Program Academy Saya</h2>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-1">{{ $academyRegistrations->count() }} program terdaftar</p>
+                                </div>
+                            </div>
+
+                            <a href="{{ route('academy.index') }}" class="inline-flex items-center px-6 py-3 gradient-gold text-white font-semibold rounded-xl hover:shadow-lg dark:shadow-dark-border transition-all transform hover:scale-105">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                                Jelajahi Academy
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($academyRegistrations as $registration)
@@ -324,6 +357,71 @@
                         @endforeach
                     </div>
                 </div>
+            @else
+                <!-- Empty State for Academy -->
+                <div class="relative bg-gradient-to-br from-amber-50 via-gold/10 to-amber-50 dark:from-dark-card dark:via-gold/5 dark:to-dark-card rounded-3xl p-12 text-center overflow-hidden border-2 border-gold/30 dark:border-gold/50">
+                    <!-- Decorative Elements -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative z-10">
+                        <!-- Icon -->
+                        <div class="w-24 h-24 gradient-gold rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl dark:shadow-gold/20 animate-pulse">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Arabic Text -->
+                        <div class="mb-4">
+                            <p class="text-2xl text-gold dark:text-gold-light mb-2" style="font-family: 'Times New Roman', serif; direction: rtl;">
+                                اِبْدَأْ رِحْلَتَكَ
+                            </p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 italic">Ibda' Rihlataka - Mulai Perjalananmu</p>
+                        </div>
+
+                        <h3 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Belum Ada Program Academy</h3>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+                            Bergabunglah dengan program Academy kami untuk mendalami ilmu agama dan mengembangkan diri bersama komunitas yang solid
+                        </p>
+
+                        <!-- Features -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
+                            <div class="bg-white/50 dark:bg-dark-bg/50 backdrop-blur-sm rounded-xl p-4 border border-gold/20">
+                                <div class="w-10 h-10 gradient-gold rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">Materi Berkualitas</p>
+                            </div>
+                            <div class="bg-white/50 dark:bg-dark-bg/50 backdrop-blur-sm rounded-xl p-4 border border-gold/20">
+                                <div class="w-10 h-10 gradient-gold rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">Komunitas Solid</p>
+                            </div>
+                            <div class="bg-white/50 dark:bg-dark-bg/50 backdrop-blur-sm rounded-xl p-4 border border-gold/20">
+                                <div class="w-10 h-10 gradient-gold rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">Sertifikat Resmi</p>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('academy.index') }}" 
+                           class="inline-flex items-center px-10 py-4 gradient-gold text-white font-bold rounded-xl hover:shadow-2xl dark:hover:shadow-gold/20 transition-all transform hover:scale-105">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            Jelajahi Program Academy
+                        </a>
+                    </div>
+                </div>
             @endif
 
             <!-- Quick Actions -->
@@ -333,8 +431,9 @@
                     <p class="text-gray-600 dark:text-gray-400">{{ __('Explore and manage your account') }}</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Browse Programs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Browse Programs - DISABLED -->
+                    <!-- 
                     <a href="{{ route('programs.index') }}" class="group relative bg-white dark:bg-dark-card rounded-2xl border border-gray-200 dark:border-dark-border p-8 hover:border-amber-500 hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 rounded-full blur-2xl group-hover:from-amber-500/20 transition-all"></div>
                         <div class="relative">
@@ -347,6 +446,7 @@
                             <p class="text-gray-600 dark:text-gray-400">{{ __('Explore available learning programs') }}</p>
                         </div>
                     </a>
+                    -->
 
                     <!-- My Profile -->
                     <a href="{{ route('profile.show') }}" class="group relative bg-white dark:bg-dark-card rounded-2xl border border-gray-200 dark:border-dark-border p-8 hover:border-blue-500 hover:shadow-2xl dark:hover:shadow-gold/20 transition-all duration-300 overflow-hidden">
@@ -392,7 +492,8 @@
                 </div>
             </div>
 
-            <!-- Empty State for No Programs -->
+            <!-- Empty State for No Programs - DISABLED -->
+            <!-- 
             @if($enrolledPrograms->count() === 0)
                 <div class="relative bg-gradient-to-br from-blue-50 to-amber-50 dark:from-dark-card dark:to-dark-bg rounded-2xl p-16 text-center overflow-hidden">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 dark:bg-blue-900/5 rounded-full blur-3xl"></div>
@@ -416,6 +517,7 @@
                     </div>
                 </div>
             @endif
+            -->
         </div>
     </div>
 </x-app-layout>
